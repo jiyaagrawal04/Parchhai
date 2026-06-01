@@ -9,13 +9,16 @@ import { apiLimiter } from "./middleware/rateLimit.js";
 import { errorHandler, notFoundHandler } from "./middleware/error.js";
 import api from "./router.js";
 
-const allowedOrigins = env.WEB_ORIGIN.split(",").map((s) => s.trim()).filter(Boolean);
+// Normalize so a trailing slash in WEB_ORIGIN never breaks the match
+// (browsers send the Origin header without a trailing slash).
+const stripSlash = (s: string) => s.trim().replace(/\/+$/, "");
+const allowedOrigins = env.WEB_ORIGIN.split(",").map(stripSlash).filter(Boolean);
 
 /** CORS policy: any origin in dev; in prod allow WEB_ORIGIN + any *.vercel.app / *.onrender.com host. */
 const corsOrigin: cors.CorsOptions["origin"] = (origin, cb) => {
   if (!origin) return cb(null, true); // curl / same-origin / server-to-server
   if (env.NODE_ENV === "development" || env.WEB_ORIGIN === "*") return cb(null, true);
-  if (allowedOrigins.includes(origin)) return cb(null, true);
+  if (allowedOrigins.includes(stripSlash(origin))) return cb(null, true);
   try {
     const host = new URL(origin).hostname;
     if (/\.(vercel\.app|onrender\.com)$/.test(host)) return cb(null, true);
