@@ -9,7 +9,9 @@ services:
     region: oregon
     # Build from the monorepo ROOT so pnpm resolves the @parchhai/* workspace packages.
     rootDir: .
-    buildCommand: corepack enable && pnpm install --no-frozen-lockfile && pnpm --filter @parchhai/db generate && pnpm --filter @parchhai/api build
+    # Install pnpm via npm (avoids the corepack signature-verification bug in bundled Node).
+    buildCommand: npm i -g pnpm@10.28.2 && pnpm install --no-frozen-lockfile && pnpm --filter @parchhai/db generate
+    # Runs `tsx src/index.ts` so the @parchhai/* workspace TypeScript packages resolve at runtime.
     startCommand: pnpm --filter @parchhai/api start
     healthCheckPath: /api/v1/health
     autoDeploy: true
