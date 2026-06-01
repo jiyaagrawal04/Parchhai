@@ -1,7 +1,10 @@
-# Render Blueprint — deploys the Parchhai API (persistent Node/Express server).
-# Render injects PORT; the API now binds to it (see apps/api/src/index.ts).
+# Render Blueprint — deploys BOTH the Parchhai API (Node server) and the web (static site).
 # Create from: Render Dashboard → New → Blueprint → pick this repo.
+# After first deploy, set the two cross-URLs (see DEPLOY.md):
+#   - API service:  WEB_ORIGIN   = the web site's URL
+#   - web service:  VITE_API_URL = the API's URL + /api/v1
 services:
+  # ─────────────────────────── API ───────────────────────────
   - type: web
     name: parchhai-api
     runtime: node
@@ -49,3 +52,20 @@ services:
         sync: false
       - key: R2_PUBLIC_URL
         sync: false
+
+  # ───────────────────── Web (static site) ─────────────────────
+  - type: web
+    name: parchhai-web
+    runtime: static
+    # Build with vite only (no tsc gate); publish the Vite output.
+    buildCommand: npm i -g pnpm@10.28.2 && pnpm install --no-frozen-lockfile && pnpm --filter @parchhai/web exec vite build
+    staticPublishPath: apps/web/dist
+    pullRequestPreviewsEnabled: false
+    envVars:
+      - key: VITE_API_URL
+        sync: false # set to the API service URL + /api/v1, e.g. https://parchhai-api.onrender.com/api/v1
+    # SPA fallback: serve index.html for client-side routes.
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
