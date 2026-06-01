@@ -3,5 +3,5 @@
   "installCommand": "cd ../.. && npm i -g pnpm@10.28.2 && pnpm install --no-frozen-lockfile",
   "buildCommand": "pnpm exec vite build",
   "outputDirectory": "dist",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [{ "source": "/((?!.*\\.).*)", "destination": "/index.html" }]
 }
