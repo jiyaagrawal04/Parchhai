@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Crafts Showcase | Parchhai</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e7e2d9",
+                        "on-primary-container": "#8392b7",
+                        "surface-tint": "#4f5e81",
+                        "inverse-primary": "#b7c6ee",
+                        "inverse-surface": "#32302a",
+                        "secondary": "#a23e30",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f5f0e7",
+                        "on-tertiary-fixed": "#281800",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "primary-fixed-dim": "#b7c6ee",
+                        "on-secondary-fixed": "#410000",
+                        "surface-container-low": "#f8f3ea",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#b98a3c",
+                        "on-surface-variant": "#45464e",
+                        "on-primary-fixed-variant": "#384668",
+                        "on-background": "#1d1c16",
+                        "secondary-fixed": "#ffdad4",
+                        "on-surface": "#1d1c16",
+                        "surface-container": "#f2ede4",
+                        "primary-container": "#1b2a4a",
+                        "on-secondary-fixed-variant": "#82271c",
+                        "outline": "#75777f",
+                        "surface-bright": "#fef9f0",
+                        "secondary-container": "#fc8270",
+                        "surface-dim": "#ded9d1",
+                        "surface-container-highest": "#e7e2d9",
+                        "tertiary": "#221400",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#721b12",
+                        "primary": "#041534",
+                        "surface": "#fef9f0",
+                        "tertiary-container": "#3c2700",
+                        "surface-container-high": "#ece8df",
+                        "secondary-fixed-dim": "#ffb4a8",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#fef9f0",
+                        "primary-fixed": "#d9e2ff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#ffddaf",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#0a1a3a",
+                        "outline-variant": "#c5c6cf",
+                        "tertiary-fixed-dim": "#f3be6a",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "section-gap": "120px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Bodoni Moda"],
+                        "body-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "display-lg": ["Bodoni Moda"],
+                        "headline-lg-mobile": ["Bodoni Moda"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "headline-md": ["Bodoni Moda"],
+                        "headline-lg": ["Bodoni Moda"],
+                        "label-sm": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["80px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                        "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .paper-grain {
+            background-color: #fef9f0;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+            background-attachment: fixed;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        .reveal-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="paper-grain text-on-surface antialiased overflow-x-hidden">
+<!-- TopNavBar (Suppressed for specialized task-focused Mobile view, but using logic for mobile-only menu trigger if needed) -->
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl flex justify-between items-center px-margin-mobile h-20 border-b border-outline/10">
+<h1 class="font-display-lg-mobile text-headline-lg-mobile tracking-tighter text-primary">Parchhai</h1>
+<div class="flex gap-4">
+<button class="text-primary"><span class="material-symbols-outlined">person</span></button>
+<button class="text-primary relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-secondary text-white text-[8px] w-3 h-3 rounded-full flex items-center justify-center">2</span>
+</button>
+</div>
+</header>
+<main class="pt-28 pb-32">
+<!-- Hero Section -->
+<section class="px-margin-mobile mb-16">
+<span class="font-label-caps text-label-caps text-secondary mb-4 block">THE CRAFT ARCHIVE</span>
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-primary mb-6">Honoring our Ancestral Threads</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">A curated journal of the techniques, regions, and artisans that breathe life into the Parchhai silhouette.</p>
+</section>
+<!-- Craft Blocks Stack -->
+<div class="space-y-24">
+<!-- Craft 01: Ajrakh -->
+<section class="reveal-on-scroll px-margin-mobile flex flex-col">
+<div class="relative overflow-hidden mb-8 aspect-[4/5] bg-surface-dim">
+<img class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" data-alt="A close-up high-definition photograph of a traditional Ajrakh block-printed fabric featuring intricate geometric and floral patterns in deep indigo, madder red, and white. The textile shows a soft, organic cotton texture with slight natural imperfections that highlight the hand-printed quality. Soft side-lighting emphasizes the depth of the natural vegetable dyes against a minimalist ivory background in an editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWsoBcsRbsE2u6mxy9awT-ys0NbscjrU6mPTsTDCqOixLTnZBNlGV2LAeLvm5x-oU1TPZMS2-gZ7PRwxXFxLqmwfQc4DtdU4TIi_kn65tdxU9UTjenQ5TPHOECd1zp6DveiZAwU2nWDGnUS_eq-Ylp9QQStRdEOqiZRN9jcpGwREbzjFAijFaIDEWzjqGL4NFNA9kF1Fs1l3uSRS6qj8A708TVPPOmJQh6YzD6ntTzDvl1aFQtKny4dWECnhKH2JLrE_njw3AQL5_n"/>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-caps text-label-caps text-primary">KUTCH, GUJARAT</span>
+</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-3">The Alchemy of Ajrakh</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 leading-relaxed">
+                    Ajrakh is a unique form of block printing found in Kutch. The process is laborious, involving 16 distinct stages of washing, dyeing, and printing with natural minerals and vegetable dyes over several weeks.
+                </p>
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary group" href="#">
+                    EXPLORE THE TECHNIQUE
+                    <span class="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+</section>
+<!-- Craft 02: Chikankari -->
+<section class="reveal-on-scroll px-margin-mobile flex flex-col">
+<div class="relative overflow-hidden mb-8 aspect-[4/5] bg-surface-dim">
+<img class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" data-alt="Exquisite close-up of white Chikankari hand-embroidery on sheer unbleached muslin fabric. The intricate needlework depicts delicate floral vines and shadow-work patterns, creating a tactile and ethereal aesthetic. The lighting is soft and airy, casting subtle shadows within the fabric's weave to emphasize the artisanal craftsmanship and the Parchhai brand's minimalist luxury identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgYMyhO-xCEvHks_1ksx6AO6GiQYO6WJhjMh6y7pvTViHTvmrpNP3Wow52TuuPzakq_i93igpMXEkOX0ZzmXUBE1-BAj7CH3hOwkuKIxrTsC06bcR165MmINFqn2sh44NBjv7eq7b6WAbSPp3dADOFDRpaDVHV_RL7-XkrcQw81sKFl8v9xv8a9vDVe1VWEdK8DvtaTP4MepBtZ0PG-KC9HQpMcrm9GYxlfWrNYpleOEtDEjqNx5cgYILY3FR6TWqDDxjKggRmoDQN"/>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-caps text-label-caps text-primary">LUCKNOW, UTTAR PRADESH</span>
+</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-3">Shadows in Thread</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 leading-relaxed">
+                    Known as 'Shadow Work', Chikankari is a delicate and artfully done hand embroidery. It is one of Lucknow's most ancient and well-known art forms, traditionally created on fine muslin textiles.
+                </p>
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary group" href="#">
+                    READ ARTISAN STORY
+                    <span class="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+</section>
+<!-- Craft 03: Dabu -->
+<section class="reveal-on-scroll px-margin-mobile flex flex-col">
+<div class="relative overflow-hidden mb-8 aspect-[4/5] bg-surface-dim">
+<img class="w-full h-full object-cover transition-transform duration-1000 hover:scale-105" data-alt="A macro shot of mud-resist Dabu printing in progress. An artisan's hand is visible applying a carved wooden block dipped in thick, earthy clay onto a deep charcoal grey textile surface. The scene is captured in a workshop setting with natural sunlight pouring in, highlighting the dusty, tactile nature of the process and the contrast between the mud and the dye. The image reflects an authentic, unhurried heritage style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJEfjdPaFH1TlOogJNBmF0M6H8ug6cZgFUDO3IVih4ge43D0VE6jg0_x44qxlw1wA_0YsG5UP44e_wXXzj0m8DbXJRImSkWr6_WKyoa0I-m8rBa7l_t265n1D57ExoK8qA3mHNRZiv91diAdEvXZhyj6lroiU2jDOu4rXYcyJvirUp5VjPChecQMmcSSmkjyVBw8ONbhWtOY3jI1H8ei_tbf3t09X2m6r99YLT_e--BNs7ZaYhpWgy87XQ6wffII9RLKmSz6x4qfmm"/>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-caps text-label-caps text-primary">CHIPPA, RAJASTHAN</span>
+</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-3">The Earth’s Resist</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 leading-relaxed">
+                    Dabu printing is an ancient mud-resist hand-block printing technique. The mud resist is made of clay, lime, and gum arabic, which prevents the dye from penetrating the covered areas, resulting in organic, soft-edged motifs.
+                </p>
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary group" href="#">
+                    VIEW COLLECTION
+                    <span class="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+</section>
+</div>
+<!-- Call to Action -->
+<section class="mt-32 px-margin-mobile text-center">
+<div class="bg-primary p-10 py-16 flex flex-col items-center">
+<h4 class="font-headline-md text-headline-md text-surface mb-4 italic">Wear the Heritage</h4>
+<p class="font-body-md text-body-md text-on-primary-container mb-8 max-w-xs">Every garment from Parchhai tells the story of the hands that made it.</p>
+<button class="bg-surface text-primary px-8 py-4 font-label-caps text-label-caps tracking-widest transition-all hover:bg-secondary hover:text-white">
+                    SHOP THE CRAFTS
+                </button>
+</div>
+</section>
+</main>
+<!-- SideNavBar / Mobile Menu (Hidden by default, triggered by Person icon logic or as a full drawer) -->
+<nav class="fixed inset-y-0 left-0 w-80 z-[60] bg-surface flex flex-col p-margin-mobile gap-unit shadow-2xl translate-x-[-100%] transition-transform duration-500" id="mobile-nav">
+<div class="flex justify-between items-center mb-10">
+<h2 class="font-display-lg-mobile text-headline-lg-mobile text-primary">Parchhai</h2>
+<button class="text-primary" onclick="toggleMenu()"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div class="flex flex-col gap-6">
+<a class="font-label-caps text-label-caps text-on-surface hover:pl-2 transition-all duration-300" href="#">Shop</a>
+<a class="font-label-caps text-label-caps text-secondary font-bold hover:pl-2 transition-all duration-300" href="#">Crafts</a>
+<a class="font-label-caps text-label-caps text-on-surface hover:pl-2 transition-all duration-300" href="#">Our Story</a>
+<a class="font-label-caps text-label-caps text-on-surface hover:pl-2 transition-all duration-300" href="#">Journal</a>
+</div>
+<div class="mt-auto border-t border-outline-variant pt-8">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-10 h-10 bg-primary-container rounded-full flex items-center justify-center text-white">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="font-label-caps text-label-caps text-primary">MY ACCOUNT</p>
+<p class="text-[10px] text-on-surface-variant">Sign in for personalized view</p>
+</div>
+</div>
+</div>
+</nav>
+<!-- BottomNavBar (The Mobile Anchor) -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface/95 backdrop-blur-lg flex justify-around items-center h-20 px-4 border-t border-outline/5 md:hidden">
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">storefront</span>
+<span class="font-label-caps text-[9px]">SHOP</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-secondary font-bold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-caps text-[9px]">CRAFTS</span>
+</a>
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center -mt-8 shadow-xl text-surface">
+<span class="material-symbols-outlined">search</span>
+</div>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">article</span>
+<span class="font-label-caps text-[9px]">JOURNAL</span>
+</a>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant" onclick="toggleMenu()">
+<span class="material-symbols-outlined">menu</span>
+<span class="font-label-caps text-[9px]">MENU</span>
+</button>
+</nav>
+<!-- Footer -->
+<footer class="bg-surface-container w-full border-t border-outline-variant py-16 px-margin-mobile pb-32">
+<h2 class="font-display-lg text-headline-md text-primary mb-8">Parchhai</h2>
+<div class="grid grid-cols-2 gap-8 mb-12">
+<div class="flex flex-col gap-3">
+<span class="font-label-caps text-[10px] text-secondary">EXPLORE</span>
+<a class="font-label-caps text-label-caps text-on-surface-variant" href="#">Shop</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant" href="#">Crafts</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant" href="#">Journal</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-caps text-[10px] text-secondary">SUPPORT</span>
+<a class="font-label-caps text-label-caps text-on-surface-variant" href="#">Care</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant" href="#">Shipping</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant" href="#">Contact</a>
+</div>
+</div>
+<div class="border-t border-outline-variant pt-8 flex flex-col gap-4">
+<p class="font-body-md text-[13px] text-on-surface-variant leading-relaxed">© 2024 Parchhai. Crafted in India. Designed for the global soul.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary">language</span>
+<span class="font-label-caps text-label-caps text-primary">EN / INR</span>
+</div>
+</div>
+</footer>
+<script>
+        // Reveal on scroll logic
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // Menu Toggle
+        let menuOpen = false;
+        function toggleMenu() {
+            const nav = document.getElementById('mobile-nav');
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                nav.style.transform = 'translateX(0)';
+            } else {
+                nav.style.transform = 'translateX(-100%)';
+            }
+        }
+
+        // Horizontal Parallax for Images on scroll
+        window.addEventListener('scroll', () => {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                const speed = 0.05;
+                const rect = img.getBoundingClientRect();
+                const visible = rect.top < window.innerHeight && rect.bottom > 0;
+                if (visible) {
+                    const shift = (window.innerHeight / 2 - rect.top) * speed;
+                    img.style.transform = `scale(1.1) translateY(${shift}px)`;
+                }
+            });
+        });
+    </script>
+</body></html>

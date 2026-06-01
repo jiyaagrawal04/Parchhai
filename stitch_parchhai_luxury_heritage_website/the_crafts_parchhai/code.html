@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Crafts | Parchhai Heritage Showcase</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e7e2d9",
+                        "on-primary-container": "#8392b7",
+                        "surface-tint": "#4f5e81",
+                        "inverse-primary": "#b7c6ee",
+                        "inverse-surface": "#32302a",
+                        "secondary": "#a23e30",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f5f0e7",
+                        "on-tertiary-fixed": "#281800",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "primary-fixed-dim": "#b7c6ee",
+                        "on-secondary-fixed": "#410000",
+                        "surface-container-low": "#f8f3ea",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#b98a3c",
+                        "on-surface-variant": "#45464e",
+                        "on-primary-fixed-variant": "#384668",
+                        "on-background": "#1d1c16",
+                        "secondary-fixed": "#ffdad4",
+                        "on-surface": "#1d1c16",
+                        "surface-container": "#f2ede4",
+                        "primary-container": "#1b2a4a",
+                        "on-secondary-fixed-variant": "#82271c",
+                        "outline": "#75777f",
+                        "surface-bright": "#fef9f0",
+                        "secondary-container": "#fc8270",
+                        "surface-dim": "#ded9d1",
+                        "surface-container-highest": "#e7e2d9",
+                        "tertiary": "#221400",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#721b12",
+                        "primary": "#041534",
+                        "surface": "#fef9f0",
+                        "tertiary-container": "#3c2700",
+                        "surface-container-high": "#ece8df",
+                        "secondary-fixed-dim": "#ffb4a8",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#fef9f0",
+                        "primary-fixed": "#d9e2ff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#ffddaf",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#0a1a3a",
+                        "outline-variant": "#c5c6cf",
+                        "tertiary-fixed-dim": "#f3be6a",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "section-gap": "120px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Bodoni Moda"],
+                        "body-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "display-lg": ["Bodoni Moda"],
+                        "headline-lg-mobile": ["Bodoni Moda"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "headline-md": ["Bodoni Moda"],
+                        "headline-lg": ["Bodoni Moda"],
+                        "label-sm": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["80px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                        "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .paper-grain {
+            background-color: #fef9f0;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+            background-attachment: fixed;
+        }
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .asymmetric-offset {
+            transform: translateY(40px);
+        }
+    </style>
+</head>
+<body class="paper-grain text-on-surface font-body-md selection:bg-secondary/30">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-outline/10 flex justify-between items-center px-margin-desktop h-20 w-full">
+<div class="font-display-lg text-headline-md tracking-tighter text-primary">Parchhai</div>
+<div class="hidden md:flex gap-gutter items-center">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Shop</a>
+<a class="font-label-caps text-label-caps text-primary border-b border-secondary pb-1 hover:text-secondary transition-colors duration-300" href="#">Crafts</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Our Story</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Journal</a>
+</div>
+<div class="flex items-center gap-gutter">
+<button class="material-symbols-outlined text-primary hover:opacity-70 transition-opacity">person</button>
+<button class="material-symbols-outlined text-primary hover:opacity-70 transition-opacity">shopping_bag</button>
+</div>
+</nav>
+<!-- Hero Header -->
+<header class="pt-40 pb-section-gap px-margin-desktop text-center max-w-4xl mx-auto">
+<span class="font-label-caps text-label-caps text-secondary mb-4 block">Our Provenance</span>
+<h1 class="font-display-lg text-display-lg text-primary mb-8 tracking-tighter leading-tight">The Geometry of Heritage</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+            Every thread tells a story of an ancestor's hands. We collaborate with master artisans in four historic clusters across India to revive techniques that have weathered centuries.
+        </p>
+</header>
+<main class="space-y-section-gap pb-section-gap">
+<!-- Section: Ajrakh (Left-aligned text, Right image) -->
+<section class="reveal-on-scroll grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-desktop items-center">
+<div class="md:col-span-4 space-y-unit">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span class="font-label-caps text-label-caps tracking-widest text-on-surface-variant">KUTCH, GUJARAT</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Ajrakh</h2>
+<p class="font-body-md text-body-md text-on-surface-variant pr-8">
+                    Derived from the Arabic word 'Azrak' meaning blue, Ajrakh is a complex 16-step block-printing process using natural indigo, madder, and pomegranate. It mirrors the star-speckled desert sky through cosmic geometric patterns.
+                </p>
+<div class="pt-8">
+<a class="group flex items-center gap-2 font-label-caps text-label-caps text-primary" href="#">
+<span>Shop Ajrakh pieces</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="md:col-span-8 relative overflow-hidden group">
+<img alt="Ajrakh Artisan" class="w-full h-[600px] object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A master artisan from Kutch carefully aligns a heavy teak wood block onto hand-spun cotton fabric drenched in natural indigo. The lighting is soft and golden, highlighting the fine textures of the fabric and the intricate geometric patterns of the Ajrakh print. The background is a minimalist studio with earthen tones, reflecting an editorial and high-end aesthetic that celebrates Indian craft heritage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFLawp1_m_KGN-YIyUPIOuqxoPIfp6EJCb9PUxaD2xgkT7HNrBBCA5kJ-30abtcRl7McHf-9xkLzpmDjSwXx84Z1i9YL2MFHC_q0gUTlYz5MRl4bQdH_h0cXd__jZdcde5ij_SG2MbFQFrm7T7tR0bplBH2eXLqHm8bx2kP_4F8ily2Y8V-yHYT6bmQ5R_efmTfBmc2Hn-fdghgR2WoOED9gOFd6k6fGPVuBJ9W40-HmcZlopbpufQgLnnC_po2AWn8T4wgQQB7vn1"/>
+<div class="absolute bottom-6 right-6 p-4 bg-surface/80 backdrop-blur-md border border-outline/10 text-xs font-label-caps text-primary">
+                    TRADITIONAL INDIGO RESIST
+                </div>
+</div>
+</section>
+<!-- Section: Bagru (Right-aligned text, Left image) -->
+<section class="reveal-on-scroll grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-desktop items-center">
+<div class="md:col-span-7 order-2 md:order-1 relative overflow-hidden group asymmetric-offset">
+<img alt="Bagru Printing" class="w-full h-[700px] object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Close-up shot of hand-blocked floral patterns in deep earthy ochre and black charcoal tones on unbleached linen. The scene is bathed in natural sunlight, emphasizing the subtle organic imperfections of the Bagru printing technique. The overall mood is sophisticated and unhurried, emphasizing the luxury editorial feel of sustainable, artisan-made textiles in a serene, modern Indian setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvFRApRtop-0B0f3jETkDv6BN0FVI4yDrUWA3keQb9SUKhNT-flODP8jeWqvzOkcxXmtrHyrDTPJmiAbpNoUOG44za6VAtoHcfR68ZDgepOyp6aY1q54Od_vJSkrP6haXRWsK4lTC9_ijJ8YqufmN9gjwAmuMCfAWjVNkjtTiLWXkD-pxD4N9ZioeqWN4lvmFW9D4xh8mRsSvSjbzYYVmB7ss72V5cNaCnidiTDEtLTt3tmlRcvlQCWDBHvEjA2KHNCtAMp2PcjlQk"/>
+</div>
+<div class="md:col-span-5 order-1 md:order-2 md:pl-margin-desktop space-y-unit">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span class="font-label-caps text-label-caps tracking-widest text-on-surface-variant">BAGRU, RAJASTHAN</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Bagru</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Famous for its characteristic 'Seyali' (black) and 'Dabu' (resist) prints, Bagru is defined by its use of 'Syahi'—a paste made from fermented iron filings and jaggery—to create deep, earthy motifs that resonate with the Rajasthani soil.
+                </p>
+<div class="pt-8">
+<a class="group flex items-center gap-2 font-label-caps text-label-caps text-primary" href="#">
+<span>Shop Bagru pieces</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Section: Dabu (Centered/Asymmetric) -->
+<section class="reveal-on-scroll grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-desktop items-start">
+<div class="md:col-start-2 md:col-span-5 space-y-unit pt-12">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span class="font-label-caps text-label-caps tracking-widest text-on-surface-variant">CHITTORGARH, RAJASTHAN</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Dabu</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    The mud-resist technique, or Dabu, involves applying a mixture of black clay, sawdust, and gum to the fabric before dyeing. This protective layer ensures parts of the fabric remain untouched, creating sharp, ivory-toned silhouettes against deep dye.
+                </p>
+<div class="pt-8">
+<a class="group flex items-center gap-2 font-label-caps text-label-caps text-primary" href="#">
+<span>Shop Dabu pieces</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="md:col-span-6 relative group">
+<div class="absolute -top-12 -left-12 w-full h-full border border-secondary/20 z-0"></div>
+<img alt="Dabu mud resist" class="w-full h-[550px] object-cover relative z-10 grayscale-[0.2] transition-transform duration-700 group-hover:scale-[1.02]" data-alt="A minimalist and high-contrast image showing the Dabu mud-resist process. Thick, dark mud is being applied to a pale silk fabric in an abstract, rhythmic pattern. The color palette is restricted to ivory, charcoal, and warm clay tones. The lighting is dramatic, casting soft shadows that emphasize the tactile, thick texture of the mud against the delicate silk fibers." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxb84mjGBnGbkX6JeYHMeHW9WvM77Cf9_oITdreyWlg0zy7c6GDnfv44gHeGwPNtHmtFjaEtsX2pCgR7poOxio1JSAfyQnw-Mqc7JXfst7Q2xV1ggQpUw-aSzN-7VG_lXQ9R0U-Pk67KYk95RAA6BXb__qcayU4k7uUup2X-F9qeGMcq3Ur9KRYJ5tszO9AbrN_Mha2XEQUj_HgYLid3o3Lf1PKDkThORlS7UxWPWR1JVt6Bcpg9t3Q7y16gUWwcNoiUZ8uVGedHEr"/>
+</div>
+</section>
+<!-- Section: Bagh (Full Width Editorial) -->
+<section class="reveal-on-scroll px-margin-desktop">
+<div class="relative w-full h-[819px] overflow-hidden group flex items-center justify-center">
+<img alt="Bagh Print" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" data-alt="Large-scale shot of vibrant red and black Bagh printed fabric being washed in a clear, flowing river. The water creates crystalline splashes and ripples over the bold geometric patterns. The surrounding landscape is lush and serene, capturing the traditional washing process in the Bagh district. The visual style is highly editorial, using a wide-angle lens and high-dynamic range to emphasize the deep saturation of the natural dyes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCI8tbi_yJ9q0JAlD_Z-5e6k-dl45Jj5rrC6tp-BM_sF6lUIkZFz5z8sB2eP65pq3ZbHAU-LP1NxmZDGDPhPSPY2exNq6FxxYpfCU7Alhos82nurK2uGD9UVqfNsEOoAcIIgCnLc1b9GV1GMKpEwdfBLDCcsj-MJdY15IcrfArwf_KtmGotSXlHYVJTxoRBQRcTo9qLlVe5sPtSlBlvfcGd4DPywFWvUEV_qcq0Hii_AdidEgaAmhEl9g0-b722Jdn4xcDT6KTYfefr"/>
+<div class="absolute inset-0 bg-primary/20 backdrop-blur-[2px]"></div>
+<div class="relative z-10 bg-surface/90 p-margin-desktop max-w-2xl text-center border border-outline/5 shadow-2xl">
+<div class="flex justify-center items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span class="font-label-caps text-label-caps tracking-widest text-on-surface-variant">DHAR, MADHYA PRADESH</span>
+</div>
+<h2 class="font-display-lg text-headline-lg text-primary mb-6">Bagh</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 leading-relaxed">
+                        Named after the Bagh river whose mineral-rich waters enhance the vibrancy of the red dyes, this craft uses goat droppings and oil in its pre-treatment, creating a depth of color that is impossible to replicate chemically.
+                    </p>
+<a class="inline-block bg-primary text-surface font-label-caps text-label-caps px-12 py-5 hover:bg-secondary transition-all duration-300" href="#">Shop Bagh Collection</a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container border-t border-outline-variant w-full mt-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-section-gap max-w-7xl mx-auto">
+<div class="space-y-unit">
+<div class="font-display-lg text-headline-md text-primary mb-4">Parchhai</div>
+<p class="font-body-md text-on-surface-variant max-w-[200px]">Modern silhouettes, ancestral soul.</p>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-primary mb-6">Shop</h4>
+<ul class="space-y-4">
+<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">New Arrivals</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">The Ajrakh Series</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Crafts</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-primary mb-6">Connect</h4>
+<ul class="space-y-4">
+<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Our Journal</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Social</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-primary mb-6">Sustainability</h4>
+<p class="font-body-md text-on-surface-variant">Every piece is slow-crafted. Carbon-neutral shipping worldwide.</p>
+<div class="mt-8 font-label-caps text-label-caps text-secondary">© 2024 Parchhai. Crafted in India.</div>
+</div>
+</div>
+</footer>
+<script>
+        // Reveal on Scroll logic
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // Subtle parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const offsets = document.querySelectorAll('.asymmetric-offset');
+            offsets.forEach(el => {
+                const speed = 0.05;
+                const rect = el.getBoundingClientRect();
+                const scrollPos = window.scrollY;
+                if(rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.style.transform = `translateY(${40 + (rect.top * speed)}px)`;
+                }
+            });
+        });
+    </script>
+</body></html>

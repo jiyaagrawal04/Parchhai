@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-tertiary-fixed-variant": "#614000",
+                "on-error-container": "#93000a",
+                "on-secondary-fixed": "#410000",
+                "surface-dim": "#ded9d1",
+                "on-surface-variant": "#45464e",
+                "surface-container-high": "#ece8df",
+                "tertiary-fixed": "#ffddaf",
+                "primary-fixed-dim": "#b7c6ee",
+                "secondary-fixed": "#ffdad4",
+                "surface-bright": "#fef9f0",
+                "surface-tint": "#4f5e81",
+                "error": "#ba1a1a",
+                "outline-variant": "#c5c6cf",
+                "on-tertiary": "#ffffff",
+                "tertiary": "#221400",
+                "surface-container-highest": "#e7e2d9",
+                "on-surface": "#1d1c16",
+                "on-secondary-container": "#721b12",
+                "on-primary-fixed": "#0a1a3a",
+                "on-secondary": "#ffffff",
+                "secondary-fixed-dim": "#ffb4a8",
+                "on-primary-fixed-variant": "#384668",
+                "surface-container-low": "#f8f3ea",
+                "on-error": "#ffffff",
+                "on-secondary-fixed-variant": "#82271c",
+                "on-tertiary-container": "#b98a3c",
+                "secondary-container": "#fc8270",
+                "background": "#fef9f0",
+                "secondary": "#a23e30",
+                "tertiary-container": "#3c2700",
+                "on-primary-container": "#8392b7",
+                "on-background": "#1d1c16",
+                "primary-fixed": "#d9e2ff",
+                "inverse-on-surface": "#f5f0e7",
+                "surface-variant": "#e7e2d9",
+                "inverse-primary": "#b7c6ee",
+                "primary-container": "#1b2a4a",
+                "tertiary-fixed-dim": "#f3be6a",
+                "primary": "#041534",
+                "surface": "#fef9f0",
+                "on-primary": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "inverse-surface": "#32302a",
+                "outline": "#75777f",
+                "on-tertiary-fixed": "#281800",
+                "surface-container": "#f2ede4",
+                "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+            },
+            "spacing": {
+                "base": "8px",
+                "section-gap": "40px",
+                "touch-target-min": "48px",
+                "margin-mobile": "20px",
+                "gutter-mobile": "16px"
+            },
+            "fontFamily": {
+                "headline-md": ["Libre Caslon Text"],
+                "body-md": ["Hanken Grotesk"],
+                "display-lg": ["Libre Caslon Text"],
+                "label-sm": ["Hanken Grotesk"],
+                "body-lg": ["Hanken Grotesk"],
+                "display-lg-mobile": ["Libre Caslon Text"]
+            },
+            "fontSize": {
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "display-lg-mobile": ["32px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        .inner-glow:active {
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+        }
+        .timeline-line {
+            width: 2px;
+            background-color: #c5c6cf;
+        }
+        .timeline-line.active {
+            background-color: #041534;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex justify-center">
+<!-- Mobile Shell Container -->
+<main class="w-full max-w-[430px] bg-surface relative min-h-screen flex flex-col shadow-2xl overflow-hidden">
+<!-- TopAppBar (From JSON - Modified for specific "Track Order" context) -->
+<header class="fixed top-0 w-full z-50 bg-surface flex justify-between items-center px-margin-mobile h-touch-target-min border-b border-outline-variant">
+<button class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity p-2 -ml-2">arrow_back</button>
+<h1 class="font-headline-md text-headline-md-mobile text-primary">Track Order</h1>
+<button class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity p-2 -mr-2">help_outline</button>
+</header>
+<!-- Content Canvas -->
+<div class="flex-1 mt-[48px] mb-20 overflow-y-auto px-margin-mobile py-8 space-y-section-gap">
+<!-- Order Header Info -->
+<section class="space-y-2">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Order ID: #PRC-882910</p>
+<h2 class="font-headline-md text-headline-md text-primary">Expected Arrival: Thursday, 24 Oct</h2>
+</section>
+<!-- Product Summary Card -->
+<section class="bg-surface-container-low border border-outline-variant rounded-xl p-4 flex gap-4 items-center">
+<div class="w-20 h-24 bg-surface-variant rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Product" class="w-full h-full object-cover" data-alt="A premium close-up of a handcrafted artisan leather shoe in deep espresso brown, resting on a clean ivory surface with dramatic editorial lighting. The textures of the grain and the meticulous stitching are highly visible against the minimalist, high-contrast background of a luxury showroom." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJ8EU2E7yhIDpgCybhSUYHqoMkTTQcVJx3yDW1MmKLIbLfAGDeyRPb2wVAQxe_lRz2Lxk9wB4queoMueVwtpE8uiaq8pO1zUpH9-jKgL4iQYYm3py6b5nr9Z63Tm6TRuiCEFQNY7KEdatFYSDKkoyJ1-o02Rt0CK_wYaDY3rbZy4am8YsJQqc1JNp7P-p2M5o5kH4D8IWDhGEzP7Ic_y78ZRfAkN6iAdYzI_GByV3iVxUbByXZISuVYYRl6nreq7MyERt2e-hBHv09"/>
+</div>
+<div class="flex-1 space-y-1">
+<h3 class="font-headline-md text-headline-md text-primary" style="font-size: 18px; line-height: 24px;">The Heritage Brogue</h3>
+<p class="font-body-md text-on-surface-variant">Size: 10 • Espresso Brown</p>
+<p class="font-headline-md text-primary" style="font-size: 16px;">$240.00</p>
+</div>
+</section>
+<!-- Vertical Timeline Tracker -->
+<section class="relative pl-2">
+<!-- Timeline Nodes -->
+<div class="space-y-10 relative">
+<!-- Progress Line (Background) -->
+<div class="absolute left-3 top-3 bottom-3 timeline-line"></div>
+<!-- Progress Line (Active Part - for Order Placed through Shipped) -->
+<div class="absolute left-3 top-3 h-2/3 timeline-line active"></div>
+<!-- Step: Order Placed (Completed) -->
+<div class="relative flex gap-6 items-start">
+<div class="z-10 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-white shrink-0 mt-1">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="space-y-1">
+<p class="font-headline-md text-primary" style="font-size: 16px;">Order Placed</p>
+<p class="font-body-md text-on-surface-variant text-sm">Monday, 21 Oct • 10:45 AM</p>
+<p class="font-body-md text-on-surface-variant text-xs italic">Confirmed and awaiting processing.</p>
+</div>
+</div>
+<!-- Step: Processed (Completed) -->
+<div class="relative flex gap-6 items-start">
+<div class="z-10 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-white shrink-0 mt-1">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="space-y-1">
+<p class="font-headline-md text-primary" style="font-size: 16px;">Processed</p>
+<p class="font-body-md text-on-surface-variant text-sm">Monday, 21 Oct • 4:30 PM</p>
+<p class="font-body-md text-on-surface-variant text-xs italic">Order verified and hand-packed.</p>
+</div>
+</div>
+<!-- Step: Shipped (Current) -->
+<div class="relative flex gap-6 items-start">
+<div class="z-10 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-white shrink-0 mt-1 ring-4 ring-primary-fixed">
+<span class="material-symbols-outlined text-[16px]" data-weight="fill">local_shipping</span>
+</div>
+<div class="space-y-1">
+<p class="font-headline-md text-primary" style="font-size: 16px;">Shipped</p>
+<p class="font-body-md text-primary font-bold text-sm">In Transit • Tuesday, 22 Oct</p>
+<p class="font-body-md text-on-surface-variant text-xs italic">Package has left our Heritage Archive facility.</p>
+</div>
+</div>
+<!-- Step: Out for Delivery (Upcoming) -->
+<div class="relative flex gap-6 items-start opacity-50">
+<div class="z-10 w-6 h-6 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center text-on-surface-variant shrink-0 mt-1">
+<span class="material-symbols-outlined text-[16px]">inventory_2</span>
+</div>
+<div class="space-y-1">
+<p class="font-headline-md text-primary" style="font-size: 16px;">Out for Delivery</p>
+<p class="font-body-md text-on-surface-variant text-sm">Expected Thursday morning</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Action Options -->
+<section class="grid grid-cols-1 gap-4 pt-4">
+<button class="flex items-center justify-between p-4 rounded-xl border border-outline-variant hover:bg-surface-container-low transition-colors inner-glow">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">receipt_long</span>
+<span class="font-body-md text-primary font-bold">Download Invoice</span>
+</div>
+<span class="material-symbols-outlined text-outline">download</span>
+</button>
+<button class="flex items-center justify-between p-4 rounded-xl border border-outline-variant hover:bg-surface-container-low transition-colors inner-glow">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">assignment_return</span>
+<span class="font-body-md text-primary font-bold">Return or Exchange</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+</section>
+<!-- Map Visualization (Subtle context) -->
+<section class="h-40 rounded-xl overflow-hidden relative border border-outline-variant">
+<div class="absolute inset-0 bg-surface-container-high opacity-50"></div>
+<!-- Location Label Overlay -->
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur shadow-sm px-3 py-1 rounded-full flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-primary">Last seen: New York Sorting Facility</span>
+</div>
+<!-- Placeholder for map - using data-location -->
+<img class="w-full h-full object-cover" data-alt="A high-contrast, artistic aerial map view of an urban shipping route featuring dark graphite-toned streets and ivory-colored architectural blocks. The visual style is premium and corporate, with a single focused glowing trail in a deep indigo color indicating a shipping path, illuminated by soft ambient lighting." data-location="New York City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnVzanMDhEBHalxKhRGEu93zxVZ4FfoGkb4WmRr65vPsbd8wfRsxXTpFO3BqhRXCZNjR7pMBB3vNYxML1OrySG31JBYyd3ZhbJzC8f9HgmoKy9cukD7SbSi7zAYssrJklAkB_GH9KuLUJq9QThpEgqNJXgSzvSsZiEqUFkjhFbrkrKGhT1s-isoWXSr_JRo6juKwKKdmvZgEfDRHV-X1vfrCp152dbAXY8rsbkqv35s0x5yzCfMg53TrCEpUdu7cv6ALhjm9CQGRCa"/>
+</section>
+</div>
+<!-- Sticky Bottom CTA -->
+<div class="fixed bottom-0 w-full max-w-[430px] p-margin-mobile bg-gradient-to-t from-surface via-surface to-transparent pt-12">
+<button class="w-full h-touch-target-min bg-primary text-on-primary font-body-md font-bold rounded-lg shadow-lg active:scale-95 transition-transform">
+                Contact Concierge Support
+            </button>
+</div>
+</main>
+<script>
+        // Micro-interaction for buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('touchstart', function() {
+                this.classList.add('scale-98', 'opacity-90');
+            });
+            btn.addEventListener('touchend', function() {
+                this.classList.remove('scale-98', 'opacity-90');
+            });
+        });
+
+        // Atmospheric fade-in for timeline elements
+        const steps = document.querySelectorAll('.relative.flex.gap-6');
+        steps.forEach((step, index) => {
+            step.style.opacity = '0';
+            step.style.transform = 'translateY(10px)';
+            setTimeout(() => {
+                step.style.transition = 'all 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+                step.style.opacity = step.classList.contains('opacity-50') ? '0.5' : '1';
+                step.style.transform = 'translateY(0)';
+            }, index * 100 + 300);
+        });
+    </script>
+</body></html>

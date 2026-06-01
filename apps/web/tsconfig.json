@@ -1,0 +1,10 @@
+{
+  "extends": "@parchhai/config/tsconfig.react.json",
+  "compilerOptions": {
+    "noUncheckedIndexedAccess": false,
+    "baseUrl": ".",
+    "paths": { "@/*": ["src/*"] }
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

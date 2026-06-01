@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Parchhai | Heritage Reimagined</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&amp;family=Hanken+Grotesk:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .inner-glow:active {
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        body {
+            background-color: #fef9f0;
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#614000",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#410000",
+                        "surface-dim": "#ded9d1",
+                        "on-surface-variant": "#45464e",
+                        "surface-container-high": "#ece8df",
+                        "tertiary-fixed": "#ffddaf",
+                        "primary-fixed-dim": "#b7c6ee",
+                        "secondary-fixed": "#ffdad4",
+                        "surface-bright": "#fef9f0",
+                        "surface-tint": "#4f5e81",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c5c6cf",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#221400",
+                        "surface-container-highest": "#e7e2d9",
+                        "on-surface": "#1d1c16",
+                        "on-secondary-container": "#721b12",
+                        "on-primary-fixed": "#0a1a3a",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#ffb4a8",
+                        "on-primary-fixed-variant": "#384668",
+                        "surface-container-low": "#f8f3ea",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#82271c",
+                        "on-tertiary-container": "#b98a3c",
+                        "secondary-container": "#fc8270",
+                        "background": "#fef9f0",
+                        "secondary": "#a23e30",
+                        "tertiary-container": "#3c2700",
+                        "on-primary-container": "#8392b7",
+                        "on-background": "#1d1c16",
+                        "primary-fixed": "#d9e2ff",
+                        "inverse-on-surface": "#f5f0e7",
+                        "surface-variant": "#e7e2d9",
+                        "inverse-primary": "#b7c6ee",
+                        "primary-container": "#1b2a4a",
+                        "tertiary-fixed-dim": "#f3be6a",
+                        "primary": "#041534",
+                        "surface": "#fef9f0",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#32302a",
+                        "outline": "#75777f",
+                        "on-tertiary-fixed": "#281800",
+                        "surface-container": "#f2ede4",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "section-gap": "40px",
+                        "touch-target-min": "48px",
+                        "margin-mobile": "20px",
+                        "gutter-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Libre Caslon Text"],
+                        "body-md": ["Hanken Grotesk"],
+                        "display-lg": ["Libre Caslon Text"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "display-lg-mobile": ["Libre Caslon Text"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline flex justify-between items-center px-margin-mobile h-touch-target-min">
+<button class="hover:opacity-80 transition-opacity active:scale-95 duration-150 flex items-center justify-center w-10 h-10">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">menu</span>
+</button>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary dark:text-primary-fixed tracking-tight">PARCHHAI</h1>
+<button class="relative hover:opacity-80 transition-opacity active:scale-95 duration-150 flex items-center justify-center w-10 h-10">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">shopping_bag</span>
+<span class="absolute top-1 right-1 bg-secondary text-on-secondary text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">2</span>
+</button>
+</header>
+<main class="pt-touch-target-min">
+<!-- Editorial Hero Carousel -->
+<section class="relative w-full h-[618px] overflow-hidden">
+<div class="absolute inset-0">
+<img class="w-full h-full object-cover" data-alt="A high-fashion editorial photograph of a woman wearing an indigo block-printed cotton dress, standing against a sun-drenched ivory stone wall. The lighting is warm and golden, casting long, soft shadows. The style is premium and minimalist, emphasizing the intricate Ajrakh patterns of the fabric. The overall mood is serene, authoritative, and evocative of traditional Indian craftsmanship meeting modern luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9AbbE9juoxYYfRnbntB_Bh7TKtCgywSvgjTzv_Ff72cmBij-WoukBDIPYIFPiannZj-r1kyZt1l4EaBxjDA5KSx5t7sTYr2-aAeZ1OFbCqZp-106OWEGWRgGVr1_kZL0wDjwyuMKXfUvhdFJFGsvHbe_IbGtY84kNRZDoi-tGwpKGXxn5fxEMMBMNoH9gj4OEqKKXjnyhVIJM6XU3Li7KWd1c4Sjal2V1pDjEu7rHpg69ZuLYVVqdEvkBmBrKy_V7CzNKtDw5fsSh"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+</div>
+<div class="absolute bottom-12 left-margin-mobile right-margin-mobile">
+<p class="text-white/80 font-label-sm text-label-sm tracking-widest mb-2">CURATED COLLECTION</p>
+<h2 class="text-white font-display-lg-mobile text-display-lg-mobile mb-6">The Summer Edit</h2>
+<button class="bg-primary text-on-primary px-8 h-touch-target-min font-label-sm text-label-sm tracking-widest uppercase hover:opacity-90 active:scale-95 transition-all w-max">
+                    Explore Now
+                </button>
+</div>
+</section>
+<!-- Shop by Craft Chips -->
+<section class="mt-section-gap">
+<div class="px-margin-mobile mb-4 flex justify-between items-end">
+<h3 class="font-headline-md-mobile text-headline-md-mobile font-headline-md text-primary">Shop by Craft</h3>
+</div>
+<div class="flex overflow-x-auto hide-scrollbar gap-3 px-margin-mobile">
+<button class="flex-shrink-0 px-6 py-2 rounded-full border border-outline text-primary font-label-sm text-label-sm hover:bg-surface-container-low transition-colors">Ajrakh</button>
+<button class="flex-shrink-0 px-6 py-2 rounded-full border border-outline text-primary font-label-sm text-label-sm hover:bg-surface-container-low transition-colors">Bagru</button>
+<button class="flex-shrink-0 px-6 py-2 rounded-full border border-outline text-primary font-label-sm text-label-sm hover:bg-surface-container-low transition-colors">Dabu</button>
+<button class="flex-shrink-0 px-6 py-2 rounded-full border border-outline text-primary font-label-sm text-label-sm hover:bg-surface-container-low transition-colors">Bagh</button>
+<button class="flex-shrink-0 px-6 py-2 rounded-full border border-outline text-primary font-label-sm text-label-sm hover:bg-surface-container-low transition-colors">Indigo</button>
+</div>
+</section>
+<!-- New Drops Rail -->
+<section class="mt-section-gap">
+<div class="px-margin-mobile mb-6 flex justify-between items-baseline">
+<h3 class="font-headline-md-mobile text-headline-md-mobile font-headline-md text-primary">New Drops</h3>
+<a class="text-label-sm font-label-sm text-secondary border-b border-secondary" href="#">View All</a>
+</div>
+<div class="flex overflow-x-auto hide-scrollbar gap-gutter-mobile px-margin-mobile">
+<!-- Product Card 1 -->
+<div class="w-64 flex-shrink-0">
+<div class="aspect-[3/4] bg-surface-container mb-4 overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A detailed shot of a premium handcrafted kurti in deep madder red with intricate floral embroidery. The product is displayed in soft, diffused daylight against an ivory linen background. The visual style is editorial and clean, with a focus on tactile fabric texture and heritage design. The overall atmosphere is one of exclusive digital craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8nDo-Qd30GRWazhDa4-QLcJm4i4UCbbQMwlLBUEVblKbDuhmN-14CEUQ6fpDyJcwI-px7EpKRKZUPzM6MqTKEkGjnetWIPi6Xy4L3X4OBY7JPLiT3XA_wYcEYt6ezbLWhust3iiv4XQiNnzIGHzmUSd__eidJv-04d4wpFZoTgL9TPbSaPHE50xKnOq-x5eVfHOC1Cf_jzB7UTFvhmxcR8l_ewFV5yUhmq4rQQyjySYLsHxn1ZMqUeJBFiSbt8QXERNhqrmyqQ76X"/>
+</div>
+<p class="font-headline-md text-body-md text-primary truncate">Noor Hand-Blocked Kurti</p>
+<p class="font-body-md text-on-surface-variant mt-1">₹4,250</p>
+</div>
+<!-- Product Card 2 -->
+<div class="w-64 flex-shrink-0">
+<div class="aspect-[3/4] bg-surface-container mb-4 overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A portrait-style product photograph of a modern corset top made from traditional hand-dyed Dabu fabric in indigo. The garment is featured on a minimalist mannequin against a warm-toned plaster wall. High-contrast lighting highlights the structured seams and the organic imperfections of the hand-printing process. Premium heritage brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4AAwKTwNypmGj1RgoTN1ugfwPJJWxHewly5AEmEvOwQjtIxdGK4dfRU3Vo0u3j3v7pAdibh5A6adpPrcPNiemEeon83d3sYF3_0NlL0hF-j8R1wKWhxSXFPaAz6ecHCvgJbrXlkHGcGHW43VaDXZ3CYNHzkuMYJaoZOfCVS9Asx4pFzr_fEqyZODmcGo_rKHlZjci2cGbJuC0Hf6KSb5Zccutk3ih9d0U6KEO_UZZ3OR4DDZNg_AVW1Hf9ObFdTXLAUNOQkGGpP86"/>
+</div>
+<p class="font-headline-md text-body-md text-primary truncate">Indigo Struct Corset</p>
+<p class="font-body-md text-on-surface-variant mt-1">₹3,800</p>
+</div>
+<!-- Product Card 3 -->
+<div class="w-64 flex-shrink-0">
+<div class="aspect-[3/4] bg-surface-container mb-4 overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A high-resolution photograph of a flowing midi dress with Bagru printed motifs in earth tones. The dress is draped elegantly in a studio setting with soft, high-key lighting that creates a bright, airy ivory atmosphere. The photography style is modern corporate editorial, emphasizing the drape and premium quality of the material." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkmWIj66t9YnLJnMqS4F_Xg1_iTW48enmUMITr4QSZPqZfexkfWT65kEIuFtWURtxF9EpOYRtoNhi-DCUmj1gF8AFP_IsLW1f5gUepNq76p1wX_ldv9ofjgavC1pWXzRkj9fe4QZ2ku_A5XaV9hJiXyQzxkOdcGOiTKMLbXH8JdOF5IiHVwWM1Pvjd5yf0xzoTWktYbQH1mW9JBKxbkLP8BHLy06ukb7ir_VB7agQG4OsFnAO42Y6b72jOMit2PPrZxM-HQwV7OHxM"/>
+</div>
+<p class="font-headline-md text-body-md text-primary truncate">Zoya Tiered Dress</p>
+<p class="font-body-md text-on-surface-variant mt-1">₹5,400</p>
+</div>
+</div>
+</section>
+<!-- Category Tiles (Asymmetric Grid) -->
+<section class="mt-section-gap px-margin-mobile">
+<h3 class="font-headline-md-mobile text-headline-md-mobile font-headline-md text-primary mb-6">Collections</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="col-span-2 aspect-[16/9] relative overflow-hidden group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A wide-angle editorial shot of traditional hand-blocked kurtis hanging in a bright, modern studio. The space is filled with natural light, highlighting the vibrant colors and ivory background. The mood is authoritative and curated, reflecting a heritage brand's focus on quality and timeless design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQYfeDR0jVbgomEjJ6-7qv-mOm243BEvIfZSTSzwSyVQNXqJBdABHiOAvxPhbVKH10xvvABPstR85oNLMxgk0-OvxsSnj-D89od9IK5CDDDbuaxE3-GXNA6Lrhs1qLFv9e_hBUm8eanOeFj9xwhwWHVaRtSqAAA1eDORHeXntezQjP2DKz9hd0LwwtX3W3LVseZWN2gpb2O9BGUbg8wUq39NE4bqd1HGqljrbCtMZ8WqLSbXxmDF9M5Z4-I4RJ3WDc6-ClfnPOKn3e"/>
+<div class="absolute inset-0 bg-primary/20 flex items-center justify-center">
+<span class="text-white font-headline-md text-headline-md tracking-widest">KURTIS</span>
+</div>
+</div>
+<div class="aspect-square relative overflow-hidden group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A close-up photograph of a contemporary corset top featuring traditional Bagh prints. The lighting is dramatic and focused, highlighting the contrast between the dark charcoal fabric and the earthy red patterns. The visual style is premium and editorial, positioned for a luxury boutique experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC8x2YvYIS4AK8uNk4h5S9LZCncYb6zzCeswBXfxO8O-a9fI5amk3DwjrP8W4BqcqmW5ABVDrOjKaSNzxdeuScaCzxl3FXnrMgWDVptXJFdrChrwEEcO2BwyfvEAVqC8Ax-Mr7euca17RlcIBKBV3PYN8wGzwiPioGD7vOFSYej5GwruUwTUKP0EzSlWtX_4Y5QjcVZfw42FlOD-vdHdWZ7FLS8iTeIPYj3hZLITXad9zflGQ3ZcPUaDJocdSyLEMzPgzEhD3K5DMe"/>
+<div class="absolute inset-0 bg-secondary/30 flex items-center justify-center">
+<span class="text-white font-headline-md text-headline-md tracking-widest">CORSETS</span>
+</div>
+</div>
+<div class="aspect-square relative overflow-hidden group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="An ethereal shot of several artisanal dresses flowing in a soft breeze. The color palette is composed of ivory, indigo, and madder. The lighting is soft and high-key, creating a luxurious and serene atmosphere. The focus is on the craftsmanship and movement of the fabric." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO7hmABt0OprfLdEVtRz_mmY85q-K0diBFSEUwqbDJibjYHdIGRxTTm-dPmbf8rNhjYOhhIg0_yZhKSrmPXGq2aG77Vl48uHK4AMCiievBA-odtcHG-_tVckATq4cfp4CmkkwFhupyP19iV-egnIsT4ttgk3Ijt80p3_-W9tM1AxKH0UjN0VTIalOT8fcyINomziMfGyNVDDeJwxTA8Rt1_FV48xpS0kFgBtftWVeIk461XG5ybGmSsifd-fcpNtzMEBipaLa2Hxuy"/>
+<div class="absolute inset-0 bg-tertiary-container/40 flex items-center justify-center">
+<span class="text-white font-headline-md text-headline-md tracking-widest">DRESSES</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Journal Teaser Section -->
+<section class="mt-section-gap px-margin-mobile mb-12">
+<div class="bg-surface-container-low p-8 border border-outline-variant">
+<p class="font-label-sm text-label-sm text-secondary tracking-[0.2em] mb-4">THE JOURNAL</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-4 leading-tight">The Story of Indigo: From Soil to Soul</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 line-clamp-3">Explore the ancient art of natural indigo dyeing, a process that takes weeks of patient craftsmanship and a deep connection with the earth...</p>
+<button class="text-primary font-label-sm text-label-sm flex items-center gap-2 group">
+                    Read Fabric Stories
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
+</button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface dark:bg-surface-dim border-t border-outline-variant dark:border-outline shadow-sm flex justify-around items-center h-16 w-full">
+<!-- Home (Active) -->
+<button class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-bold hover:bg-surface-container-low transition-colors active:scale-98">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-sm text-label-sm mt-0.5">Home</span>
+</button>
+<!-- Shop -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low transition-colors active:scale-98">
+<span class="material-symbols-outlined">storefront</span>
+<span class="font-label-sm text-label-sm mt-0.5">Shop</span>
+</button>
+<!-- Search -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low transition-colors active:scale-98">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-sm text-label-sm mt-0.5">Search</span>
+</button>
+<!-- Wishlist -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low transition-colors active:scale-98">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-label-sm text-label-sm mt-0.5">Wishlist</span>
+</button>
+<!-- Account -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low transition-colors active:scale-98">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm mt-0.5">Account</span>
+</button>
+</nav>
+<script>
+        // Simple micro-interaction for the carousel
+        const heroSection = document.querySelector('section.relative');
+        heroSection.addEventListener('click', () => {
+            heroSection.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            heroSection.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                heroSection.style.transform = 'scale(1)';
+            }, 150);
+        });
+
+        // Add scroll fade effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+                header.classList.remove('border-b');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('border-b');
+            }
+        });
+    </script>
+</body></html>

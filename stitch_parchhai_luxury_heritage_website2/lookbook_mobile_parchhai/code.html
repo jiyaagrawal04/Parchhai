@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Parchhai | Editorial Lookbook</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e7e2d9",
+                    "on-primary-container": "#8392b7",
+                    "surface-tint": "#4f5e81",
+                    "inverse-primary": "#b7c6ee",
+                    "inverse-surface": "#32302a",
+                    "secondary": "#a23e30",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f5f0e7",
+                    "on-tertiary-fixed": "#281800",
+                    "on-tertiary-fixed-variant": "#614000",
+                    "primary-fixed-dim": "#b7c6ee",
+                    "on-secondary-fixed": "#410000",
+                    "surface-container-low": "#f8f3ea",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#b98a3c",
+                    "on-surface-variant": "#45464e",
+                    "on-primary-fixed-variant": "#384668",
+                    "on-background": "#1d1c16",
+                    "secondary-fixed": "#ffdad4",
+                    "on-surface": "#1d1c16",
+                    "surface-container": "#f2ede4",
+                    "primary-container": "#1b2a4a",
+                    "on-secondary-fixed-variant": "#82271c",
+                    "outline": "#75777f",
+                    "surface-bright": "#fef9f0",
+                    "secondary-container": "#fc8270",
+                    "surface-dim": "#ded9d1",
+                    "surface-container-highest": "#e7e2d9",
+                    "tertiary": "#221400",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#721b12",
+                    "primary": "#041534",
+                    "surface": "#fef9f0",
+                    "tertiary-container": "#3c2700",
+                    "surface-container-high": "#ece8df",
+                    "secondary-fixed-dim": "#ffb4a8",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#fef9f0",
+                    "primary-fixed": "#d9e2ff",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#ffddaf",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#0a1a3a",
+                    "outline-variant": "#c5c6cf",
+                    "tertiary-fixed-dim": "#f3be6a",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "gutter": "24px",
+                    "margin-desktop": "64px",
+                    "section-gap": "120px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": ["Bodoni Moda"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "display-lg": ["Bodoni Moda"],
+                    "headline-lg-mobile": ["Bodoni Moda"],
+                    "label-caps": ["Hanken Grotesk"],
+                    "headline-md": ["Bodoni Moda"],
+                    "headline-lg": ["Bodoni Moda"],
+                    "label-sm": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "display-lg-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["80px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                    "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99;
+            opacity: 0.04;
+            background-image: url("https://www.transparenttextures.com/patterns/felt.png");
+        }
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows: 10px;
+            gap: 16px;
+        }
+        .masonry-item {
+            grid-row-end: span 20;
+        }
+        .masonry-item-tall {
+            grid-row-end: span 32;
+        }
+        .masonry-item-wide {
+            grid-column: span 2;
+            grid-row-end: span 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+<div class="grain-overlay"></div>
+<!-- Top Navigation (Shell) -->
+<nav class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl flex justify-between items-center px-margin-mobile h-20 border-b border-outline/10">
+<div class="font-display-lg text-headline-md tracking-tighter text-primary">Parchhai</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer">person</span>
+<span class="material-symbols-outlined text-primary cursor-pointer">shopping_bag</span>
+</div>
+</nav>
+<!-- Content Canvas -->
+<main class="pt-32 pb-section-gap px-margin-mobile">
+<!-- Header Section -->
+<header class="mb-12">
+<p class="font-label-caps text-label-caps text-secondary mb-2">COLLECTION 2024</p>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tight leading-none">The Shadow <br/>of Heritage</h1>
+<div class="w-12 h-1 bg-secondary mt-6"></div>
+</header>
+<!-- Lookbook Masonry Grid -->
+<div class="masonry-grid">
+<!-- Item 1: Featured Portrait -->
+<div class="masonry-item-tall group relative overflow-hidden" onclick="openDetails(1)">
+<img alt="Indigo Block Print" class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0" data-alt="A cinematic portrait of a model wearing a high-collared indigo blue hand-block printed cotton garment. The setting is a minimalist architectural courtyard with deep shadows and warm sunlight hitting the fabric's texture. The aesthetic is high-fashion editorial, focused on the deep indigo dyes and intricate floral motifs. Soft, natural light emphasizes the handmade quality of the slow-fashion piece." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALvmkxzR-0F3jqfjsJxMrKvr28A2tHWOoPY64Yeti-WMWkSpEZBJpPu971Imi4slrlEbK24xhEMwmld9IgDph7EgLmugQWOfEfkz0I0ztk6nhPbssCQcxRn2Hcqcf234h7aM7J1f3jz8ewb3CxOrzwoKpX1eVsVes3w6sDP6MobkXZD-RX6jBMXDFPd6dGegn14B4tV6WVa0jvuuNnIDkHEuZgi5EZzLKRMcxaaZoatQDy4z3g_rDNL8sVpU78fLS2A6Bnyb_toNrM"/>
+<div class="absolute bottom-0 left-0 p-4 w-full bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+<p class="font-label-caps text-label-caps text-surface">AJRAKH ESSENTIALS</p>
+</div>
+</div>
+<!-- Item 2: Landscape Detail -->
+<div class="masonry-item group relative overflow-hidden" onclick="openDetails(2)">
+<img alt="Textile Detail" class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0" data-alt="Macro close-up of a hand-woven ivory textile with subtle gold zari borders. The fabric is draped elegantly over a weathered wooden surface, creating a contrast between the delicate silk and the tactile wood grain. Lighting is soft and directional, highlighting the weave's imperfections that mark its artisanal origin. The mood is serene, sophisticated, and deeply grounded in Indian heritage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASu-YAr9TnODdAZviVZk3-N4ZbjAgVCNTlagOayunii5HYmllEDrmBH8Ch2W__SB_PHSDirjNGV00Vp1rxTYxhGiD7STt18U163MJiYqTiBs1-wwaQlJTZgC-lI-fwQwGn4RmGXmMkq2zChKia39exEJGAsZNVaebpaLMqslxPiU6J8XiKpeqDdwcsYkeij-GhKYMjBZH6xgm_RQgGqy1Gd-V7vFeCjgLXyqUNVk-LICTPl1vlFzWf2f4D7KqnZo414ZQQQXwOEM46"/>
+<div class="absolute bottom-0 left-0 p-4 w-full bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+<p class="font-label-caps text-label-caps text-surface">SILK WEAVES</p>
+</div>
+</div>
+<!-- Item 3: Wide Editorial -->
+<div class="masonry-item-wide group relative overflow-hidden mt-4" onclick="openDetails(3)">
+<img alt="Full Look" class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0" data-alt="A wide editorial shot of a model walking through a field of drying textiles in Jaipur. The model wears a flowing, oversized charcoal grey silhouette with asymmetric hems. The background features long reams of fabric hanging in the breeze, creating a rhythmic and ethereal atmosphere. The lighting is early morning gold, casting long, dramatic shadows across the ground and highlighting the garment's fluid motion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX4uxErwUOEXeaISPOtd1AoBXSfJQUeDe9sMU3gvu8QG8OYn9VIIBDewkvet9PpZHE2jdVlun3q1HUVmNe4-fmPHMCrUlw86AbiPDB755LCDtL34m1T48oIPKNsqKJ3D8TtMZLhof4N8N6zA6fQviyqGPklD-TfEdF7z_8LVnN-W4tbmIS9l55RzRDnx2ZFBwAXbBWvfjcwITe1UNnptilRdkfTeNyVJ0zZRCw4IdEerZTjK7xSN6xwInGWj2-Gz1Op2jqwaxI184x"/>
+<div class="absolute bottom-0 left-0 p-4 w-full bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+<p class="font-label-caps text-label-caps text-surface">THE NOMAD SERIES</p>
+</div>
+</div>
+<!-- Item 4: Detail Square -->
+<div class="masonry-item group relative overflow-hidden" onclick="openDetails(4)">
+<img alt="Artisan hands" class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0" data-alt="Close-up of an artisan's hands holding a carved wooden printing block stained with deep red vegetable dye. The hands are aged and graceful, showing the story of the craft. The background is a soft-focus studio setting with ivory walls and warm wooden tables. The image captures the soul of slow fashion, emphasizing the intersection of human touch and contemporary design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC784V9g1xdW4SX80jbi1i4meqBOTLAdknZseufiRd_CWKNeag5lv5WWiHc--TIui0eVFaf-oFouE1nkH1tq62r28tfqJa_JAURBZAdmLguwEDu4El50ZtRgd-EIwic0xv2ruSURYQU8JkqNcijijYTqs1i46ssd3K9OQSUEGSSVaxgf7V7CS6v818ZLW48FDGmULzkj5VRwOYp6viSRxgZOeMArhdzhJHPpJUZI1lhwq_U74uqIGY7qMd04vXgcd1g0dUIgOVGjsbR"/>
+<div class="absolute bottom-0 left-0 p-4 w-full bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+<p class="font-label-caps text-label-caps text-surface">CRAFTED ORIGIN</p>
+</div>
+</div>
+<!-- Item 5: Tall Profile -->
+<div class="masonry-item-tall group relative overflow-hidden" onclick="openDetails(5)">
+<img alt="Draped Look" class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0" data-alt="A dramatic profile shot of a model wearing a structured black jacket made from quilted hand-loomed cotton. The garment features minimalist geometry and sharp tailoring. The lighting is high-contrast, creating a sharp silhouette against a minimalist unbleached linen background. The overall look is powerful, editorial, and sophisticated, reflecting modern Indian luxury through a monochromatic lens." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCeb7UDac-4IVTIij4bPK9hlEe-7tz5RE0T6hy8LqQioAYkSMp4EQVURLuQKPx8TNK_3xMjNsQk_fmjAPFB3UE-a_Fikr_MAoAVW1itUuMU53SrSPMTw3ej24CpmAGIrZfMF5QvevqeYc5_VbNiB8J6Mjc0OxMWQPLU2Klb9harcXvuyjh9cOZA3kjenI6QnMbK99_u33QBy7rrK2CEDIiD_VZquh8HQjxk8Szozfuwl1e7iI8XDt97zFo1UjvyvXE25rIgAj_3JwX"/>
+<div class="absolute bottom-0 left-0 p-4 w-full bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+<p class="font-label-caps text-label-caps text-surface">MODERN BLOCK</p>
+</div>
+</div>
+</div>
+<!-- Call to Action -->
+<section class="mt-section-gap text-center">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-6">Explore the Story</h2>
+<button class="bg-primary text-surface px-10 py-4 font-label-caps text-label-caps tracking-widest transition-all hover:bg-secondary active:scale-95">
+                VIEW JOURNAL
+            </button>
+</section>
+</main>
+<!-- Side Navigation (Suppressed by default, triggered by JS) -->
+<div class="fixed inset-y-0 left-0 w-80 z-[60] bg-surface shadow-2xl transform -translate-x-full transition-transform duration-500 ease-in-out hidden" id="side-nav">
+<div class="flex flex-col p-margin-mobile gap-unit h-full">
+<div class="flex justify-between items-center mb-8">
+<div class="font-display-lg-mobile text-headline-lg-mobile text-primary">Parchhai</div>
+<button class="material-symbols-outlined text-primary" onclick="toggleNav()">close</button>
+</div>
+<div class="space-y-6">
+<a class="block font-label-caps text-label-caps text-primary hover:pl-2 transition-all" href="#">Shop</a>
+<a class="block font-label-caps text-label-caps text-secondary font-bold hover:pl-2 transition-all" href="#">Crafts</a>
+<a class="block font-label-caps text-label-caps text-on-surface hover:pl-2 transition-all" href="#">Our Story</a>
+<a class="block font-label-caps text-label-caps text-on-surface hover:pl-2 transition-all" href="#">Journal</a>
+<hr class="border-outline-variant my-4"/>
+<a class="block font-label-caps text-label-caps text-on-surface hover:pl-2 transition-all" href="#">Account</a>
+<a class="block font-label-caps text-label-caps text-on-surface hover:pl-2 transition-all" href="#">Cart</a>
+</div>
+<div class="mt-auto pb-10">
+<p class="font-body-md text-body-md text-on-surface-variant">Editorial Minimalist Fashion</p>
+</div>
+</div>
+</div>
+<!-- Details Modal (Lightweight View) -->
+<div class="fixed inset-0 z-[70] bg-primary/40 backdrop-blur-3xl hidden flex items-center justify-center p-gutter" id="details-modal">
+<div class="bg-surface w-full max-w-sm p-8 relative animate-in fade-in zoom-in duration-300">
+<button class="absolute top-4 right-4 material-symbols-outlined text-primary" onclick="closeDetails()">close</button>
+<p class="font-label-caps text-label-caps text-secondary mb-2">ARTISAN SERIES</p>
+<h3 class="font-headline-md text-headline-md text-primary mb-4" id="modal-title">Dabu Indigo Wrap</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">A masterpiece of mud-resist printing, our wrap captures the organic essence of Rajasthan's arid landscapes. Hand-dyed five times in fermented indigo vats.</p>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="bg-surface-container-low border border-tertiary-fixed-dim px-3 py-1 font-label-sm text-label-sm text-tertiary">HAND-BLOCKED</span>
+<span class="bg-surface-container-low border border-tertiary-fixed-dim px-3 py-1 font-label-sm text-label-sm text-tertiary">ORGANIC DYE</span>
+</div>
+<button class="w-full bg-primary text-surface py-4 font-label-caps text-label-caps">VIEW COLLECTION</button>
+</div>
+</div>
+<!-- Bottom Navigation Shell (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full bg-surface/90 backdrop-blur-xl flex justify-around items-center h-16 border-t border-outline/10 z-50">
+<button class="flex flex-col items-center gap-1 text-on-surface-variant" onclick="toggleNav()">
+<span class="material-symbols-outlined">menu</span>
+<span class="text-[10px] font-label-caps">MENU</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-secondary">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="text-[10px] font-label-caps">LOOKBOOK</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="text-[10px] font-label-caps">SHOP</span>
+</button>
+</nav>
+<script>
+        function toggleNav() {
+            const nav = document.getElementById('side-nav');
+            if (nav.classList.contains('hidden')) {
+                nav.classList.remove('hidden');
+                setTimeout(() => nav.classList.remove('-translate-x-full'), 10);
+            } else {
+                nav.classList.add('-translate-x-full');
+                setTimeout(() => nav.classList.add('hidden'), 500);
+            }
+        }
+
+        function openDetails(id) {
+            const modal = document.getElementById('details-modal');
+            const titles = {
+                1: "Ajrakh Heritage Robe",
+                2: "Tussar Silk Drapery",
+                3: "The Charcoal Nomad",
+                4: "Artisan Block Study",
+                5: "Monolith Quilted Vest"
+            };
+            document.getElementById('modal-title').innerText = titles[id];
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDetails() {
+            const modal = document.getElementById('details-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on background click
+        document.getElementById('details-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeDetails();
+        });
+    </script>
+</body></html>

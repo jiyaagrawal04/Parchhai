@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#614000",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#410000",
+                        "surface-dim": "#ded9d1",
+                        "on-surface-variant": "#45464e",
+                        "surface-container-high": "#ece8df",
+                        "tertiary-fixed": "#ffddaf",
+                        "primary-fixed-dim": "#b7c6ee",
+                        "secondary-fixed": "#ffdad4",
+                        "surface-bright": "#fef9f0",
+                        "surface-tint": "#4f5e81",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c5c6cf",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#221400",
+                        "surface-container-highest": "#e7e2d9",
+                        "on-surface": "#1d1c16",
+                        "on-secondary-container": "#721b12",
+                        "on-primary-fixed": "#0a1a3a",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#ffb4a8",
+                        "on-primary-fixed-variant": "#384668",
+                        "surface-container-low": "#f8f3ea",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#82271c",
+                        "on-tertiary-container": "#b98a3c",
+                        "secondary-container": "#fc8270",
+                        "background": "#fef9f0",
+                        "secondary": "#a23e30",
+                        "tertiary-container": "#3c2700",
+                        "on-primary-container": "#8392b7",
+                        "on-background": "#1d1c16",
+                        "primary-fixed": "#d9e2ff",
+                        "inverse-on-surface": "#f5f0e7",
+                        "surface-variant": "#e7e2d9",
+                        "inverse-primary": "#b7c6ee",
+                        "primary-container": "#1b2a4a",
+                        "tertiary-fixed-dim": "#f3be6a",
+                        "primary": "#041534",
+                        "surface": "#fef9f0",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#32302a",
+                        "outline": "#75777f",
+                        "on-tertiary-fixed": "#281800",
+                        "surface-container": "#f2ede4",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "section-gap": "40px",
+                        "touch-target-min": "48px",
+                        "margin-mobile": "20px",
+                        "gutter-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Libre Caslon Text"],
+                        "body-md": ["Hanken Grotesk"],
+                        "display-lg": ["Libre Caslon Text"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "display-lg-mobile": ["Libre Caslon Text"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #1d1c16;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .phone-frame {
+            width: 375px;
+            height: 812px;
+            background: #fef9f0;
+            border-radius: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 0 12px #32302a, 0 0 0 15px #45464e;
+        }
+        .notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 160px;
+            height: 30px;
+            background: #32302a;
+            border-bottom-left-radius: 18px;
+            border-bottom-right-radius: 18px;
+            z-index: 100;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .stagger-in {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-zoom {
+            animation: subtleZoom 20s infinite alternate linear;
+        }
+        @keyframes subtleZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body>
+<!-- Mobile Phone Frame -->
+<div class="phone-frame">
+<div class="notch"></div>
+<!-- Main Onboarding Content -->
+<div class="relative h-full w-full flex flex-col bg-background overflow-hidden">
+<!-- Hero Image Section (Asymmetric Editorial Layout) -->
+<div class="relative h-[60%] w-full overflow-hidden">
+<div class="absolute inset-0 z-10 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<img alt="Heritage Craft Detail" class="hero-zoom w-full h-full object-cover" data-alt="A macro close-up of traditional Ajrakh hand-block printed textile featuring intricate geometric patterns in deep indigo, rich madder red, and ivory. The lighting is soft and natural, emphasizing the organic texture of the hand-woven cotton fabric and the slight imperfections of the natural dye. The aesthetic is heritage-focused and editorial, capturing a sense of historical craftsmanship and premium tactile quality within a modern minimalist frame." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfZgXYl_7fx6QQXJju9-bl2ZHfsFuR-7QQ3Dw_hk8m0MnxURz83iXt1lRLf8We-1A2PYQlZ6Wpx3D-rmqJtGk08K9QUHhf2H8splFyAxb3VM6AbBev0UpvdyZW9l5_N3qMmaWfKbhy5avdALmwsLacMOaxI2ZNWyVJ-q-s14hAT8ktHWl_Q5hNHmyOgFBypuJIT91dbSS7EWwqCswSqnXw2Jh1yxQBuF0tJwTepLPBtHy7nCU9h-hlC_ytmrGP55YWnoJCCqsMkUG7"/>
+<!-- Floating Branding Element -->
+<div class="absolute top-16 left-margin-mobile z-20">
+<span class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tight stagger-in" style="animation-delay: 0.2s;">
+                        PARCHHAI
+                    </span>
+</div>
+</div>
+<!-- Content Canvas -->
+<div class="flex-1 px-margin-mobile flex flex-col justify-between pb-12 relative z-20">
+<!-- Textual Content -->
+<div class="space-y-4 pt-4">
+<h1 class="font-headline-md text-display-lg-mobile text-primary stagger-in" style="animation-delay: 0.4s;">
+                        Heritage Crafts
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant stagger-in" style="animation-delay: 0.6s;">
+                        Discover the soul of Indian textiles, preserved for the modern world.
+                    </p>
+</div>
+<!-- Interaction Zone -->
+<div class="space-y-8 stagger-in" style="animation-delay: 0.8s;">
+<!-- Pagination Dots -->
+<div class="flex gap-2">
+<div class="h-1.5 w-8 rounded-full bg-primary transition-all duration-300"></div>
+<div class="h-1.5 w-1.5 rounded-full bg-outline-variant"></div>
+<div class="h-1.5 w-1.5 rounded-full bg-outline-variant"></div>
+</div>
+<!-- Actions -->
+<div class="flex items-center justify-between">
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest">
+                            Skip
+                        </button>
+<button class="group flex items-center justify-center bg-primary text-on-primary w-touch-target-min h-touch-target-min rounded-full shadow-lg active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Decorative Texture Overlay -->
+<div class="absolute inset-0 pointer-events-none opacity-[0.03] mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]"></div>
+</div>
+<!-- Safe Area Home Indicator -->
+<div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-on-surface/20 rounded-full z-50"></div>
+</div>
+<script>
+        // Simple Interaction logic
+        document.querySelector('button.group').addEventListener('click', function() {
+            // Visual feedback for transition
+            const content = document.querySelector('.phone-frame');
+            content.style.transition = 'opacity 0.5s ease';
+            content.style.opacity = '0.7';
+            setTimeout(() => {
+                content.style.opacity = '1';
+                alert('Navigating to next heritage story...');
+            }, 500);
+        });
+
+        // Skip logic
+        document.querySelector('button.font-label-sm').addEventListener('click', function() {
+            alert('Welcome to the Parchhai collection.');
+        });
+    </script>
+</body></html>

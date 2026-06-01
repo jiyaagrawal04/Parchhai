@@ -1,0 +1,9 @@
+{
+  "extends": "@parchhai/config/tsconfig.node.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "rootDir": ".",
+    "types": ["node"]
+  },
+  "include": ["src", "prisma"]
+}

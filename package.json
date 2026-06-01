@@ -1,0 +1,33 @@
+{
+  "name": "parchhai",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Parchhai — premium DTC fashion commerce platform (block-print crafts on Gen-Z silhouettes)",
+  "packageManager": "pnpm@10.28.2",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "db:generate": "pnpm --filter @parchhai/db generate",
+    "db:migrate": "pnpm --filter @parchhai/db migrate",
+    "db:push": "pnpm --filter @parchhai/db push",
+    "db:seed": "pnpm --filter @parchhai/db seed",
+    "db:studio": "pnpm --filter @parchhai/db studio",
+    "dev:api": "pnpm --filter @parchhai/api dev",
+    "dev:web": "pnpm --filter @parchhai/web dev",
+    "dev:mobile": "pnpm --filter @parchhai/mobile start"
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2",
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["@prisma/client", "@prisma/engines", "prisma", "esbuild", "bcrypt"]
+  }
+}

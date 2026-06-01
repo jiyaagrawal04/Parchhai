@@ -1,0 +1,9 @@
+{
+  "extends": "@parchhai/config/tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "moduleResolution": "Bundler",
+    "module": "ESNext"
+  },
+  "include": ["src"]
+}

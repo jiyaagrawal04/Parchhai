@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Our Story | Parchhai</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Hanken+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .paper-grain {
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+            background-repeat: repeat;
+        }
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .asymmetric-offset {
+            margin-top: 40px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e7e2d9",
+                        "on-primary-container": "#8392b7",
+                        "surface-tint": "#4f5e81",
+                        "inverse-primary": "#b7c6ee",
+                        "inverse-surface": "#32302a",
+                        "secondary": "#a23e30",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f5f0e7",
+                        "on-tertiary-fixed": "#281800",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "primary-fixed-dim": "#b7c6ee",
+                        "on-secondary-fixed": "#410000",
+                        "surface-container-low": "#f8f3ea",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#b98a3c",
+                        "on-surface-variant": "#45464e",
+                        "on-primary-fixed-variant": "#384668",
+                        "on-background": "#1d1c16",
+                        "secondary-fixed": "#ffdad4",
+                        "on-surface": "#1d1c16",
+                        "surface-container": "#f2ede4",
+                        "primary-container": "#1b2a4a",
+                        "on-secondary-fixed-variant": "#82271c",
+                        "outline": "#75777f",
+                        "surface-bright": "#fef9f0",
+                        "secondary-container": "#fc8270",
+                        "surface-dim": "#ded9d1",
+                        "surface-container-highest": "#e7e2d9",
+                        "tertiary": "#221400",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#721b12",
+                        "primary": "#041534",
+                        "surface": "#fef9f0",
+                        "tertiary-container": "#3c2700",
+                        "surface-container-high": "#ece8df",
+                        "secondary-fixed-dim": "#ffb4a8",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#fef9f0",
+                        "primary-fixed": "#d9e2ff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#ffddaf",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#0a1a3a",
+                        "outline-variant": "#c5c6cf",
+                        "tertiary-fixed-dim": "#f3be6a",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "section-gap": "120px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Bodoni Moda"],
+                        "body-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "display-lg": ["Bodoni Moda"],
+                        "headline-lg-mobile": ["Bodoni Moda"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "headline-md": ["Bodoni Moda"],
+                        "headline-lg": ["Bodoni Moda"],
+                        "label-sm": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["80px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                        "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md paper-grain">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-outline/10 h-20 flex justify-between items-center px-margin-desktop">
+<div class="font-display-lg text-headline-md tracking-tighter text-primary">Parchhai</div>
+<div class="hidden md:flex gap-10">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Shop</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Crafts</a>
+<a class="font-label-caps text-label-caps text-primary border-b border-secondary pb-1" href="#">Our Story</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Journal</a>
+</div>
+<div class="flex gap-6 items-center">
+<span class="material-symbols-outlined text-primary cursor-pointer">person</span>
+<span class="material-symbols-outlined text-primary cursor-pointer">shopping_bag</span>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section: Meaning of Parchhai -->
+<section class="min-h-[921px] flex flex-col items-center justify-center px-margin-desktop py-section-gap text-center overflow-hidden">
+<h1 class="font-display-lg text-display-lg text-primary mb-12 max-w-4xl reveal-on-scroll">The Shadow of Heritage.</h1>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter w-full max-w-7xl mx-auto items-center">
+<div class="md:col-span-5 text-left reveal-on-scroll" style="transition-delay: 200ms;">
+<p class="font-label-caps text-label-caps text-secondary mb-4">DEFINITION</p>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6 italic">Parchhai (/pərˈtʃʰaɪ/)</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        In Hindustani, it means shadow or reflection. To us, it represents the silhouette of the past cast upon the textiles of the future. Every block-print and every weave is a reflection of the artisan's soul, preserving a lineage that refuses to fade.
+                    </p>
+</div>
+<div class="md:col-span-7 relative reveal-on-scroll" style="transition-delay: 400ms;">
+<div class="bg-surface-variant p-2 w-full aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000" data-alt="A cinematic, high-contrast close-up of a traditional Indian wooden block-printing stamp resting on a piece of hand-loomed indigo fabric. The lighting is dramatic, casting soft shadows that highlight the intricate grain of the wood and the tactile texture of the organic cotton. The overall aesthetic is editorial and minimalist, reflecting a luxurious and heritage-focused brand identity with ivory and indigo tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7wSskpxyyYXwX745Z98sFbYe66MMytef8_XsFMgxUHVr9kSmhpDvfTnYCD_AIJHSz0oUfCjv4Gg496H-gefvPvcJ9htZDtEvxmmO1xEa1mqnNR9q_E_ZZyBtthIEcJlamNTVRCI5q7XDHrZQNs-uIhPHU1lzkPnR26ssm3c9DNt9lEXDt7xaO9F7XU9j1KMNzmH3FhqKAl0C4d2RRmkzWGFhJJtY-v6uIYcxer2crX_RJwpVEkyz7ZgQ_1R_D3pngu5FXjrkVIayv"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Pull Quote Section -->
+<section class="bg-primary text-surface px-margin-desktop py-section-gap">
+<div class="max-w-5xl mx-auto text-center reveal-on-scroll">
+<span class="material-symbols-outlined text-6xl text-secondary-container mb-8" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+<blockquote class="font-display-lg text-headline-lg italic leading-tight mb-8">
+                    "Sustainability is not a modern trend for us; it is the ancestral rhythm of the loom, the natural bleed of the dye, and the dignity of the hand that crafts."
+                </blockquote>
+<cite class="font-label-caps text-label-caps tracking-widest uppercase">The Artisan's Manifesto</cite>
+</div>
+</section>
+<!-- Sustainability Promise -->
+<section class="px-margin-desktop py-section-gap max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-section-gap items-center">
+<div class="reveal-on-scroll">
+<img class="w-full aspect-square object-cover grayscale-[0.2]" data-alt="An ethereal wide shot of an open-air natural dyeing workshop in rural India. Large clay vats filled with deep indigo and terracotta dyes are surrounded by artisans in traditional attire. Soft morning sunlight filters through hanging lengths of drying silk and cotton fabrics, creating a serene, unhurried atmosphere that emphasizes high-end slow fashion and artisanal provenance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKuRKs7_UmiBMDyqD5Smxi4Yh6kqZbzdDIj0sfgv0kHML3QfuceCJ4dy0rfoMNhZJy2v0uwU6IJ9mVBKv5S9X6thTWocTHRj5-CBI2_uhELSzTL_zBc3CZlTNDoMgqkFdBqoHrCidwZycmpkTrc3I8EtwzQmimrypgcJ9Z36B_9b_v6zqOX6Tr8bjR85ZuXKFHenY2oq_6h6pClJuilo25oeQeWU5Dt8wQaBV-BTCmbrS6aCOq9-HB2bEUOv9SVEFh1NBo-GwUzIFP"/>
+</div>
+<div class="flex flex-col gap-12 reveal-on-scroll" style="transition-delay: 200ms;">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Natural Dye Integrity</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">We exclusively use plant-based pigments—Indigofera, Madder Root, and Pomegranate peels. Our water-cycles are closed, returning only purity to the earth from which our colors are born.</p>
+</div>
+<div class="border-l-2 border-secondary pl-8">
+<h3 class="font-headline-md text-headline-md text-primary mb-4">The Fair-Wage Promise</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Every artisan is a shareholder in our journey. We bypass middlemen to ensure 40% higher than industry-standard wages, supporting the education and healthcare of weaving clusters across Kutch and Bagru.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Timeline Strip -->
+<section class="bg-surface-container py-24 overflow-hidden border-y border-outline-variant/30">
+<div class="flex animate-scroll whitespace-nowrap gap-32 px-margin-desktop">
+<div class="flex flex-col">
+<span class="font-display-lg text-headline-lg text-secondary/30">1924</span>
+<span class="font-label-caps text-label-caps text-primary">Foundational Heritage</span>
+</div>
+<div class="flex flex-col">
+<span class="font-display-lg text-headline-lg text-secondary/30">1988</span>
+<span class="font-label-caps text-label-caps text-primary">The First Loom</span>
+</div>
+<div class="flex flex-col">
+<span class="font-display-lg text-headline-lg text-secondary/30">2014</span>
+<span class="font-label-caps text-label-caps text-primary">Global Collective</span>
+</div>
+<div class="flex flex-col">
+<span class="font-display-lg text-headline-lg text-secondary/30">2024</span>
+<span class="font-label-caps text-label-caps text-primary">Parchhai Launch</span>
+</div>
+<!-- Repeat for infinite feel -->
+<div class="flex flex-col">
+<span class="font-display-lg text-headline-lg text-secondary/30">FUTURE</span>
+<span class="font-label-caps text-label-caps text-primary">Zero Impact Goal</span>
+</div>
+</div>
+</section>
+<!-- Artisan Portraits: The Faces -->
+<section class="px-margin-desktop py-section-gap max-w-7xl mx-auto">
+<div class="flex justify-between items-end mb-16 reveal-on-scroll">
+<div class="max-w-lg">
+<h2 class="font-display-lg text-headline-lg text-primary mb-4">Our Craftsmen.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Meeting the hands that breathe life into Parchhai. These are not just workers; they are the custodians of a thousand-year-old language.</p>
+</div>
+<button class="bg-primary text-surface px-8 py-4 font-label-caps text-label-caps hover:bg-secondary transition-all">VIEW ALL PORTRAITS</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Artisan 1 -->
+<div class="flex flex-col reveal-on-scroll">
+<div class="aspect-[3/4] overflow-hidden mb-6 bg-surface-dim">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="A soulful, close-up black and white portrait of an elderly Indian artisan with a weathered, expressive face. He is wearing a simple khadi turban and looking thoughtfully into the distance. The lighting is soft and directional, highlighting every wrinkle and line, symbolizing a lifetime of dedication to his craft. The background is a blurred artisan workshop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX6EUYKsFryVcw3J_smGE38AjKHn0_dJG3FHtrd9t2g5-VkJ8nhG3K5bcUVDoiUP2GodXLmfVlbXoFUx2gfkzMVczo579FS_cZlZsQSIafPPX-LEqXtM9vboh9H3BlqAmUycCQdZwF09EKixfnOC9a0evcanhuUQytIBi35O8wMd39r0_hlu4ust3_u06sXThSjvZ6Q8mWMizXL-ijlWWHG5HBLSwwKjy-AsFyHbSX-ZURjMNhA763kxeWvGZYb6Ef9WONpq5qA2Po"/>
+</div>
+<h4 class="font-headline-md text-headline-md text-primary">Ibrahim Khatri</h4>
+<span class="font-label-caps text-label-caps text-secondary">MASTER DYER • AJRAKH PUR, GUJARAT</span>
+</div>
+<!-- Artisan 2 -->
+<div class="flex flex-col asymmetric-offset reveal-on-scroll" style="transition-delay: 200ms;">
+<div class="aspect-[3/4] overflow-hidden mb-6 bg-surface-dim">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="A portrait of a young male weaver sitting at a traditional wooden handloom. He is dressed in a contemporary linen shirt, blending heritage with modern style. He holds a shuttle with focused intensity. The scene is bathed in warm, natural light from a nearby window, creating a tactile and intimate editorial feel that celebrates the human element of fashion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWHEHwzHh3S6pfUYRfjYvfaoxFuzwBnxol5gPUTH_slOlC9aj05uad9UZWMTVpJbYmnxkTjTxkNdLPRsXK97sr8XvIijryNFW3yaXjLEWENl8CqnCNxTP5l42kVF3RH3kNtkp3OjbOINk41AwE0fi44e2pc2B6SMJqeQApBVQFb50cTGACoR9hrgtlVhGzbfhRFHEdO8sg0zsL-Wq6Md7bMsg-7VsIjdO43Wz72rRpItU2_io59c6wmM6zZ2vG7xmbbXb79vWz7JO9"/>
+</div>
+<h4 class="font-headline-md text-headline-md text-primary">Meera Devi</h4>
+<span class="font-label-caps text-label-caps text-secondary">MASTER WEAVER • CHANDERI, MP</span>
+</div>
+<!-- Artisan 3 -->
+<div class="flex flex-col reveal-on-scroll" style="transition-delay: 400ms;">
+<div class="aspect-[3/4] overflow-hidden mb-6 bg-surface-dim">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="A portrait of an artisan woman with intricate henna on her hands, holding a piece of delicate block-printed fabric. Her expression is one of quiet pride and elegance. The composition is asymmetric, with the fabric draping into the foreground. The color palette is composed of soft ivory, deep charcoal, and earthy ochre tones, maintaining a sophisticated editorial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0c-D5aXZAfhZgdjTEobEgqx4lUsSlsZwezZTDET93knq4srjGXpUt_W618FvFSf7SE27DHMzatEhIOah_1dmNMlPdedr5a_tnl0-660e0c14GU9Z_zIN08FRIWB6mIOy00anAU4VWmUW9vQzKSSroXY_PlsOKrzZa5A2ng5UqriTyn4iqq-rqDguEEDIYzOmxdIwC9BQxoIu5A2ADNyBa_ruPQoNOkMHd55Cp4vfrG2dAHWikaF0y9TkEP3dw0OD-4-NGZWP6wJuD"/>
+</div>
+<h4 class="font-headline-md text-headline-md text-primary">Siddharth Rao</h4>
+<span class="font-label-caps text-label-caps text-secondary">BLOCK ARCHITECT • BAGRU, RAJASTHAN</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container border-t border-outline-variant mt-24">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-section-gap max-w-7xl mx-auto">
+<div class="flex flex-col gap-6">
+<div class="font-display-lg text-headline-md text-primary">Parchhai</div>
+<p class="font-body-md text-on-surface-variant">Crafting reflections of ancestral art for the modern silhouette.</p>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-primary">COLLECTIONS</span>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">The Indigo Series</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Ajrakh Edit</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Dabu Essentials</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-primary">EXPLORE</span>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Our Story</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Artisan Care</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Sustainability</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-primary">NEWSLETTER</span>
+<div class="flex border-b border-outline">
+<input class="bg-transparent border-none focus:ring-0 w-full py-2 font-body-md" placeholder="Email Address" type="email"/>
+<button class="text-primary"><span class="material-symbols-outlined">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<div class="px-margin-desktop py-8 border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-caps text-[10px] text-on-surface-variant">© 2024 PARCHHAI. CRAFTED IN INDIA.</p>
+<div class="flex gap-8">
+<a class="font-label-caps text-[10px] text-on-surface-variant" href="#">INSTAGRAM</a>
+<a class="font-label-caps text-[10px] text-on-surface-variant" href="#">JOURNAL</a>
+<a class="font-label-caps text-[10px] text-on-surface-variant" href="#">PRIVACY</a>
+</div>
+</div>
+</footer>
+<script>
+        // Intersection Observer for reveal animations
+        const observerOptions = {
+            root: null,
+            threshold: 0.1,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // Horizontal scroll animation logic for timeline (pure CSS fallback used via keyframes if needed, but JS for smoother control)
+        const scrollContainer = document.querySelector('.animate-scroll');
+        if (scrollContainer) {
+            let scrollPos = 0;
+            function autoScroll() {
+                scrollPos += 0.5;
+                if (scrollPos > 300) scrollPos = 0;
+                scrollContainer.style.transform = `translateX(-${scrollPos}px)`;
+                requestAnimationFrame(autoScroll);
+            }
+            // Temporarily commented for pure CSS ease if performance is an issue
+            // autoScroll(); 
+        }
+    </script>
+</body></html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "on-tertiary-fixed-variant": "#614000",
+                "on-error-container": "#93000a",
+                "on-secondary-fixed": "#410000",
+                "surface-dim": "#ded9d1",
+                "on-surface-variant": "#45464e",
+                "surface-container-high": "#ece8df",
+                "tertiary-fixed": "#ffddaf",
+                "primary-fixed-dim": "#b7c6ee",
+                "secondary-fixed": "#ffdad4",
+                "surface-bright": "#fef9f0",
+                "surface-tint": "#4f5e81",
+                "error": "#ba1a1a",
+                "outline-variant": "#c5c6cf",
+                "on-tertiary": "#ffffff",
+                "tertiary": "#221400",
+                "surface-container-highest": "#e7e2d9",
+                "on-surface": "#1d1c16",
+                "on-secondary-container": "#721b12",
+                "on-primary-fixed": "#0a1a3a",
+                "on-secondary": "#ffffff",
+                "secondary-fixed-dim": "#ffb4a8",
+                "on-primary-fixed-variant": "#384668",
+                "surface-container-low": "#f8f3ea",
+                "on-error": "#ffffff",
+                "on-secondary-fixed-variant": "#82271c",
+                "on-tertiary-container": "#b98a3c",
+                "secondary-container": "#fc8270",
+                "background": "#fef9f0",
+                "secondary": "#a23e30",
+                "tertiary-container": "#3c2700",
+                "on-primary-container": "#8392b7",
+                "on-background": "#1d1c16",
+                "primary-fixed": "#d9e2ff",
+                "inverse-on-surface": "#f5f0e7",
+                "surface-variant": "#e7e2d9",
+                "inverse-primary": "#b7c6ee",
+                "primary-container": "#1b2a4a",
+                "tertiary-fixed-dim": "#f3be6a",
+                "primary": "#041534",
+                "surface": "#fef9f0",
+                "on-primary": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "inverse-surface": "#32302a",
+                "outline": "#75777f",
+                "on-tertiary-fixed": "#281800",
+                "surface-container": "#f2ede4",
+                "error-container": "#ffdad6"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+              },
+              "spacing": {
+                "base": "8px",
+                "section-gap": "40px",
+                "touch-target-min": "48px",
+                "margin-mobile": "20px",
+                "gutter-mobile": "16px"
+              },
+              "fontFamily": {
+                "headline-md": ["Libre Caslon Text"],
+                "body-md": ["Hanken Grotesk"],
+                "display-lg": ["Libre Caslon Text"],
+                "label-sm": ["Hanken Grotesk"],
+                "body-lg": ["Hanken Grotesk"],
+                "display-lg-mobile": ["Libre Caslon Text"]
+              },
+              "fontSize": {
+                "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                "display-lg-mobile": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .inner-glow:active {
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+        }
+        body {
+            -webkit-tap-highlight-color: transparent;
+            background-color: #fef9f0;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-primary">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant flex justify-between items-center px-margin-mobile h-touch-target-min">
+<button class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity active:scale-95 duration-150">
+            menu
+        </button>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary tracking-tight">PARCHHAI</h1>
+<button class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity active:scale-95 duration-150">
+            shopping_bag
+        </button>
+</header>
+<main class="pt-20 pb-32">
+<!-- Search & Filter Header -->
+<section class="px-margin-mobile mb-6">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-headline-md text-headline-md text-on-surface">Browse Collections</h2>
+<span class="material-symbols-outlined text-primary cursor-pointer">search</span>
+</div>
+<!-- Category Chips -->
+<div class="flex gap-2 overflow-x-auto hide-scrollbar pb-2">
+<span class="px-4 py-2 rounded-full bg-primary text-on-primary font-label-sm whitespace-nowrap">All Items</span>
+<span class="px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-sm whitespace-nowrap">Kurtis</span>
+<span class="px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-sm whitespace-nowrap">Corsets</span>
+<span class="px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-sm whitespace-nowrap">Handloom</span>
+<span class="px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-sm whitespace-nowrap">Accessories</span>
+</div>
+</section>
+<!-- Product Grid -->
+<section class="px-margin-mobile">
+<div class="grid grid-cols-2 gap-x-4 gap-y-8">
+<!-- Product 1 -->
+<div class="group">
+<div class="relative aspect-[3/4] mb-3 overflow-hidden bg-surface-container-low border border-outline-variant/30">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A beautiful handcrafted Ajrakh block-print kurti displayed in a high-fashion editorial setting. The garment features deep indigo and madder red geometric patterns on premium cotton fabric. The lighting is soft and natural, emphasizing the rich texture of the hand-carved block prints against a warm ivory background. The mood is sophisticated and celebrates heritage craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2b_N8bXCaN03OXxXDeS4iUM2AxgyUqBnDqsC2y6Zn5pVK7HQWOVQGwIBjEIav2C3nM7SmTpvIPenytVYevGZzgcbP9-4Mj9BbO5fBfcPwY-mDyPX4HauZqb6cjfCa2GiDyTsj27jND074etkJFrLTYj_UHjELd508PQASZONmENjPJsVyNJv_gBG3dJXQfyKEc5yWfWDL8CAZBSCtz6yHh1W9LL9MmCb2G4BFbR0uc0zH7OO4aWHg-xz7-kGPUi6rWVEiiX8wGXrh"/>
+<button class="absolute top-2 right-2 w-10 h-10 flex items-center justify-center bg-surface/80 backdrop-blur-sm rounded-full active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-on-surface text-[20px]">favorite</span>
+</button>
+</div>
+<p class="font-headline-md text-[16px] leading-tight mb-1">Ajrakh Heritage Kurti</p>
+<p class="font-label-sm text-on-surface-variant mb-2">Natural Indigo Dye</p>
+<p class="font-body-md font-bold text-primary">₹4,250</p>
+</div>
+<!-- Product 2 -->
+<div class="group">
+<div class="relative aspect-[3/4] mb-3 overflow-hidden bg-surface-container-low border border-outline-variant/30">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A structured modern corset top featuring traditional Dabu mud-resist print patterns in earthy tones. The garment merges historical Western silhouettes with ancient Indian textile arts. Photographed against a minimalist architectural backdrop with dramatic shadows, the image has a premium editorial feel. The palette consists of muted ivories, deep indigos, and warm earth browns." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8-YW_zmBFihFUzW5GKSf0a69y7pGjufH7CRq2fD06h7Bmj6vF8BmwPyuaDHKBrLvQ927jhmfzEK_VYqkbSlsZ6qXTMe3daRuGw8W_q-zb_dyoOPa4zKrPSol1e9Z_ZuPErpFpf5Xoo7IiHl-tZ2ZAmoq24GQK6ZB4astZbu8zTxWYvZeks-kq7tVo9MGE2Bcz_pbxipsL52LLS6Hsd-BCO9vQI22ZcW406T5P9N9f9YEyL7ZXT8kq6Fah_49oYrrgycjZj0lN4Gt5"/>
+<button class="absolute top-2 right-2 w-10 h-10 flex items-center justify-center bg-surface/80 backdrop-blur-sm rounded-full active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-on-surface text-[20px]">favorite</span>
+</button>
+</div>
+<p class="font-headline-md text-[16px] leading-tight mb-1">Dabu Indigo Corset</p>
+<p class="font-label-sm text-on-surface-variant mb-2">Mud-Resist Craft</p>
+<p class="font-body-md font-bold text-primary">₹3,800</p>
+</div>
+<!-- Product 3 -->
+<div class="group">
+<div class="relative aspect-[3/4] mb-3 overflow-hidden bg-surface-container-low border border-outline-variant/30">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A close-up shot of an ivory silk kurti with delicate hand-stitched detailing and gold thread embroidery. The lighting is ethereal and high-key, highlighting the premium quality of the fabric and the precision of the artisan's work. The scene is set in a sun-drenched atelier with hints of antique wooden furniture, evoking a sense of luxury and timeless tradition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4CUHMSgU8jFIYpSyfC-fcjvDPR2OfFBF6koYMN54FoY26T_JySQl8E4dDSWN2_V4CHBgr0hb6xr2fZo4FHFAbjaIHmhvWHJu4PxIHyQE4K_Ex8j5BOlqBQvmu74WHKetuDTfcmZ29_wvSoT7-B_f3b7jnfoGIonoA6KpYpyU_bS-QlzpZJnkQVyUiCRajEFCUL_jpymG-KXgE5EKnqU6A6hIdHjL9Cfu3K-uNUkTMni3m8VfWRdHTHOBJtLx9279GA37HfEkYXu-_"/>
+<button class="absolute top-2 right-2 w-10 h-10 flex items-center justify-center bg-surface/80 backdrop-blur-sm rounded-full active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-on-surface text-[20px]">favorite</span>
+</button>
+</div>
+<p class="font-headline-md text-[16px] leading-tight mb-1">Chanderi Silk Kurti</p>
+<p class="font-label-sm text-on-surface-variant mb-2">Hand-Spun Textile</p>
+<p class="font-body-md font-bold text-primary">₹5,100</p>
+</div>
+<!-- Product 4 -->
+<div class="group">
+<div class="relative aspect-[3/4] mb-3 overflow-hidden bg-surface-container-low border border-outline-variant/30">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A designer corset made from hand-loomed brocade fabric with intricate gold patterns on a deep indigo base. The photography captures the garment on a high-fashion model, emphasizing the contrast between traditional Indian weaving and contemporary edgy styling. The overall lighting is moody with rich saturation, focused on the metallic sheen of the gold threads." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY53eUPuwxpil2VIuigDqLMB-t3PpbNpwfP8X9EuwUBM8gP05fA7Qbgk2kOR4CU4k34fGTC4N5uiASpJH-pJxo3I2LQuZFVUIYAsoaOE5kb7M1TWkbWpcpq9V1_sEiy7XhrrR5FqJfCT-0Y3r7KIsvrub0PcoblHMKAd4ium_bxh9yJkBihuN48OszGlpNVlhwjmfXusDg1-qZzyM5BGBdwnq_Yrw0y08Ddj7z-ohPJ2rTaIQVaD0bKGrwNQiezu3JLPMx4nOxr-p9"/>
+<button class="absolute top-2 right-2 w-10 h-10 flex items-center justify-center bg-surface/80 backdrop-blur-sm rounded-full active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-on-surface text-[20px]">favorite</span>
+</button>
+</div>
+<p class="font-headline-md text-[16px] leading-tight mb-1">Brocade Indigo Corset</p>
+<p class="font-label-sm text-on-surface-variant mb-2">Hand-Woven Gold</p>
+<p class="font-body-md font-bold text-primary">₹4,950</p>
+</div>
+<!-- Product 5 -->
+<div class="group">
+<div class="relative aspect-[3/4] mb-3 overflow-hidden bg-surface-container-low border border-outline-variant/30">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A minimalist white linen kurti with geometric Dabu print borders in black and terracotta. The composition is clean and modern, highlighting the garment's breathability and casual elegance. The light is diffused, creating soft shadows that give depth to the natural fabric folds. A premium Ivory aesthetic dominates the frame." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2xgEHSz_g52OQbvG5K4us_Ob-i7V3DRdZQTn0ChsATtBS7_AG0Pwec2y0n_7yV3ej2aAT4zvkPY4h7Mh8C-WRciIfgTVk5naruUNMTy6c3aPIjU-YC9BZbjnYP0fK-Rd5d4j9h0EVtNJpUJm4JYUdfD8Ei-Ni615h4oDRh2W49wgY-7yOR9WomLkWLIYuJZbX1CS5MY6r1XJGPsVxGFTKX0dXQw9bNaF-QTeMezoQjVFVtpAvfVDuWLZys1bQNhjPmI0hraLT0h8O"/>
+<button class="absolute top-2 right-2 w-10 h-10 flex items-center justify-center bg-surface/80 backdrop-blur-sm rounded-full active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-on-surface text-[20px]">favorite</span>
+</button>
+</div>
+<p class="font-headline-md text-[16px] leading-tight mb-1">Linen Dabu Kurti</p>
+<p class="font-label-sm text-on-surface-variant mb-2">Minimalist Craft</p>
+<p class="font-body-md font-bold text-primary">₹3,200</p>
+</div>
+<!-- Product 6 -->
+<div class="group">
+<div class="relative aspect-[3/4] mb-3 overflow-hidden bg-surface-container-low border border-outline-variant/30">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A high-end indigo corset featuring traditional hand-embroidery known as Zardosi. The deep navy blue fabric is encrusted with silver and gold metal wires and beads, creating a regal and opulent look. The lighting is focused, casting long shadows that emphasize the three-dimensional texture of the embroidery. The mood is one of elite historical luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdDp3tZpkaGqOIVT-sMtcuQX6BcCb8HwpakHvaJGsrbceNhMf-sBjPl1VwZ-NZPumzoMXYeHeopvJHdj5JWUGeXTcBgY8--VkpniTxY4v83dn-2XNRQZ-oXSwfd2I_RuKLrkaP7hD-ihf34n3bKqsGplSCEZQ9P1uHPQ8czVBjUbOyzveaXuynd8eT_6q-_a-THfMCmj4apNHS6BPeRetpt868OMQtIh4JiGkjy9Duk1ILf6MCbbTy-B85svSR1Jg6emAzo24H9_ZS"/>
+<button class="absolute top-2 right-2 w-10 h-10 flex items-center justify-center bg-surface/80 backdrop-blur-sm rounded-full active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-on-surface text-[20px]">favorite</span>
+</button>
+</div>
+<p class="font-headline-md text-[16px] leading-tight mb-1">Zardosi Indigo Corset</p>
+<p class="font-label-sm text-on-surface-variant mb-2">Metallic Artistry</p>
+<p class="font-body-md font-bold text-primary">₹7,500</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Filter Button -->
+<div class="fixed bottom-24 left-1/2 -translate-x-1/2 z-40">
+<button class="flex items-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-full shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span class="font-label-sm">Filter &amp; Sort</span>
+</button>
+</div>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-md border-t border-outline-variant shadow-sm flex justify-around items-center h-16">
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors w-full h-full cursor-pointer">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary font-bold hover:bg-surface-container-low transition-colors w-full h-full cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">storefront</span>
+<span class="font-label-sm">Shop</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors w-full h-full cursor-pointer">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-sm">Search</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors w-full h-full cursor-pointer">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-label-sm">Wishlist</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors w-full h-full cursor-pointer">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm">Account</span>
+</div>
+</nav>
+<script>
+        // Simple micro-interaction for product cards
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.classList.add('opacity-90');
+            });
+            card.addEventListener('touchend', () => {
+                card.classList.remove('opacity-90');
+            });
+        });
+
+        // Filter button scroll behavior
+        let lastScroll = 0;
+        const filterBtn = document.querySelector('.fixed.bottom-24');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > lastScroll && currentScroll > 200) {
+                filterBtn.style.transform = 'translate(-50%, 150%)';
+            } else {
+                filterBtn.style.transform = 'translate(-50%, 0)';
+            }
+            filterBtn.style.transition = 'transform 0.3s ease-in-out';
+            lastScroll = currentScroll;
+        });
+    </script>
+</body></html>

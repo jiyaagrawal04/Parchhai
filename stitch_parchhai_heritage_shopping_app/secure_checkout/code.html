@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Parchhai Checkout</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&amp;family=Hanken+Grotesk:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#614000",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#410000",
+                        "surface-dim": "#ded9d1",
+                        "on-surface-variant": "#45464e",
+                        "surface-container-high": "#ece8df",
+                        "tertiary-fixed": "#ffddaf",
+                        "primary-fixed-dim": "#b7c6ee",
+                        "secondary-fixed": "#ffdad4",
+                        "surface-bright": "#fef9f0",
+                        "surface-tint": "#4f5e81",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#c5c6cf",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#221400",
+                        "surface-container-highest": "#e7e2d9",
+                        "on-surface": "#1d1c16",
+                        "on-secondary-container": "#721b12",
+                        "on-primary-fixed": "#0a1a3a",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#ffb4a8",
+                        "on-primary-fixed-variant": "#384668",
+                        "surface-container-low": "#f8f3ea",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#82271c",
+                        "on-tertiary-container": "#b98a3c",
+                        "secondary-container": "#fc8270",
+                        "background": "#fef9f0",
+                        "secondary": "#a23e30",
+                        "tertiary-container": "#3c2700",
+                        "on-primary-container": "#8392b7",
+                        "on-background": "#1d1c16",
+                        "primary-fixed": "#d9e2ff",
+                        "inverse-on-surface": "#f5f0e7",
+                        "surface-variant": "#e7e2d9",
+                        "inverse-primary": "#b7c6ee",
+                        "primary-container": "#1b2a4a",
+                        "tertiary-fixed-dim": "#f3be6a",
+                        "primary": "#041534",
+                        "surface": "#fef9f0",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#32302a",
+                        "outline": "#75777f",
+                        "on-tertiary-fixed": "#281800",
+                        "surface-container": "#f2ede4",
+                        "error-container": "#ffdad6",
+                        "madder-rust": "#9E3B2E"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "section-gap": "40px",
+                        "touch-target-min": "48px",
+                        "margin-mobile": "20px",
+                        "gutter-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Libre Caslon Text"],
+                        "body-md": ["Hanken Grotesk"],
+                        "display-lg": ["Libre Caslon Text"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "display-lg-mobile": ["Libre Caslon Text"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .inner-glow:active {
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+        }
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant flex justify-between items-center px-margin-mobile h-touch-target-min">
+<button class="p-2 hover:opacity-80 transition-opacity active:scale-95 duration-150">
+<span class="material-symbols-outlined text-primary" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-display-lg-mobile text-[20px] leading-tight text-primary tracking-tight">PARCHHAI</h1>
+<button class="p-2 hover:opacity-80 transition-opacity active:scale-95 duration-150">
+<span class="material-symbols-outlined text-primary" data-icon="help_outline">help_outline</span>
+</button>
+</header>
+<main class="pt-16 pb-32 px-margin-mobile">
+<!-- Section: Address Selection -->
+<section class="mt-8">
+<div class="flex justify-between items-end mb-4">
+<h2 class="font-headline-md text-headline-md-mobile text-primary">Shipping Address</h2>
+<button class="text-secondary font-label-sm text-label-sm uppercase tracking-widest border-b border-secondary">Add New</button>
+</div>
+<div class="space-y-3">
+<label class="block relative p-4 rounded-lg border-2 border-primary bg-surface-container-low transition-all">
+<input checked="" class="absolute top-4 right-4 text-primary focus:ring-primary h-5 w-5" name="address" type="radio"/>
+<div class="pr-8">
+<p class="font-bold text-primary mb-1">Home</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                            Arjun Sharma<br/>
+                            42, Heritage Enclave, Civil Lines<br/>
+                            Jaipur, Rajasthan 302001
+                        </p>
+</div>
+</label>
+<label class="block relative p-4 rounded-lg border border-outline-variant bg-surface hover:bg-surface-container-lowest transition-all">
+<input class="absolute top-4 right-4 text-primary focus:ring-primary h-5 w-5" name="address" type="radio"/>
+<div class="pr-8">
+<p class="font-bold text-on-surface-variant mb-1">Office</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                            Parchhai Studio, 10th Floor<br/>
+                            Bandra Kurla Complex, Mumbai 400051
+                        </p>
+</div>
+</label>
+</div>
+</section>
+<!-- Section: Delivery Options -->
+<section class="mt-section-gap">
+<h2 class="font-headline-md text-headline-md-mobile text-primary mb-4">Delivery Speed</h2>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex flex-col items-center p-4 border-2 border-primary bg-surface-container-low rounded-xl">
+<span class="material-symbols-outlined text-primary mb-2" data-icon="bolt">bolt</span>
+<span class="font-bold text-sm">Express</span>
+<span class="text-xs text-on-surface-variant">2-3 Business Days</span>
+<span class="mt-2 font-bold text-primary">₹350</span>
+</button>
+<button class="flex flex-col items-center p-4 border border-outline-variant rounded-xl opacity-60">
+<span class="material-symbols-outlined text-on-surface-variant mb-2" data-icon="local_shipping">local_shipping</span>
+<span class="font-bold text-sm">Standard</span>
+<span class="text-xs text-on-surface-variant">5-7 Business Days</span>
+<span class="mt-2 font-bold text-on-surface-variant">FREE</span>
+</button>
+</div>
+</section>
+<!-- Section: Payment Methods -->
+<section class="mt-section-gap">
+<h2 class="font-headline-md text-headline-md-mobile text-primary mb-4">Payment Method</h2>
+<div class="space-y-2">
+<!-- UPI -->
+<button class="w-full flex items-center justify-between p-4 bg-surface border border-outline-variant rounded-xl hover:bg-surface-container-low transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-body-md text-body-md text-primary font-semibold">UPI (PhonePe, GPay, etc.)</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- Cards -->
+<button class="w-full flex items-center justify-between p-4 bg-surface border border-primary rounded-xl ring-1 ring-primary transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="credit_card">credit_card</span>
+<span class="font-body-md text-body-md text-primary font-semibold">Credit / Debit Cards</span>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="expand_more">expand_more</span>
+</button>
+<!-- Card Expanded View (Mock) -->
+<div class="px-4 py-6 bg-surface-container-low border-x border-b border-primary rounded-b-xl -mt-2 mb-4">
+<div class="flex gap-4 mb-4">
+<div class="flex-1 bg-surface-container-high h-12 rounded-lg flex items-center px-4">
+<span class="text-on-surface-variant/50">•••• •••• •••• 4421</span>
+</div>
+<div class="w-20 bg-surface-container-high h-12 rounded-lg flex items-center justify-center">
+<span class="text-on-surface-variant/50">CVV</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<input checked="" class="rounded border-outline text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-xs text-on-surface-variant">Save this card for faster payments</span>
+</div>
+</div>
+<!-- Net Banking -->
+<button class="w-full flex items-center justify-between p-4 bg-surface border border-outline-variant rounded-xl hover:bg-surface-container-low transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="account_balance">account_balance</span>
+<span class="font-body-md text-body-md text-primary font-semibold">Net Banking</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Section: Order Summary -->
+<section class="mt-section-gap p-6 bg-surface-container-highest rounded-2xl">
+<h2 class="font-headline-md text-headline-md-mobile text-primary mb-6">Review Your Order</h2>
+<div class="space-y-4">
+<div class="flex gap-4">
+<div class="w-16 h-20 bg-white rounded overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A high-end editorial close-up of a premium navy wool tailored jacket hanging against a minimalist cream-colored studio backdrop. The lighting is soft and directional, highlighting the rich tactile texture and expert stitching of the garment. The overall mood is sophisticated and expensive, perfectly aligning with a luxury heritage brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-fUjiuL3FQxpRfb8UvNzs5qNSZ7bG5zEfeDumK4xgM157GYAEIgFmB3vpXN65XVmZMb-sZH6f4__iO3dUIgD13VeJnRrj31QhDJYzJCRpCawa7Jv2n70MrKCTM3-GtLvI7M-WcfKmZiPM8tzY8h8-exLyBq90H1sCkzEQhdyoY4bfXNxaI-esnjZpMCJQztINgSxwXRSk_cpnZOLduL0PhJohi8x3xZaXUlIzVzIZLRxdm7VPoCfrLd5D4tXXFq1tx0K1a1Ic-l0_"/>
+</div>
+<div class="flex-1">
+<p class="font-headline-md text-sm text-primary">Classic Heritage Wool Blazer</p>
+<p class="text-xs text-on-surface-variant">Size: 42 | Color: Navy</p>
+<p class="font-bold mt-1 text-primary">₹14,950</p>
+</div>
+</div>
+<hr class="border-outline-variant"/>
+<div class="space-y-2 pt-2">
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Subtotal (1 item)</span>
+<span class="font-semibold text-primary">₹14,950</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Express Shipping</span>
+<span class="font-semibold text-primary">₹350</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">GST (12%)</span>
+<span class="font-semibold text-primary">₹1,794</span>
+</div>
+<div class="flex justify-between pt-4 text-lg font-bold">
+<span class="text-primary">Total Amount</span>
+<span class="text-primary">₹17,094</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Aesthetic Spacer -->
+<div class="h-20"></div>
+</main>
+<!-- Sticky Bottom CTA -->
+<div class="fixed bottom-0 w-full z-50 bg-surface/80 backdrop-blur-md p-margin-mobile border-t border-outline-variant/30 pb-safe">
+<div class="flex items-center justify-between mb-4">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant">Total Payable</span>
+<span class="text-xl font-bold text-primary">₹17,094</span>
+</div>
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full bg-white border border-outline-variant flex items-center justify-center p-1">
+<span class="material-symbols-outlined text-xs" data-icon="verified">verified</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-white border border-outline-variant flex items-center justify-center p-1">
+<span class="material-symbols-outlined text-xs" data-icon="lock">lock</span>
+</div>
+</div>
+</div>
+<button class="w-full h-touch-target-min bg-madder-rust text-white font-label-sm text-label-sm uppercase tracking-widest rounded-full transition-all active:scale-95 flex items-center justify-center gap-2 shadow-lg" id="place-order-btn">
+<span>Place Order Securely</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<script>
+        // Simple Interaction logic
+        document.getElementById('place-order-btn').addEventListener('click', function() {
+            const btn = this;
+            const originalContent = btn.innerHTML;
+            
+            // Interaction Feedback
+            btn.innerHTML = `
+                <span class="animate-spin material-symbols-outlined" data-icon="progress_activity">progress_activity</span>
+                <span>Processing Payment...</span>
+            `;
+            btn.style.opacity = '0.9';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.classList.replace('bg-madder-rust', 'bg-green-700');
+                btn.innerHTML = `
+                    <span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+                    <span>Order Confirmed!</span>
+                `;
+                
+                // Haptic feel
+                if (window.navigator.vibrate) {
+                    window.navigator.vibrate(200);
+                }
+            }, 1800);
+        });
+
+        // Toggle Payment Selection Logic
+        const paymentButtons = document.querySelectorAll('button[class*="border-outline-variant"]');
+        paymentButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // In a real app, this would swap states
+                // For this UI demo, we'll keep the Card state as primary
+            });
+        });
+    </script>
+</body></html>

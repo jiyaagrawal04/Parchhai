@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&amp;family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#614000",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#410000",
+                    "surface-dim": "#ded9d1",
+                    "on-surface-variant": "#45464e",
+                    "surface-container-high": "#ece8df",
+                    "tertiary-fixed": "#ffddaf",
+                    "primary-fixed-dim": "#b7c6ee",
+                    "secondary-fixed": "#ffdad4",
+                    "surface-bright": "#fef9f0",
+                    "surface-tint": "#4f5e81",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#c5c6cf",
+                    "on-tertiary": "#ffffff",
+                    "tertiary": "#221400",
+                    "surface-container-highest": "#e7e2d9",
+                    "on-surface": "#1d1c16",
+                    "on-secondary-container": "#721b12",
+                    "on-primary-fixed": "#0a1a3a",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed-dim": "#ffb4a8",
+                    "on-primary-fixed-variant": "#384668",
+                    "surface-container-low": "#f8f3ea",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed-variant": "#82271c",
+                    "on-tertiary-container": "#b98a3c",
+                    "secondary-container": "#fc8270",
+                    "background": "#fef9f0",
+                    "secondary": "#a23e30",
+                    "tertiary-container": "#3c2700",
+                    "on-primary-container": "#8392b7",
+                    "on-background": "#1d1c16",
+                    "primary-fixed": "#d9e2ff",
+                    "inverse-on-surface": "#f5f0e7",
+                    "surface-variant": "#e7e2d9",
+                    "inverse-primary": "#b7c6ee",
+                    "primary-container": "#1b2a4a",
+                    "tertiary-fixed-dim": "#f3be6a",
+                    "primary": "#041534",
+                    "surface": "#fef9f0",
+                    "on-primary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#32302a",
+                    "outline": "#75777f",
+                    "on-tertiary-fixed": "#281800",
+                    "surface-container": "#f2ede4",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "section-gap": "40px",
+                    "touch-target-min": "48px",
+                    "margin-mobile": "20px",
+                    "gutter-mobile": "16px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Libre Caslon Text"],
+                    "body-md": ["Hanken Grotesk"],
+                    "display-lg": ["Libre Caslon Text"],
+                    "label-sm": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "display-lg-mobile": ["Libre Caslon Text"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .inner-glow:active {
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+        }
+        @keyframes subtle-fade-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up {
+            animation: subtle-fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background antialiased selection:bg-secondary-fixed">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile h-touch-target-min bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed hover:opacity-80 transition-opacity active:scale-95 duration-150" data-icon="menu">menu</button>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-primary dark:text-primary-fixed tracking-tight">PARCHHAI</h1>
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed hover:opacity-80 transition-opacity active:scale-95 duration-150" data-icon="shopping_bag">shopping_bag</button>
+</header>
+<main class="min-h-screen pt-24 pb-32 px-margin-mobile flex flex-col items-center justify-center text-center">
+<!-- Confirmation Hero -->
+<div class="animate-fade-up flex flex-col items-center mb-12">
+<div class="w-24 h-24 rounded-full border border-on-tertiary-container flex items-center justify-center mb-8 bg-surface-container-low shadow-sm">
+<span class="material-symbols-outlined text-[48px] text-on-tertiary-container" style="font-variation-settings: 'wght' 200;">check</span>
+</div>
+<h2 class="font-headline-md text-headline-md-mobile text-primary mb-4">Order Placed Successfully</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[280px]">Your journey into heritage craftsmanship has begun.</p>
+</div>
+<!-- Order Summary Card -->
+<section class="animate-fade-up w-full max-w-sm bg-surface-container-lowest border border-outline-variant p-6 mb-section-gap relative overflow-hidden" style="animation-delay: 0.1s;">
+<div class="flex flex-col gap-4 text-left">
+<div class="flex justify-between items-center border-b border-surface-container-high pb-4">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Order Number</span>
+<span class="font-body-md text-body-md text-primary font-bold">#PRCH-92841-LX</span>
+</div>
+<div class="flex justify-between items-center pt-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest">Est. Delivery</span>
+<span class="font-body-md text-body-md text-primary">Oct 24 - Oct 27, 2023</span>
+</div>
+</div>
+<!-- Decorative texture -->
+<div class="absolute top-0 right-0 w-16 h-16 opacity-5 pointer-events-none">
+<svg class="fill-current text-primary" viewbox="0 0 100 100">
+<path d="M0 0h100v100H0z" fill="url(#pattern)"></path>
+<defs>
+<pattern height="10" id="pattern" patternunits="userSpaceOnUse" width="10">
+<path d="M-1 1l2-2M0 10l10-10M9 11l2-2" stroke="currentColor" stroke-width="0.5"></path>
+</pattern>
+</defs>
+</svg>
+</div>
+</section>
+<!-- Product Preview (Single Item for Premium Focus) -->
+<div class="animate-fade-up w-full max-w-sm mb-12 flex items-center gap-4 p-4 border border-outline-variant/30 bg-surface-bright" style="animation-delay: 0.2s;">
+<img alt="Heritage Leather Goods" class="w-20 h-20 object-cover" data-alt="A close-up, high-detail photograph of a handcrafted, deep indigo leather wallet resting on a polished dark wood surface. The lighting is soft and cinematic, highlighting the fine stitching and tactile texture of the heritage grain. The background is a blurred ivory-toned atelier, creating an atmosphere of exclusivity and meticulous craftsmanship consistent with a luxury brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiZTBFvmG8W2doI6HP03R5FAP4GRbDC_PsN3hGHujHJDmx6lfNn7NytAAzcRKJntWo4OlqcJwf9Zy7Qbqs31y6BY7jBhMK1K7oRiMXZULzqVsLBZm6ZEODCo02fWAVpCmDFCwqnuTsQ_dcZ4yFq5VCPidXq3pPef6FQT9LXKxPyS9-gNTrJz5LWRcVA7YdHETlbdKf5XT6dGTfoPZzzf8nOVlghPUyN6J41s3dcp_puwDQdoYsHUISjDYTdLtYKdBZfVFDKwiZSufw"/>
+<div class="text-left">
+<p class="font-label-sm text-label-sm text-on-tertiary-container uppercase">Confirmed</p>
+<p class="font-headline-md text-body-md text-primary">Signature Artisan Case</p>
+<p class="font-body-md text-label-sm text-on-surface-variant">Midnight Indigo • Standard Size</p>
+</div>
+</div>
+<!-- Actions -->
+<div class="animate-fade-up w-full max-w-sm flex flex-col gap-4" style="animation-delay: 0.3s;">
+<button class="w-full h-touch-target-min bg-primary text-on-primary font-body-md text-body-md transition-all hover:opacity-90 active:scale-[0.98] inner-glow">
+                Track My Order
+            </button>
+<button class="w-full h-touch-target-min border border-primary text-primary font-body-md text-body-md transition-all hover:bg-surface-container-low active:scale-[0.98]">
+                Continue Shopping
+            </button>
+</div>
+</main>
+<!-- BottomNavBar (Hidden for success screen as per focus guidelines, but kept for shell integrity logic if needed. 
+         However, the instructions state: "If the user is in a focused journey... hide the shell". 
+         Success screen is a definitive end of journey, navigation is suppressed.) -->
+<!-- Inline Interaction Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Subtle parallax effect on the success checkmark on scroll
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const checkmark = document.querySelector('.material-symbols-outlined');
+                if (checkmark) {
+                    checkmark.style.transform = `translateY(${scrolled * 0.05}px)`;
+                }
+            });
+            
+            // Interaction feedback for buttons
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    let x = e.clientX - e.target.offsetLeft;
+                    let y = e.clientY - e.target.offsetTop;
+                    let ripples = document.createElement('span');
+                    ripples.style.left = x + 'px';
+                    ripples.style.top = y + 'px';
+                    this.appendChild(ripples);
+                    setTimeout(() => { ripples.remove() }, 600);
+                });
+            });
+        });
+    </script>
+</body></html>

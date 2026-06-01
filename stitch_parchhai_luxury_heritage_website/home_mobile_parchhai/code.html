@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e7e2d9",
+                    "on-primary-container": "#8392b7",
+                    "surface-tint": "#4f5e81",
+                    "inverse-primary": "#b7c6ee",
+                    "inverse-surface": "#32302a",
+                    "secondary": "#a23e30",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f5f0e7",
+                    "on-tertiary-fixed": "#281800",
+                    "on-tertiary-fixed-variant": "#614000",
+                    "primary-fixed-dim": "#b7c6ee",
+                    "on-secondary-fixed": "#410000",
+                    "surface-container-low": "#f8f3ea",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#b98a3c",
+                    "on-surface-variant": "#45464e",
+                    "on-primary-fixed-variant": "#384668",
+                    "on-background": "#1d1c16",
+                    "secondary-fixed": "#ffdad4",
+                    "on-surface": "#1d1c16",
+                    "surface-container": "#f2ede4",
+                    "primary-container": "#1b2a4a",
+                    "on-secondary-fixed-variant": "#82271c",
+                    "outline": "#75777f",
+                    "surface-bright": "#fef9f0",
+                    "secondary-container": "#fc8270",
+                    "surface-dim": "#ded9d1",
+                    "surface-container-highest": "#e7e2d9",
+                    "tertiary": "#221400",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#721b12",
+                    "primary": "#041534",
+                    "surface": "#fef9f0",
+                    "tertiary-container": "#3c2700",
+                    "surface-container-high": "#ece8df",
+                    "secondary-fixed-dim": "#ffb4a8",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#fef9f0",
+                    "primary-fixed": "#d9e2ff",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#ffddaf",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#0a1a3a",
+                    "outline-variant": "#c5c6cf",
+                    "tertiary-fixed-dim": "#f3be6a",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "gutter": "24px",
+                    "margin-desktop": "64px",
+                    "section-gap": "120px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": ["Bodoni Moda"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "display-lg": ["Bodoni Moda"],
+                    "headline-lg-mobile": ["Bodoni Moda"],
+                    "label-caps": ["Hanken Grotesk"],
+                    "headline-md": ["Bodoni Moda"],
+                    "headline-lg": ["Bodoni Moda"],
+                    "label-sm": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "display-lg-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["80px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                    "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .marquee-container { overflow: hidden; white-space: nowrap; position: relative; }
+        .marquee-content { display: inline-block; animation: marquee 30s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .grain-overlay {
+            pointer-events: none;
+            position: fixed;
+            inset: 0;
+            z-index: 99;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+            opacity: 0.04;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md text-body-md overflow-x-hidden">
+<div class="grain-overlay"></div>
+<!-- SideNavBar (Mobile Hamburger Menu Drawer) -->
+<div class="fixed inset-y-0 left-0 w-80 z-[70] bg-surface dark:bg-primary shadow-2xl flex flex-col p-margin-mobile gap-unit -translate-x-full transition-transform duration-500 ease-in-out" id="side-nav">
+<div class="flex justify-between items-center mb-10">
+<span class="font-display-lg-mobile text-headline-lg-mobile text-primary dark:text-surface">Parchhai</span>
+<button class="text-primary dark:text-surface" onclick="toggleMenu()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<nav class="flex flex-col gap-6">
+<a class="text-secondary font-bold font-label-caps text-label-caps hover:pl-2 transition-all duration-300" href="#">Shop</a>
+<a class="text-on-surface dark:text-surface-variant font-label-caps text-label-caps hover:pl-2 transition-all duration-300" href="#">Crafts</a>
+<a class="text-on-surface dark:text-surface-variant font-label-caps text-label-caps hover:pl-2 transition-all duration-300" href="#">Our Story</a>
+<a class="text-on-surface dark:text-surface-variant font-label-caps text-label-caps hover:pl-2 transition-all duration-300" href="#">Journal</a>
+<a class="text-on-surface dark:text-surface-variant font-label-caps text-label-caps hover:pl-2 transition-all duration-300" href="#">Account</a>
+<a class="text-on-surface dark:text-surface-variant font-label-caps text-label-caps hover:pl-2 transition-all duration-300" href="#">Cart</a>
+</nav>
+<div class="mt-auto border-t border-outline/10 pt-8">
+<p class="font-label-caps text-label-caps text-on-surface-variant opacity-60">Editorial Minimalist Fashion</p>
+</div>
+</div>
+<div class="fixed inset-0 bg-primary/20 backdrop-blur-xl z-[65] hidden opacity-0 transition-opacity duration-500" id="overlay" onclick="toggleMenu()"></div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl dark:bg-primary/90 border-b border-outline/10 h-20 flex justify-between items-center px-margin-mobile">
+<button class="text-primary dark:text-surface" onclick="toggleMenu()">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-display-lg text-headline-md tracking-tighter text-primary dark:text-surface">Parchhai</span>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary dark:text-surface" data-icon="person">person</span>
+<span class="material-symbols-outlined text-primary dark:text-surface" data-icon="shopping_bag">shopping_bag</span>
+</div>
+</header>
+<main class="pt-20">
+<!-- Full-Bleed Hero Section -->
+<section class="relative h-[751px] w-full overflow-hidden flex flex-col justify-end">
+<div class="absolute inset-0 bg-primary/20 z-10"></div>
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A cinematic full-bleed shot of a high-fashion model wearing a structured, indigo-dyed cotton garment featuring traditional hand-printed Ajrakh patterns. The model stands against a minimalist ivory architectural backdrop under harsh, editorial sunlight that creates sharp, dramatic shadows. The color palette is dominated by deep indigo blue and unbleached ivory white, reflecting a sophisticated and culturally grounded aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkzmZq04ak6MIUpedvVfudUvsu7yjpWABrApwcdD6eN90t4S3PrLaZvMB5X-azzninkahEB4LdFF8e9DHUT-yC3VJHPmAJHUMURF-ZZ5klLGxg2wRdsR1JOYZ23U30rlAdNYUNfETQHKG7ZUFWgLKbBVi24wkN6DiE-z96DMP25PxVmHMMfnQ2Pul5ui3DQfgd1IA1_6Yepkl_lUaT04VohB30UOOiq33R7uLO4uDUUpnv9qVQHsWTFtIS8UG6R9he_Z1T1i8ham4L"/>
+<div class="relative z-20 px-margin-mobile pb-margin-mobile flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<span class="font-label-caps text-label-caps text-surface tracking-[0.3em]">NEW COLLECTION</span>
+<h1 class="font-display-lg-mobile text-display-lg-mobile text-surface leading-none italic">Ancestral Silhouettes</h1>
+</div>
+<div class="flex flex-col gap-unit">
+<button class="bg-surface text-primary font-label-caps text-label-caps py-5 px-8 flex items-center justify-between group">
+                        EXPLORE EDITORIAL
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<button class="border border-surface/50 text-surface font-label-caps text-label-caps py-5 px-8 backdrop-blur-sm">
+                        VIEW LOOKBOOK
+                    </button>
+</div>
+</div>
+</section>
+<!-- Marquee of Craft Names -->
+<section class="bg-primary py-8 marquee-container">
+<div class="marquee-content flex gap-12 items-center">
+<span class="font-label-caps text-label-caps text-surface-variant/40 tracking-[0.4em]">AJRAKH</span>
+<span class="w-1 h-1 bg-secondary rounded-full"></span>
+<span class="font-label-caps text-label-caps text-surface-variant/40 tracking-[0.4em]">DABU PRINT</span>
+<span class="w-1 h-1 bg-secondary rounded-full"></span>
+<span class="font-label-caps text-label-caps text-surface-variant/40 tracking-[0.4em]">CHIKANKARI</span>
+<span class="w-1 h-1 bg-secondary rounded-full"></span>
+<span class="font-label-caps text-label-caps text-surface-variant/40 tracking-[0.4em]">IKAT WEAVE</span>
+<span class="w-1 h-1 bg-secondary rounded-full"></span>
+<span class="font-label-caps text-label-caps text-surface-variant/40 tracking-[0.4em]">KANTHA STITCH</span>
+<span class="w-1 h-1 bg-secondary rounded-full"></span>
+<!-- Duplicate for seamless loop -->
+<span class="font-label-caps text-label-caps text-surface-variant/40 tracking-[0.4em]">AJRAKH</span>
+<span class="w-1 h-1 bg-secondary rounded-full"></span>
+<span class="font-label-caps text-label-caps text-surface-variant/40 tracking-[0.4em]">DABU PRINT</span>
+<span class="w-1 h-1 bg-secondary rounded-full"></span>
+<span class="font-label-caps text-label-caps text-surface-variant/40 tracking-[0.4em]">CHIKANKARI</span>
+<span class="w-1 h-1 bg-secondary rounded-full"></span>
+<span class="font-label-caps text-label-caps text-surface-variant/40 tracking-[0.4em]">IKAT WEAVE</span>
+<span class="w-1 h-1 bg-secondary rounded-full"></span>
+<span class="font-label-caps text-label-caps text-surface-variant/40 tracking-[0.4em]">KANTHA STITCH</span>
+<span class="w-1 h-1 bg-secondary rounded-full"></span>
+</div>
+</section>
+<!-- Featured Narrative Section -->
+<section class="py-section-gap px-margin-mobile flex flex-col gap-12">
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-secondary">THE PHILOSOPHY</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">A dialogue between shadow and textile.</h2>
+<p class="text-on-surface-variant opacity-80 leading-relaxed">Parchhai creates garments that celebrate the slow movement. Every thread is a reflection of artisanal heritage, curated for the modern silhouette.</p>
+</div>
+<div class="relative group aspect-[3/4] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" data-alt="A close-up, high-detail texture shot of hand-loomed organic cotton fabric with intricate block-printed motifs in muted gold and deep indigo. The lighting is soft and directional, highlighting the tactile grain of the textile and the slight irregularities of the hand-printing process. The overall mood is luxurious, quiet, and artisanal, emphasizing the slow-fashion ethos of the Parchhai brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfVS7sdvrO4oJvcQ8zkFZcmjT1TGI17WbPXkxBZtOByyIQVNFfZy3Di0sb1nwRFbEn1ij6cqml4q2uYMoHKcpau4Yn4LyTB9hPYQMRz4kTNINljmaeq9ZgLSnzrZTxvZ9O-qkSd00p9IdfwAdBvPM_5vCmEHUDJbLRW7KqOTSp1392Lx_tMty7O6hShFwUECKFpeck0xr9EkM2JnTfS3XL-6ZKBg17hRZGOSFLHYCM_7aB7azEtFgTawlJoenepiFIgE4tICxJgN4Y"/>
+<div class="absolute bottom-6 left-6 right-6 bg-surface p-6">
+<p class="font-label-caps text-label-caps text-primary mb-2">FEATURED TECHNIQUE</p>
+<h3 class="font-headline-md text-headline-md text-primary">Indigo Mud Resist</h3>
+</div>
+</div>
+</section>
+<!-- Product Highlight (Staggered-esque for Mobile) -->
+<section class="pb-section-gap px-margin-mobile">
+<div class="flex flex-col gap-16">
+<div class="flex flex-col gap-4">
+<div class="aspect-[4/5] bg-surface-container relative">
+<img class="w-full h-full object-cover" data-alt="A minimalist editorial full-body shot of a model wearing an asymmetric, tailored white linen tunic with subtle indigo embroidery details. The model is posed elegantly against a textured neutral stone wall, with high-contrast shadows defining the garment's silhouette. The image embodies the intersection of ancestral heritage and modern high fashion in a sophisticated, unhurried gallery style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpGQNKodqHAYcAYvHx6xaoD4xVk-vziUype-0O2xazOOAnKEu47GBUCULIHgScsAJm1JqTlm1vl5NKjSWMIvPWfPpYWnsXud6n6hRxqGGiGE8hVp1hwy93KNyWbNYQx4zI-xCvMzQIeFaL2DBbdJ_0hBaXmmvrnWjc0GsClfJmuE4HIw5ePLAGuiijg9MHNUWj4mzk0-gqw69PP5636qRB89XjfTKC7wCLzeDXKMH0QGG83Y6FDnq4RbirOK4TeaTRuw4xomezghrM"/>
+<span class="absolute top-4 right-4 bg-surface px-3 py-1 font-label-sm text-label-sm border border-tertiary-fixed-dim">LIMITED</span>
+</div>
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<h4 class="font-headline-md text-headline-md text-primary">The Dabu Wrap</h4>
+<span class="font-label-caps text-label-caps text-on-surface-variant">HAND-BLOCKED LINEN</span>
+</div>
+<span class="font-body-lg text-body-lg text-secondary">₹14,500</span>
+</div>
+</div>
+<div class="flex flex-col gap-4 translate-y-8">
+<div class="aspect-[4/5] bg-surface-container relative">
+<img class="w-full h-full object-cover" data-alt="An editorial fashion photograph of a structured jacket made from heavy-weight hand-woven cotton, featuring intricate geometric kantha embroidery in deep charcoal thread on an ivory base. The model is captured in a dynamic yet serene movement, with the fabric's tactile quality emphasized by soft, diffused side lighting. The style is minimalist and high-end, focusing on provenance and detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHM4UPYGtsje0H0G5jiW0zOrsJ8RNq0oKgUW6IWR5jcElWG8Ry-pn7M38KkHHqyZNkHZhi4ENEilWXIRXg9RJDlbF--tbJusq8YGiNPY0ZIjYX1DCvw2PzmNoBz5HayUGSls_d97t6A0tOpYayy2D5vnNOs5DxZgujcSKwYkdmHaiimjQw_2qxBlD--LvCfmAtAPW2Ncun68EooL-3gqeV2kQCSN9SmlFUF3OcWpjL-05UGeng_4R5KKe6dyaFohc0QDJh1bIaETuX"/>
+</div>
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<h4 class="font-headline-md text-headline-md text-primary">Kantha Structured Coat</h4>
+<span class="font-label-caps text-label-caps text-on-surface-variant">VINTAGE RECLAIMED</span>
+</div>
+<span class="font-body-lg text-body-lg text-secondary">₹28,000</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Journal Preview -->
+<section class="bg-surface-container-low py-section-gap px-margin-mobile flex flex-col gap-8">
+<span class="font-label-caps text-label-caps text-on-surface-variant tracking-[0.2em]">FROM THE JOURNAL</span>
+<div class="flex flex-col gap-12">
+<article class="flex flex-col gap-4">
+<p class="font-label-sm text-label-sm text-secondary">VOLUME 04 / ISSUE 02</p>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary italic">The Weaver's Breath: Understanding the Rhythm of the Loom</h3>
+<a class="font-label-caps text-label-caps text-primary border-b border-primary w-fit pb-1" href="#">READ STORY</a>
+</article>
+<div class="h-[1px] bg-outline-variant/30"></div>
+<article class="flex flex-col gap-4 opacity-70">
+<p class="font-label-sm text-label-sm text-secondary">VOLUME 04 / ISSUE 01</p>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Indigo: The Deep Alchemy of Rajasthan</h3>
+<a class="font-label-caps text-label-caps text-primary border-b border-primary w-fit pb-1" href="#">READ STORY</a>
+</article>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container dark:bg-primary-container border-t border-outline-variant w-full">
+<div class="flex flex-col gap-10 px-margin-mobile py-margin-mobile max-w-7xl mx-auto">
+<div class="flex flex-col gap-6">
+<span class="font-display-lg text-headline-md text-primary dark:text-surface">Parchhai</span>
+<p class="font-body-md text-body-md text-on-surface-variant pr-10">Weaving traditional artisanal soul into the silhouettes of tomorrow. Based in Jaipur, shared with the world.</p>
+</div>
+<div class="grid grid-cols-2 gap-gutter">
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-primary dark:text-surface">Shop</span>
+<nav class="flex flex-col gap-2">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Crafts</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">About</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Social</a>
+</nav>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-primary dark:text-surface">Support</span>
+<nav class="flex flex-col gap-2">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Care</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Returns</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps" href="#">Journal</a>
+</nav>
+</div>
+</div>
+<div class="pt-8 border-t border-outline-variant/20 flex flex-col gap-4">
+<p class="font-label-sm text-label-sm text-on-surface-variant/60 uppercase">© 2024 Parchhai. Crafted in India.</p>
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">language</span>
+</div>
+<div class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">share</span>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        function toggleMenu() {
+            const sideNav = document.getElementById('side-nav');
+            const overlay = document.getElementById('overlay');
+            const isOpen = sideNav.style.transform === 'translateX(0px)';
+
+            if (isOpen) {
+                sideNav.style.transform = 'translateX(-100%)';
+                overlay.classList.add('hidden');
+                overlay.style.opacity = '0';
+                document.body.style.overflow = '';
+            } else {
+                sideNav.style.transform = 'translateX(0px)';
+                overlay.classList.remove('hidden');
+                setTimeout(() => {
+                    overlay.style.opacity = '1';
+                }, 10);
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Add slow zoom effect on product scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            document.querySelectorAll('img[data-alt]').forEach(img => {
+                const rect = img.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    const speed = 0.05;
+                    const yPos = -(rect.top * speed);
+                    img.style.transform = `scale(1.05) translateY(${yPos}px)`;
+                }
+            });
+        });
+    </script>
+</body></html>

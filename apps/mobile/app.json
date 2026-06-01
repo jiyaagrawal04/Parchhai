@@ -1,0 +1,21 @@
+{
+  "expo": {
+    "name": "Parchhai",
+    "slug": "parchhai",
+    "scheme": "parchhai",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "backgroundColor": "#FEF9F0",
+      "resizeMode": "contain"
+    },
+    "ios": { "supportsTablet": true, "bundleIdentifier": "ai.parchhai.app" },
+    "android": { "package": "ai.parchhai.app" },
+    "plugins": ["expo-router"],
+    "extra": {
+      "apiUrl": "http://localhost:4000/api/v1"
+    }
+  }
+}
