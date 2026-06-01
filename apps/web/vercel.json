@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "//": "Vercel deploy for the web SPA. Set Project Root Directory = apps/web. Framework: Vite.",
+  "//env": "Set VITE_API_URL in the dashboard to the deployed API origin, e.g. https://parchhai-api.onrender.com/api/v1",
+  "buildCommand": "pnpm build",
+  "outputDirectory": "dist",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}

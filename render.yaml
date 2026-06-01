@@ -1,0 +1,49 @@
+# Render Blueprint — deploys the Parchhai API (persistent Node/Express server).
+# Render injects PORT; the API now binds to it (see apps/api/src/index.ts).
+# Create from: Render Dashboard → New → Blueprint → pick this repo.
+services:
+  - type: web
+    name: parchhai-api
+    runtime: node
+    plan: free
+    region: oregon
+    # Build from the monorepo ROOT so pnpm resolves the @parchhai/* workspace packages.
+    rootDir: .
+    buildCommand: corepack enable && pnpm install --no-frozen-lockfile && pnpm --filter @parchhai/db generate && pnpm --filter @parchhai/api build
+    startCommand: pnpm --filter @parchhai/api start
+    healthCheckPath: /api/v1/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "20.18.0"
+      - key: NODE_ENV
+        value: production
+      # --- Secrets: set these in the Render dashboard (sync:false = not in blueprint) ---
+      - key: DATABASE_URL
+        sync: false # Neon pooled URL
+      - key: DIRECT_URL
+        sync: false # Neon direct (non-pooler) URL
+      - key: WEB_ORIGIN
+        sync: false # e.g. https://parchhai-web.vercel.app  (comma-separate for multiple)
+      # --- Auto-generated strong secrets ---
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      # --- Optional integrations (leave blank to use stub providers) ---
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: RAZORPAY_WEBHOOK_SECRET
+        sync: false
+      - key: R2_ACCOUNT_ID
+        sync: false
+      - key: R2_ACCESS_KEY_ID
+        sync: false
+      - key: R2_SECRET_ACCESS_KEY
+        sync: false
+      - key: R2_BUCKET
+        sync: false
+      - key: R2_PUBLIC_URL
+        sync: false

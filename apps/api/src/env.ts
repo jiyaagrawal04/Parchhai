@@ -3,6 +3,8 @@ import { z } from "zod";
 
 const schema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
+  // PORT is injected by most hosts (Render/Railway/Fly); API_PORT is the local default.
+  PORT: z.coerce.number().optional(),
   API_PORT: z.coerce.number().default(4000),
   WEB_ORIGIN: z.string().default("http://localhost:5173"),
   DATABASE_URL: z.string().min(1),

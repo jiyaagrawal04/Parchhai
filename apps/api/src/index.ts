@@ -4,8 +4,9 @@ import { logger } from "./lib/logger.js";
 
 const app = createApp();
 
-const server = app.listen(env.API_PORT, () => {
-  logger.info(`🪡 Parchhai API listening on http://localhost:${env.API_PORT}/api/v1`);
+const port = env.PORT ?? env.API_PORT;
+const server = app.listen(port, () => {
+  logger.info(`🪡 Parchhai API listening on port ${port} (/api/v1)`);
 });
 
 const shutdown = (signal: string) => {
