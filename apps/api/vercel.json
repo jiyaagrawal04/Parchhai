@@ -1,6 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "installCommand": "cd ../.. && npm i -g pnpm@10.28.2 && pnpm install --no-frozen-lockfile && pnpm --filter @parchhai/db generate",
+  "buildCommand": "mkdir -p public",
+  "outputDirectory": "public",
   "framework": null,
   "functions": {
     "api/index.ts": { "maxDuration": 30 }
