@@ -52,16 +52,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Marquee */}
+      {/* Marquee — single horizontal scrolling line */}
       <section className="overflow-hidden border-y border-outline/10 bg-primary py-12 text-surface">
         <div className="marquee-container">
-          <div className="marquee-content flex items-center gap-12">
-            {[...CRAFT_MARQUEE, ...CRAFT_MARQUEE].map((c, i) => (
-              <span key={i} className="flex items-center gap-12">
-                <span className="px-8 font-display-lg text-3xl italic opacity-40 md:text-headline-lg">{c}</span>
-                <MIcon name="auto_awesome" className="text-secondary" />
-              </span>
-            ))}
+          <div className="marquee-content">
+            {Array.from({ length: 8 }).flatMap((_, r) =>
+              CRAFT_MARQUEE.map((c, i) => (
+                <span key={`${r}-${i}`} className="mx-6 inline-flex items-center gap-6 align-middle md:mx-10">
+                  <span className="font-display-lg text-3xl italic opacity-40 md:text-headline-lg">{c}</span>
+                  <MIcon name="auto_awesome" className="text-secondary" />
+                </span>
+              )),
+            )}
           </div>
         </div>
       </section>
