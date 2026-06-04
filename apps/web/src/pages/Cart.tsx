@@ -2,14 +2,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { Minus, Plus, X } from "lucide-react";
 import { useCart, useRemoveCartItem, useUpdateCartItem } from "@/lib/hooks";
 import { useAuth } from "@/store/auth";
+import { useUI } from "@/store/ui";
 import { formatINR } from "@/lib/format";
 import { Empty, PageLoader } from "@/components/ui";
+import { CouponList } from "@/components/Offers";
 
 export default function Cart() {
   const { data: cart, isLoading } = useCart();
   const update = useUpdateCartItem();
   const remove = useRemoveCartItem();
   const { user } = useAuth();
+  const { openLogin } = useUI();
   const navigate = useNavigate();
 
   if (isLoading) return <PageLoader />;
@@ -56,14 +59,15 @@ export default function Cart() {
         <aside className="h-fit card p-6">
           <h2 className="font-serif text-xl text-indigo">Summary</h2>
           <div className="mt-4 flex justify-between text-sm"><span className="text-muted">Subtotal</span><span>{formatINR(cart.subtotal)}</span></div>
-          <div className="mt-2 flex justify-between text-sm"><span className="text-muted">Shipping</span><span>{cart.subtotal >= 149900 ? "Free" : formatINR(7900)}</span></div>
+          <div className="mt-2 flex justify-between text-sm"><span className="text-muted">Shipping</span><span>{cart.subtotal >= 99900 ? "Free" : formatINR(7900)}</span></div>
           <div className="mt-4 flex justify-between border-t border-line pt-4 text-lg font-semibold">
-            <span>Total</span><span>{formatINR(cart.subtotal >= 149900 ? cart.subtotal : cart.subtotal + 7900)}</span>
+            <span>Total</span><span>{formatINR(cart.subtotal >= 99900 ? cart.subtotal : cart.subtotal + 7900)}</span>
           </div>
-          <button onClick={() => navigate(user ? "/checkout" : "/login", { state: { from: "/checkout" } })} className="btn-primary mt-6 w-full">
+          <button onClick={() => (user ? navigate("/checkout") : openLogin("/checkout"))} className="btn-primary mt-6 w-full">
             {user ? "Checkout" : "Sign in to checkout"}
           </button>
           <Link to="/shop" className="mt-3 block text-center text-sm text-muted hover:text-rust">Continue shopping</Link>
+          <CouponList className="mt-6 border-t border-line pt-6" />
         </aside>
       </div>
     </div>

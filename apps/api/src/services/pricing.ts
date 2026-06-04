@@ -1,6 +1,6 @@
 import type { Coupon } from "@parchhai/db";
 
-const FREE_SHIPPING_THRESHOLD = 149900; // ₹1499 in paise
+const FREE_SHIPPING_THRESHOLD = 99900; // ₹999 in paise
 const STANDARD_SHIPPING = 7900; // ₹79
 
 export interface PricingItem {

@@ -1,334 +1,509 @@
-<!DOCTYPE html>
-
-<html class="scroll-smooth" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Parchhai | Wear the Reflection of India</title>
+<!DOCTYPE html><html class="scroll-smooth" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>PARCHHAI | Modern Heritage Hand-Block Prints</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
         }
-        .grain-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 99;
-            opacity: 0.03;
-            background-image: url("https://www.transparenttextures.com/patterns/p6.png");
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .marquee-container {
-            overflow: hidden;
-            white-space: nowrap;
+        .reveal-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
         }
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 30s linear infinite;
+        .stagger-item { opacity: 0; }
+        .active .stagger-item {
+            animation: slideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .stagger-grid-item:nth-child(even) {
-            transform: translateY(40px);
-        }
-        .nav-scrolled {
-            background-color: #fef9f0 !important;
-            border-bottom: 1px solid rgba(117, 119, 127, 0.1);
-        }
-        .nav-scrolled .nav-text {
-            color: #041534 !important;
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 <script id="tailwind-config">
         tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                      "surface-variant": "#e7e2d9",
-                      "on-primary-container": "#8392b7",
-                      "surface-tint": "#4f5e81",
-                      "inverse-primary": "#b7c6ee",
-                      "inverse-surface": "#32302a",
-                      "secondary": "#a23e30",
-                      "on-secondary": "#ffffff",
-                      "inverse-on-surface": "#f5f0e7",
-                      "on-tertiary-fixed": "#281800",
-                      "on-tertiary-fixed-variant": "#614000",
-                      "primary-fixed-dim": "#b7c6ee",
-                      "on-secondary-fixed": "#410000",
-                      "surface-container-low": "#f8f3ea",
-                      "on-error": "#ffffff",
-                      "on-tertiary-container": "#b98a3c",
-                      "on-surface-variant": "#45464e",
-                      "on-primary-fixed-variant": "#384668",
-                      "on-background": "#1d1c16",
-                      "secondary-fixed": "#ffdad4",
-                      "on-surface": "#1d1c16",
-                      "surface-container": "#f2ede4",
-                      "primary-container": "#1b2a4a",
-                      "on-secondary-fixed-variant": "#82271c",
-                      "outline": "#75777f",
-                      "surface-bright": "#fef9f0",
-                      "secondary-container": "#fc8270",
-                      "surface-dim": "#ded9d1",
-                      "surface-container-highest": "#e7e2d9",
-                      "tertiary": "#221400",
-                      "on-error-container": "#93000a",
-                      "on-tertiary": "#ffffff",
-                      "on-secondary-container": "#721b12",
-                      "primary": "#041534",
-                      "surface": "#fef9f0",
-                      "tertiary-container": "#3c2700",
-                      "surface-container-high": "#ece8df",
-                      "secondary-fixed-dim": "#ffb4a8",
-                      "surface-container-lowest": "#ffffff",
-                      "background": "#fef9f0",
-                      "primary-fixed": "#d9e2ff",
-                      "on-primary": "#ffffff",
-                      "tertiary-fixed": "#ffddaf",
-                      "error": "#ba1a1a",
-                      "on-primary-fixed": "#0a1a3a",
-                      "outline-variant": "#c5c6cf",
-                      "tertiary-fixed-dim": "#f3be6a",
-                      "error-container": "#ffdad6"
-              },
-              "borderRadius": {
-                      "DEFAULT": "0.25rem",
-                      "lg": "0.5rem",
-                      "xl": "0.75rem",
-                      "full": "9999px"
-              },
-              "spacing": {
-                      "unit": "8px",
-                      "gutter": "24px",
-                      "margin-desktop": "64px",
-                      "section-gap": "120px",
-                      "margin-mobile": "20px"
-              },
-              "fontFamily": {
-                      "display-lg-mobile": ["Bodoni Moda"],
-                      "body-md": ["Hanken Grotesk"],
-                      "body-lg": ["Hanken Grotesk"],
-                      "display-lg": ["Bodoni Moda"],
-                      "headline-lg-mobile": ["Bodoni Moda"],
-                      "label-caps": ["Hanken Grotesk"],
-                      "headline-md": ["Bodoni Moda"],
-                      "headline-lg": ["Bodoni Moda"],
-                      "label-sm": ["Hanken Grotesk"]
-              },
-              "fontSize": {
-                      "display-lg-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
-                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                      "display-lg": ["80px", {"lineHeight": "90px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                      "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
-                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
-                      "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
-                      "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
-                      "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}]
-              }
-            },
-          },
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f7f3f1",
+                        "surface-container": "#f1edec",
+                        "surface-container-high": "#ebe7e6",
+                        "surface": "#fdf8f7",
+                        "inverse-surface": "#313030",
+                        "on-surface": "#1c1b1b",
+                        "on-surface-variant": "#4b463f",
+                        "primary-container": "#1d1b18",
+                        "primary": "#000000",
+                        "secondary": "#615e57",
+                        "outline": "#7c766e",
+                        "outline-variant": "#cdc5bc",
+                        "background": "#fdf8f7",
+                        "on-primary": "#ffffff",
+                        "rust": "#B5421F",
+                        "indigo": "#1B2A4A"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max-width": "1440px",
+                        "margin-desktop": "64px",
+                        "unit": "8px",
+                        "margin-mobile": "16px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-xl-mobile": ["Bodoni Moda"],
+                        "label-sm": ["DM Sans"],
+                        "body-lg": ["DM Sans"],
+                        "headline-md": ["Bodoni Moda"],
+                        "display-lg-mobile": ["Bodoni Moda"],
+                        "headline-xl": ["Bodoni Moda"],
+                        "body-md": ["DM Sans"],
+                        "display-lg": ["Bodoni Moda"]
+                    },
+                    "fontSize": {
+                        "headline-xl-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "display-lg-mobile": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "400"}]
+                    }
+                }
+            }
         }
     </script>
 </head>
-<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
-<div class="grain-overlay"></div>
-<!-- Navigation Shell -->
-<nav class="fixed top-0 w-full z-50 transition-all duration-500 bg-transparent flex justify-between items-center px-margin-desktop h-20 w-full" id="top-nav">
-<div class="flex items-center gap-12">
-<a class="font-display-lg text-headline-md tracking-tighter text-surface nav-text transition-colors" href="#">Parchhai</a>
-<div class="hidden md:flex gap-8">
-<a class="font-label-caps text-label-caps text-surface-variant nav-text hover:text-secondary transition-colors duration-300 border-b border-secondary pb-1" href="#">Shop</a>
-<a class="font-label-caps text-label-caps text-surface-variant nav-text hover:text-secondary transition-colors duration-300" href="#">Crafts</a>
-<a class="font-label-caps text-label-caps text-surface-variant nav-text hover:text-secondary transition-colors duration-300" href="#">Our Story</a>
-<a class="font-label-caps text-label-caps text-surface-variant nav-text hover:text-secondary transition-colors duration-300" href="#">Journal</a>
-</div>
-</div>
-<div class="flex items-center gap-6 text-surface nav-text">
-<button class="material-symbols-outlined text-2xl hover:opacity-70 transition-opacity">person</button>
-<button class="material-symbols-outlined text-2xl hover:opacity-70 transition-opacity">shopping_bag</button>
-</div>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- 1. Announcement Bar -->
+
+<!-- 2. Premium Navbar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 bg-transparent transition-all duration-500 text-white" id="top-nav" style="top: 0px; text-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px;">
+    <div class="flex items-center gap-12">
+        <div class="font-display-lg text-2xl tracking-tighter uppercase">PARCHHAI</div>
+        <div class="hidden md:flex items-center gap-8">
+            <a class="font-label-sm text-[12px] uppercase tracking-[0.15em] hover:text-[#B5421F] transition-colors" href="#">Shop</a>
+            <a class="font-label-sm text-[12px] uppercase tracking-[0.15em] hover:text-[#B5421F] transition-colors" href="#">Crafts</a>
+            <a class="font-label-sm text-[12px] uppercase tracking-[0.15em] hover:text-[#B5421F] transition-colors" href="#">Our Story</a>
+            <a class="font-label-sm text-[12px] uppercase tracking-[0.15em] hover:text-[#B5421F] transition-colors" href="#">Journal</a>
+        </div>
+        <button class="md:hidden flex items-center">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'wght' 200">menu</span>
+        </button>
+    </div>
+    <div class="flex items-center gap-6">
+        <div class="hidden md:flex items-center cursor-pointer hover:text-[#B5421F] transition-colors">
+            <span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'wght' 200">search</span>
+        </div>
+        <div class="flex items-center cursor-pointer hover:text-[#B5421F] transition-colors">
+            <span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'wght' 200">person</span>
+        </div>
+        <div class="flex items-center cursor-pointer hover:text-[#B5421F] transition-colors relative">
+            <span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'wght' 200">shopping_bag</span>
+            <span class="absolute -top-1 -right-1 bg-[#B5421F] text-white text-[8px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold">0</span>
+        </div>
+    </div>
 </nav>
-<!-- Hero Section -->
-<section class="relative h-screen w-full flex items-center px-margin-desktop overflow-hidden">
-<!-- Full-bleed background -->
+<!-- 3. Hero Section -->
+<section class="relative h-screen w-full flex items-center overflow-hidden">
 <div class="absolute inset-0 z-0">
-<img class="w-full h-full object-cover object-center grayscale-[20%] brightness-[0.85]" data-alt="A cinematic, high-fashion portrait of a model wearing a structured Ajrakh-print corset and matching wide-leg trousers. The backdrop is a richly textured, deep indigo-dyed hanging cloth with subtle creases. The lighting is dramatic and editorial, casting soft shadows that emphasize the artisanal block-print details and the sophisticated navy and ivory color palette. The overall mood is luxurious, unhurried, and deeply rooted in Indian textile heritage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoXzFpV2Wjta73UF-rxZMr2NPxmv6U8S1sM_5b9jkz4EIpHmBmhyoqlv479-l9eZWUYpc7uJsiWVtsVCI8paUAPkD5Xr2qNiWeva_CaZQ463rNdb4jgW4eL7njiM6TyUGIdoYKJegQ6Rx7dSPxetX2oqZHCnQ9TU4lr_ZwriVgNjtscSqwlzofcKqhMvq5OnU2YxmLA3w7UAkze9GR6CC2MWOsDkp3q6enr70c8ovL5UnJe5rtomqPNxGaCXWVeNZbfXFcRoOY_rQ0"/>
-<div class="absolute inset-0 bg-primary/20"></div>
+<img class="w-full h-full object-cover scale-105 transition-transform duration-[10s] ease-linear" data-alt="A cinematic editorial fashion shot of a woman in a flowing, hand-block printed indigo cotton dress. She stands in a sun-drenched heritage courtyard with ancient stone pillars and soft morning shadows. The lighting is ethereal and high-fashion, emphasizing the rich texture and intricate white geometric patterns of the fabric. The aesthetic is clean, luxurious, and deeply rooted in modern Indian heritage." id="hero-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA11L-4F8sDBxje2nMy6fAqDXbx8AiFT4UfRHogbhxLoUY7AoXD5OqvoKPpOvw1XRTtVj_1HrZwqM4oRj-GFzFHmGVDGgVP1wrbg_fbfbcjh_0wwSjel7ZHLpQOZyJC6_F57VQ71veZLF3gOVWNhpPzLjoLTtIpRxjXyYbqJa5XlGOH6v_GhOAwAzoEIYB4WO-rkkQ2yAD4uovdZ6S69JvdrOxjku0O4zW0STnsm-yyEURva8YbKbR7lCUC4PPji38lbUNTs2Bmosf7">
 </div>
-<!-- Hero Content -->
-<div class="relative z-10 max-w-4xl">
-<span class="font-label-caps text-label-caps text-surface-variant mb-6 block tracking-[0.3em] uppercase">Autumn / Winter '24</span>
-<h1 class="font-display-lg text-display-lg text-surface mb-8 leading-tight">
-                Wear the <br/>
-<span class="italic font-light">reflection</span> of India.
-            </h1>
-<p class="font-body-lg text-body-lg text-surface-variant/90 max-w-xl mb-12">
-                Parchhai revives centuries-old block-printing traditions through contemporary silhouettes. Each piece is a dialogue between ancestral hands and modern souls.
+<div class="absolute inset-0 bg-gradient-to-r from-background/40 to-transparent"></div>
+<div class="relative z-10 px-margin-mobile md:px-margin-desktop max-w-4xl">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary leading-[1.1] mb-6 reveal-on-scroll active">
+                Style Your <br><span class="italic font-normal">Shadow</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mb-10 reveal-on-scroll active" style="transition-delay: 200ms;">
+                Hand-block printed cotton, designed for modern wardrobes. Discover the soul of artisanal craft woven into effortless silhouettes.
             </p>
-<div class="flex flex-col sm:flex-row gap-6">
-<button class="bg-surface text-primary font-label-caps text-label-caps px-10 py-5 hover:bg-secondary hover:text-surface transition-all duration-300 border border-transparent">
-                    Shop the Collection
-                </button>
-<button class="border border-surface text-surface font-label-caps text-label-caps px-10 py-5 hover:bg-surface/10 transition-all duration-300">
-                    Our Craft Story
-                </button>
-</div>
-</div>
-<!-- Scroll Indicator -->
-<div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-surface/60">
-<span class="font-label-caps text-[10px] tracking-widest uppercase">Explore</span>
-<div class="w-px h-12 bg-surface/30 relative overflow-hidden">
-<div class="absolute top-0 left-0 w-full h-1/2 bg-surface animate-[bounce_2s_infinite]"></div>
+<div class="flex flex-col md:flex-row gap-4 reveal-on-scroll active" style="transition-delay: 400ms;">
+<button class="bg-primary text-on-primary px-10 py-4 font-label-sm text-label-sm uppercase tracking-widest hover:opacity-90 transition-all">Shop Collection</button>
+<button class="border border-primary text-primary px-10 py-4 font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-all">Discover Craft</button>
 </div>
 </div>
 </section>
-<!-- Marquee Section -->
-<section class="py-12 bg-primary text-surface overflow-hidden border-y border-outline/10">
-<div class="marquee-container">
-<div class="marquee-content flex gap-12 items-center">
-<span class="font-display-lg text-headline-lg-mobile italic opacity-40 px-8">Ajrakh</span>
-<span class="material-symbols-outlined text-secondary">auto_awesome</span>
-<span class="font-display-lg text-headline-lg-mobile italic opacity-40 px-8">Bagru</span>
-<span class="material-symbols-outlined text-secondary">auto_awesome</span>
-<span class="font-display-lg text-headline-lg-mobile italic opacity-40 px-8">Dabu</span>
-<span class="material-symbols-outlined text-secondary">auto_awesome</span>
-<span class="font-display-lg text-headline-lg-mobile italic opacity-40 px-8">Bagh</span>
-<span class="material-symbols-outlined text-secondary">auto_awesome</span>
-<!-- Duplicate for seamless loop -->
-<span class="font-display-lg text-headline-lg-mobile italic opacity-40 px-8">Ajrakh</span>
-<span class="material-symbols-outlined text-secondary">auto_awesome</span>
-<span class="font-display-lg text-headline-lg-mobile italic opacity-40 px-8">Bagru</span>
-<span class="material-symbols-outlined text-secondary">auto_awesome</span>
-<span class="font-display-lg text-headline-lg-mobile italic opacity-40 px-8">Dabu</span>
-<span class="material-symbols-outlined text-secondary">auto_awesome</span>
-<span class="font-display-lg text-headline-lg-mobile italic opacity-40 px-8">Bagh</span>
-<span class="material-symbols-outlined text-secondary">auto_awesome</span>
+<!-- 4. Trust Strip -->
+<section class="bg-surface-container py-12 px-margin-mobile md:px-margin-desktop">
+<div class="flex flex-wrap justify-between gap-8 items-center border-y border-outline-variant/30 py-8">
+<div class="flex flex-col items-center flex-1 min-w-[150px] text-center">
+<span class="material-symbols-outlined text-primary mb-2" style="font-variation-settings: 'wght' 200">grid_view</span>
+<span class="font-label-sm text-label-sm uppercase tracking-tighter">Hand-Block Printed</span>
+</div>
+<div class="flex flex-col items-center flex-1 min-w-[150px] text-center">
+<span class="material-symbols-outlined text-primary mb-2" style="font-variation-settings: 'wght' 200">home_pin</span>
+<span class="font-label-sm text-label-sm uppercase tracking-tighter">Made in India</span>
+</div>
+<div class="flex flex-col items-center flex-1 min-w-[150px] text-center">
+<span class="material-symbols-outlined text-primary mb-2" style="font-variation-settings: 'wght' 200">package_2</span>
+<span class="font-label-sm text-label-sm uppercase tracking-tighter">Easy Returns</span>
+</div>
+<div class="flex flex-col items-center flex-1 min-w-[150px] text-center">
+<span class="material-symbols-outlined text-primary mb-2" style="font-variation-settings: 'wght' 200">verified_user</span>
+<span class="font-label-sm text-label-sm uppercase tracking-tighter">Secure Payments</span>
 </div>
 </div>
 </section>
-<!-- Featured Section / Editorial Grid -->
-<section class="py-section-gap px-margin-desktop bg-surface">
-<div class="flex justify-between items-end mb-16">
-<div class="max-w-2xl">
-<h2 class="font-headline-lg text-headline-lg text-primary mb-6">The Geometry of Tradition</h2>
-<p class="font-body-md text-body-md text-on-surface-variant">Our latest drop focuses on the mathematical precision of hand-carved woodblocks. Explore the intersection of architectural structure and fluid textiles.</p>
-</div>
-<a class="font-label-caps text-label-caps text-secondary border-b border-secondary pb-1 mb-2 hover:opacity-70 transition-opacity" href="#">View All Crafts</a>
+<!-- 5. Shop by Craft -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop bg-surface">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16">
+<h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary max-w-md">Our Heritage Crafts</h2>
+<p class="font-body-md text-body-md text-secondary md:max-w-xs mt-4 md:mt-0">Tracing the rhythmic stamping of wooden blocks across the heartlands of India.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-<!-- Asymmetric Grid Items -->
-<div class="md:col-span-5 stagger-grid-item group">
-<div class="overflow-hidden mb-6 aspect-[4/5] bg-surface-variant relative">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Close up of hand-printed textile drying in the sun, featuring intricate geometric Ajrakh patterns in earthy reds and deep indigos. The texture of the raw cotton fabric is visible under the soft afternoon sunlight, highlighting the artisanal irregularities that make each piece unique. Minimalist and high-end aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu6Ec1YSkvz77IPYyN3a5Uf3mRMJtlgEv4nXUDNeCivIN3baAUK59Qf0FuPcZw1_aO8vAya5OBKEw-OBQf8a5jyyp1hk_VraYmYhuQIGIKBtve51AftpMeeim607HWqruOBWJPfQK8k1tYbEYxDRQQd3majcbutE5H6qqEQnh7scRglMmRocrxkuYDWmQyhyiOY2-FSNaxGCwKj4pJxwCraWapYqf06DD8ePpIfipLwrtM6Iuz44wpOJuaKSKmmtvYqWr1-IjW3g1F"/>
-<div class="absolute top-4 right-4 bg-surface/90 backdrop-blur-md px-4 py-1">
-<span class="font-label-caps text-label-sm text-primary">Limited Edition</span>
+<!-- Ajrakh -->
+<div class="md:col-span-7 group cursor-pointer overflow-hidden reveal-on-scroll active">
+<div class="relative h-[600px] overflow-hidden mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A detailed high-resolution photograph of Ajrakh hand-block printed fabric featuring deep indigo and rich madder red tones with intricate geometric star patterns. The lighting is soft and directional, highlighting the natural textures of the cotton and the subtle imperfections of the manual printing process. The mood is sophisticated, artisanal, and authentic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzIl-73DtJqZdu5Hq6CY7AW8UNEr6S5IZfZNKSxJ3OFtLY01eebLuKiTh1MpXIwbHlv4TAuWVElwWqjj1NKyQA7dYGy2a5tBmkvvktEBGKpL7a6fRe5yIgouxebotSdA39MmikPo18wittmX1oVZNa9L5GXPpgVSL0tD-hAQek-mcyiSBNB7q8pdg97nJGWLrL3RV3CFxorAmU5w7GcDzPQOA0yrDZ9jKaUU7MsFDyj_xqD7YzCiXi7bjaAIju5U83hFhtPPOBVVfa">
+<div class="absolute bottom-8 left-8">
+<h3 class="font-headline-md text-white text-3xl">Ajrakh</h3>
 </div>
 </div>
-<div class="flex justify-between items-start">
-<div>
-<h3 class="font-headline-md text-headline-md text-primary">Indigo Lattice Wrap</h3>
-<p class="font-label-caps text-label-sm text-on-surface-variant">Hand-printed Ajrakh</p>
 </div>
-<span class="font-body-md text-body-md text-primary">₹14,500</span>
+<!-- Bagru -->
+<div class="md:col-span-5 group cursor-pointer overflow-hidden mt-12 reveal-on-scroll active" style="transition-delay: 200ms;">
+<div class="relative h-[480px] overflow-hidden mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A fashion-forward portrait of a woman wearing a minimalist Bagru-printed shirt with traditional black floral motifs on an earthy beige background. She is posed against a clean, warm ivory wall. The lighting is crisp and editorial, focusing on the silhouette and the organic aesthetic of the print. The overall feel is modern Indian luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACbZ8ZgkqZUtQHCEdTNyy1hmCllmXR8A6ZqvIOubQBoaUCE5YIPk9nS1xpTRnxnvwynXmv-p9250hbZX-uCKD4ta0EVf3YczO7sqzEz8_gnGWPcfAH3bbcVFRs_r9DuvdDqhAROKlvSrp8OzS9cka9ZY_t979gGML5-rZQcHyD4stSU8hNybkHy9MPGLiPljQx77hGQDpiuN3G9I-7B4TYPCdRqXMilQElJ-9QHk8ZXUVG_uLHgyGRUjCbZLfxu_agchUBChQQ-FMW">
+<div class="absolute bottom-8 left-8">
+<h3 class="font-headline-md text-white text-3xl">Bagru</h3>
 </div>
 </div>
-<div class="md:col-span-7 flex flex-col justify-center stagger-grid-item group">
-<div class="overflow-hidden mb-6 aspect-[16/9] bg-surface-variant relative md:ml-12">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Editorial fashion photography of a woman wearing a minimalist ivory linen shirt with subtle indigo block-print accents on the cuffs. She is standing in a brightly lit, minimalist studio space with clean lines and soft shadows. The lighting is natural and high-key, emphasizing a luxury lifestyle and the high-quality craftsmanship of the garment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbtiztws6OIP86efMYlBh_zff2OfSRkxO2VXQ5ZDXoX52Q3zOZn6_TWH9qPSYk435-S7KfoL_oBp_YkEG70O7ROPXou6cq62uhCwTPdVl10PfdjhoGvg6Gi8-rXRkVYG0cH5BqCq-nTraOdPTagkZIGMxxYe1_RAeGhyyGj4j-hs6ru2C64PrJi7Cvr51YkvU8A7GTI3f7hulIWXyjN9w2Ov6G1Wc-tLn0GUZ7DuUO0xruHviBt9QYs3SRjl2Ihfl7Acf7MmJhzDWz"/>
 </div>
-<div class="md:ml-12 flex justify-between items-start">
-<div>
-<h3 class="font-headline-md text-headline-md text-primary">Dabu Mud-Resist Overshirt</h3>
-<p class="font-label-caps text-label-sm text-on-surface-variant">Akrithi Collection</p>
+<!-- Dabu -->
+<div class="md:col-span-5 group cursor-pointer overflow-hidden reveal-on-scroll active">
+<div class="relative h-[480px] overflow-hidden mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A close-up artistic shot of Dabu mud-resist hand-block printing in progress. An artisan's hand is visible applying a wooden block to a length of cotton fabric. The colors are muted indigos and creams. The lighting is natural and atmospheric, emphasizing the tactile quality of the mud and the wet fabric. It captures the essence of slow fashion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAptDlNCZb40MUszL_n7VP2RT1YyN_RbYRS3yZjZq0gAZbzt-8gC_MaWSeylG2xaX1OEDlQhdp5gWJSsB_t6DmFCpa4Sst-sp3kD8bXm0sPfcoijDhEN_Ax1szRnttFHHxbbq5wIIK5irnpWcAHTxOb949mNQyvDH8VsiTIVfzX9wxXsrOKXLSOotXcpJv-5rG8yyy3qVm2ZPuNkBFQxxSxCs_l91zLyzJw2vz86gAbC1R__cYI1IP3by1I_S26WR1ImhFy8Y0pdvGJ">
+<div class="absolute bottom-8 left-8">
+<h3 class="font-headline-md text-white text-3xl">Dabu</h3>
 </div>
-<span class="font-body-md text-body-md text-primary">₹18,200</span>
+</div>
+</div>
+<!-- Hand Block -->
+<div class="md:col-span-7 group cursor-pointer overflow-hidden -mt-12 reveal-on-scroll active" style="transition-delay: 200ms;">
+<div class="relative h-[600px] overflow-hidden mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="An editorial wide shot of modern clothing pieces featuring traditional hand-block floral prints hanging in a sun-lit minimalist atelier. The garments are light and airy, made from premium cotton. The space is filled with warm light and soft shadows, creating a serene and premium mood. The palette is dominated by ivory, charcoal, and ochre." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCBExL9QHwYnljfYpnpbx3svxDAYlwJ6Xqb5reaHZcaASKcB37b7BioKtmsBWmWh4zgzA6ZlaX4Te2wW4MtaeN1QqnMfj8kKTAtT-OUb-HbmhhRx6U1-lnGR5neLrvY9IGnZiRqngjg6nQAO1Vm1tn30XGCk610J_YNajSir0Hl2pkwOyzQdITv6rsHfGHsu85V0p3qwK0aeWIhsbBk8lT-usQNRkuYJ5Ds_byxQTOtemNJIoX2s2JaVNo9fLMt6msmJj6NugxjX7Z">
+<div class="absolute bottom-8 left-8">
+<h3 class="font-headline-md text-white text-3xl">BAGH PRINT</h3>
+</div>
 </div>
 </div>
 </div>
 </section>
-<!-- Footer -->
-<footer class="bg-surface-container py-section-gap border-t border-outline-variant">
-<div class="max-w-7xl mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter">
-<div class="flex flex-col gap-6">
-<span class="font-display-lg text-headline-md text-primary">Parchhai</span>
-<p class="font-body-md text-body-md text-on-surface-variant">
-                    Preserving the soul of Indian textiles through editorial silhouettes and unhurried design.
-                </p>
+<!-- 6. New Collection (Staggered Grid) -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop bg-surface-container-low">
+<div class="text-center mb-16 reveal-on-scroll active">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary block mb-4">Just Arrived</span>
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary">New Arrivals</h2>
 </div>
-<div class="flex flex-col gap-4">
-<span class="font-label-caps text-label-caps text-primary">Shop</span>
-<ul class="flex flex-col gap-2">
-<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">New Arrivals</a></li>
-<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Craft Collections</a></li>
-<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Accessories</a></li>
-<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Gift Cards</a></li>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<!-- Product Card 1 -->
+<div class="group reveal-on-scroll active">
+<div class="aspect-[4/5] bg-surface-container-high overflow-hidden mb-6 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A portrait shot of a man wearing a crisp white cotton shirt with subtle indigo hand-block printed collar details. He is standing in a brightly lit studio. The lighting is clean and professional, emphasizing the fine texture of the premium cotton. The style is minimalist and high-end editorial." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABQHwt3FP5QXvNzUjVRxafN1O11MzWWk5JdyMbH3_ddfQWEBSSxklfK_FZJHC4SlWL1QXOBQiCq652VgpElJQtCp-91EP6ZEx_ZgzP-osrcYFNN0AYMWksHHOCXohqy2ZsxF-PU6VbxUS0alWREjl4fD62v1S_GTWn2t0_aeSr7gW2fG5Oa__6lQXydHXNtDpcEbw1Dp3uaE6meA90JnZfqHR3B1qPPYg9AdrXhgtu6egerDU5WPM_BkIvfir3eLpOn7nGmdQk_tVG">
+<div class="absolute top-4 left-4 bg-primary text-on-primary px-3 py-1 font-label-sm text-[10px] uppercase tracking-tighter">New In</div>
+</div>
+<div class="text-center">
+<h4 class="font-body-md text-body-md text-primary group-hover:underline underline-offset-4 mb-1">Indigo Motif Short Kurta</h4>
+<p class="font-label-sm text-label-sm text-secondary">₹1,450</p>
+</div>
+</div>
+<!-- Product Card 2 (Offset) -->
+<div class="group mt-12 reveal-on-scroll active" style="transition-delay: 150ms;">
+<div class="aspect-[4/5] bg-surface-container-high overflow-hidden mb-6 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A fashion shot of a woman in a sage green hand-block printed midi dress with delicate floral vine patterns. She is captured in motion, with the lightweight cotton fabric catching the air. The lighting is soft evening light, casting long shadows. The color palette is earthy and calming, fitting the modern heritage aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyKfDp6ATJ8dDyZxr2FQwabrXC25CROnwLpcot4IYPXM1hkJ_yZczwvtB5KgQ5QHkJmiuvrWyP2l5UPOBKYzT8zoot_UcdSmKlKQimh-QtHyj6HeuvV6oQ34N1ux2il5u9qIqmECbCYvBCt1K1oY1aZBogSEnAQxmzQIDefHiJ-0Qy9rMSH99exs04yCjorj1eWNdMpSBn4QFK3d7bU0l-xf_v0WU6EMeXo8IQQm1iIyVG30d0iZBr19EhGJjPwEe4WuWVoUW6Cn_Y">
+</div>
+<div class="text-center">
+<h4 class="font-body-md text-body-md text-primary group-hover:underline underline-offset-4 mb-1">Sage Vine Midi Dress</h4>
+<p class="font-label-sm text-label-sm text-secondary">₹1,950</p>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group reveal-on-scroll active" style="transition-delay: 300ms;">
+<div class="aspect-[4/5] bg-surface-container-high overflow-hidden mb-6 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A studio photograph of a terracotta-colored cotton shirt featuring a geometric Dabu print. The fabric is folded neatly on a textured linen surface to showcase the print detail. High-key lighting highlights the richness of the natural dye and the precision of the block printing. The style is clean and premium magazine-like." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGTqfHL3S9VqAUOmhJBipSZ7xKJavAVpdlYrJv-j7xOWJgZxkBJQ2vCp9gjZT6mAn078Cx1R0qgi1ImX1n7dz-8g6YjAgCiD3-3SzjcQwSewW4Dxo2O3RKq4MD_LpiVCOOoLIWR4T_jcCZqeLU2hFlY86VV7Qje_k4XTAcLM8oBAG3KPP6DnXfspJH7QlhX8gmmcWM5ogWS0JaLj-rRLUDYwWDsUgReF4TaIN8nlHVRu-MsEjT7yTcSpNBLX7ZhPNoss5OD2P-TE8t">
+</div>
+<div class="text-center">
+<h4 class="font-body-md text-body-md text-primary group-hover:underline underline-offset-4 mb-1">Terracotta Geometric Shirt</h4>
+<p class="font-label-sm text-label-sm text-secondary">₹1,350</p>
+</div>
+</div>
+<!-- Product Card 4 (Offset) -->
+<div class="group mt-12 reveal-on-scroll active" style="transition-delay: 450ms;">
+<div class="aspect-[4/5] bg-surface-container-high overflow-hidden mb-6 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An editorial fashion shot of a model wearing an oversized Ajrakh printed jacket over a simple white top. The setting is a minimalist industrial loft with large windows and warm wooden floors. The lighting is natural and bright, emphasizing the high-contrast patterns and the contemporary silhouette of the outfit." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjNHpNiLOBjiKhYqkpaq9TjzTOQTxk1Y9qeh1sY3SmMCRTWAOM4fpedikopukwiht_VB8o0yWLdNdd9HAVLlkKM27jyeG0EeI0u60ZKwjY41_CMYXfV0-7zHLq5WPUV19Li1aYmrR_kbr3AwEvCWzoNH4Ff-2_bUC1XP2d_0nKXVzUOVoL6N39xjBL2pgc0RVpyHJ_ws3ztK8EULm8V0AMKVhYljfnpp1JJ-AbN5a_uuAkxwAZ-R7o_KWTfquorUoi683X65HXjJvD">
+</div>
+<div class="text-center">
+<h4 class="font-body-md text-body-md text-primary group-hover:underline underline-offset-4 mb-1">Modern Ajrakh Overcoat</h4>
+<p class="font-label-sm text-label-sm text-secondary">₹2,800</p>
+</div>
+</div>
+</div>
+<div class="mt-24 text-center">
+<a class="inline-flex items-center gap-2 font-label-sm text-label-sm uppercase tracking-widest text-primary border-b border-primary pb-1 hover:opacity-70 transition-opacity" href="#">
+                View All Arrivals
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</section>
+<!-- 7. Best Sellers Carousel -->
+<section class="py-24 overflow-hidden">
+<div class="px-margin-mobile md:px-margin-desktop flex justify-between items-center mb-12">
+<h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary">Best Sellers</h2>
+<div class="flex gap-4">
+<button class="w-12 h-12 border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-12 h-12 border border-outline-variant flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex gap-gutter px-margin-mobile md:px-margin-desktop overflow-x-auto no-scrollbar pb-8">
+<!-- Best Seller Cards -->
+<div class="min-w-[280px] md:min-w-[320px] group">
+<div class="aspect-[3/4] bg-surface-container overflow-hidden mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A clean product shot of a navy blue hand-block printed kurti with white floral motifs. The kurti is shown on a simple mannequin against a neutral gray background. The lighting is soft and even, highlighting the fabric quality and the precision of the block print. Professional e-commerce style photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpXre3LY5iuenEi4nlUYAz_lwLqzL2VKg3jukWH4UfYjFdWWM18tHbpwcoOCBQpFFlQCkp0aG-dBQ1yH6-jefHKlxMBFQASdaj3_XaPDmjgm8If32Bf7S9K89ZhkV-AskBCWEdJhKWF8s8cukB22pjU7NL2vcuJ7w1jc1hh4qXRlOKmfbux11CmIkyHgsh54zyVnvnK1wsFji1L3Y6DVLz-_ga8yb5smn0JDpKCJN6FQtgB3RQyBC7zfHwm82QYiemGL-z5-Ey6toG">
+</div>
+<h4 class="font-label-sm text-label-sm uppercase tracking-widest text-primary mb-1">Navy Blossom Kurti</h4>
+<p class="font-label-sm text-label-sm text-secondary">₹1,250</p>
+</div>
+<div class="min-w-[280px] md:min-w-[320px] group">
+<div class="aspect-[3/4] bg-surface-container overflow-hidden mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A lifestyle shot of a woman in a relaxed-fit charcoal gray hand-block printed top. She is sitting in a sunlit conservatory with green plants around her. The mood is peaceful and natural, emphasizing the breathability and comfort of the cotton. The lighting is soft and diffused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmXOi4-GIGJFX1Bg3DRIkjX-RpAkZi14rMtNjvdBp_42pZUcig_M1-o7Ry5JKWWb_uD34qg4D03NxpdDJAZocW7habQpIFddGGaKooqoC2wkiLfDhSRERhNyB7RVwAatJg6QCnIly9cDRPnY6yMIikbEaPssw76X98EozH0XJvTG6AQO42T5Z0PRzAcX2dFTV0U6K3CD4TFMAs1jxBrXoZJDmqeT6peTlOaB8Ca3bl7JsHf7vTKzppnGAkyk8jpkW7_G0j5mNTBmW5">
+</div>
+<h4 class="font-label-sm text-label-sm uppercase tracking-widest text-primary mb-1">Charcoal Relaxed Top</h4>
+<p class="font-label-sm text-label-sm text-secondary">₹1,150</p>
+</div>
+<div class="min-w-[280px] md:min-w-[320px] group">
+<div class="aspect-[3/4] bg-surface-container overflow-hidden mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A close-up shot of an ochre yellow hand-block printed shirt with delicate paisley patterns. The shirt is draped elegantly over a wooden chair. The warm lighting highlights the rich earthy tones and the crispness of the cotton weave. The aesthetic is rustic yet premium." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBffNhXtiISp7rqKZKRPsKW4AYKTwQNjGA0R4AwH46CbPgaM9NyeL1kf62tdxsMv9dEbBeyeq6MAPIm_KI_aMLyjcOPsSgMjCVXLBVUWlGsm-dv2LD-z0juBTMLpxqX4QWkfDIY1C853NdDldoJcATbVHYfAN1yNCBM9UXES-H11TpUfDDgOI3EgIoNsjfhs2HIG8mh8cMObcmI2NVDQ8_9__h73XrBkQDOLHiJkxnxP7HJAcpq9mHFz496QMmeCh926bUPLkdeHVEe">
+</div>
+<h4 class="font-label-sm text-label-sm uppercase tracking-widest text-primary mb-1">Ochre Paisley Shirt</h4>
+<p class="font-label-sm text-label-sm text-secondary">₹1,400</p>
+</div>
+<div class="min-w-[280px] md:min-w-[320px] group">
+<div class="aspect-[3/4] bg-surface-container overflow-hidden mb-4">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A portrait of a woman in a long-sleeve emerald green block-printed dress with a tiered skirt. She is walking through a light-filled corridor with white walls. The dress flows beautifully, showing the movement of the fabric. High-end editorial aesthetic with clean lines and soft lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKDvE_gmchbbUT6gVwfCdQEgO99igPU6qo9_E5s_3YOAu0xT3EnP6489__nqRBNFj3bufNStBvnlwhxcnqP0RqGI6WvTtAVDMKk_PGenX3PgjD9IknO-uwwGG_7_qEINmTrHwLSE4No_0YvS1kb52OOtTBHrYJ3F1F0-TmllDKoJotY3NT21KrUv7dCu9HgA_NgkY6vQoH3xpFUKM1n2dHUCc2x4llf6ZJZXzpe-b8tZQzaZBlDei0mYSF0UbzakIk5Lj-hqf10jfB">
+</div>
+<h4 class="font-label-sm text-label-sm uppercase tracking-widest text-primary mb-1">Emerald Tiered Dress</h4>
+<p class="font-label-sm text-label-sm text-secondary">₹2,200</p>
+</div>
+</div>
+</section>
+<!-- 8. Shop by Category -->
+<section class="py-24 bg-primary text-on-primary">
+<div class="px-margin-mobile md:px-margin-desktop grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<a class="group flex flex-col items-center text-center reveal-on-scroll active" href="#">
+<div class="w-full aspect-square bg-surface-container-high/10 overflow-hidden mb-6">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80" data-alt="A clean, minimalist category image for 'Tops'. A high-quality cotton hand-block printed top is neatly styled with tailored trousers. The background is a soft, dark neutral, making the print pop. The lighting is sophisticated and focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_AJdEu0PtT6oL7B3DTi1r4wL6uC7TDL9wFJqaKujOA1fqlRa2drU0X-vA95aGKzrWG80KvRMdnIRi4cESnXsbVL22H3o73t1msvrCTliWxOz8B91k7AxPsk14opZ6ZCY49JTEjBxmmYDEjZqg2uZEV08NLH-bPKqzhV4odIlkNAfFPvRLqc8KwpNl4J8-mo-VBeE_hw1PSAVnQysYNK18aC4OwVUoy-rFw9oQZZy5Ey2ctP3FBqMPrILY3VmWeBpFiNydnGA2YV4r">
+</div>
+<h3 class="font-headline-md text-2xl group-hover:italic transition-all">Tops</h3>
+<span class="font-label-sm text-label-sm uppercase opacity-60 mt-2">Explore All</span>
+</a>
+<a class="group flex flex-col items-center text-center reveal-on-scroll active" href="#" style="transition-delay: 150ms;">
+<div class="w-full aspect-square bg-surface-container-high/10 overflow-hidden mb-6">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80" data-alt="A category image for 'Short Kurtis'. A beautiful short kurti with intricate indigo block prints is displayed in an editorial setting. The lighting is warm and natural, creating a premium feel. Minimalist and elegant composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPrVnPIppafkqOS3Wic_iIgvYdPwh_4Sd0k-kFJN6282pUG_WOkL8W11Qjl_otlVighQ9rP4-1GlTtd_TufmHT4IDsZIq-Vj7jSpdFoV1VQi4vpmru57XCM1lF32TreW-g36pZMGTvmSve_MZZ4_OCpCkCvcVpW3twWrufSLdD3sEjDrj2A9ul90SrdNqKBaV10y9l80-LXy6B8qUPokS4J19A_a_wkbQfkB4xO1vPcZ-0hri2rbFg7Mbh1xVsB1qYGQtI21CLfZ_g">
+</div>
+<h3 class="font-headline-md text-2xl group-hover:italic transition-all">Short Kurtis</h3>
+<span class="font-label-sm text-label-sm uppercase opacity-60 mt-2">Explore All</span>
+</a>
+<a class="group flex flex-col items-center text-center reveal-on-scroll active" href="#" style="transition-delay: 300ms;">
+<div class="w-full aspect-square bg-surface-container-high/10 overflow-hidden mb-6">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80" data-alt="A category image for 'Shirts'. A selection of premium hand-block printed men's shirts hanging on a wooden rail. The shirts feature varied geometric and floral prints in earthy colors. The lighting is bright and architectural, highlighting the craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSDtJHp9QmJHlCuOldNld1rteKQLRYig0phICr342K4xJdnCnhXEWLsJz0K75Kvy3Q2yRGcAEVT1_G9nfKhl0AfjOxUDbSZKsUTIbQduyHAsCW_1tzQAhR3cp5ctAkiUkhMbmeuR8J4s6No5ucwPGg9D2pJbJpCywkTjB2fLFu3wGJL-xd4oT37nZjgvAUbjAaaRsQiOZWltZ_9PzYzXNkzS0ofkCuVekbBZVi1xcTt5NMQ8VfrPfd2NFQ6PGJliGp69rBcRVn0Ick">
+</div>
+<h3 class="font-headline-md text-2xl group-hover:italic transition-all">Shirts</h3>
+<span class="font-label-sm text-label-sm uppercase opacity-60 mt-2">Explore All</span>
+</a>
+<a class="group flex flex-col items-center text-center reveal-on-scroll active" href="#" style="transition-delay: 450ms;">
+<div class="w-full aspect-square bg-surface-container-high/10 overflow-hidden mb-6">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80" data-alt="A category image for 'Dresses'. A flowing cotton block-printed maxi dress displayed against a stark white studio backdrop. The dress features a deep madder red Ajrakh print. The lighting is high-fashion and dramatic, focusing on the volume and texture of the fabric." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_cWdjalZFGr524njHh7V5JaAwWQEsxgJBu_8YO6xEBJnZHf7IjZovyspfgb0Igvb8K-KnfrQaX2UDr-tUrT-_K_hiIb7cfgtH7DN6hV7KK8Je6Vh2Tz8X70DCRjQWOOuYqp4UA1aAPDlZacl6B8nkXJiniz6fgqLzp5YdSeV58p9yDJ4nbAqh_Qzuumai1IaKmgVSJNshe72JClJ5uYoXwAr94yMHo6buhSGg-lDjyJlW3JoBfN70lc4_ajuviWiIDmCI4qhQdsTK">
+</div>
+<h3 class="font-headline-md text-2xl group-hover:italic transition-all">Dresses</h3>
+<span class="font-label-sm text-label-sm uppercase opacity-60 mt-2">Explore All</span>
+</a>
+</div>
+</section>
+<!-- 9. Editorial Banner -->
+<section class="relative h-[80vh] w-full flex items-center justify-center text-center">
+<img class="absolute inset-0 w-full h-full object-cover brightness-75" data-alt="A breathtaking full-width banner image featuring a model standing in a vast, open desert landscape at dusk. She is wearing a long, layered outfit of hand-block printed cotton in muted earth tones. The sky is a deep twilight blue, contrasting with the warm ochres of the fabric. The mood is epic, serene, and profoundly high-fashion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADfgrExiFO5HcXnR6IzkdMLWCfBr03sy2pjJxfhvq0RaEI4cTLLhTgvwSLSeLbP-qn-ZQs27BxjUKZH0vnULQ76eu08oqPGB52SL1mBRJNJGYaVOvXseHPBBZsQENGIVpkPBcwu6XhJuWFlOlUNEPSn9tzHmrCuR2DIBkw8WA1r_M__9s0xm7bia55p_KLlNoA3yqqMreYPwHN4-Iw5LVZLXhyoXBBDGEo3OnNe0-V9q7_SpwlLp1oFvE-kx7wJznMNdmapwyu99SH">
+<div class="relative z-10 px-margin-mobile">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-6 reveal-on-scroll active">
+                Crafted by heritage. <br><span class="italic font-normal">Styled for today.</span>
+</h2>
+<button class="bg-white text-primary px-12 py-4 font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary hover:text-white transition-all reveal-on-scroll active">View Our Story</button>
+</div>
+</section>
+<!-- 10. Shop the Look (Interactive Hotspots) -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-7 relative reveal-on-scroll active">
+<img class="w-full h-auto aspect-[3/4] object-cover" data-alt="An editorial full-body shot of a model styled in a complete Parchhai look: a hand-block printed kurti paired with wide-leg cotton trousers and a lightweight printed stole. She is leaning against a textured plaster wall in an artful pose. The lighting is directional and dramatic, creating deep shadows and bright highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKKdP0JaTaJvusA4zVbvLzY_O8L3Pr6uNWbkvyXJyzERnhpmyJ2lUjmXoovunW3aS1vWrFdpbH61g68F7ov3EgriZ4PxwCLBm009W3Eqxtd_ZubOuur8MO3dU1nRM20aQ7MhLxwn8zhNUzNG_LGXW1nSW7NMQXXSIfamOyMM-tLXxX1TxQIQELGcAF2ytF814uFCWVckzwGWHXd46przRomajB8ad1w4helQI_qW2Sx2Wi5gDGD2_qiFvPlVKLIu1A9TTHVY5QguH4">
+<!-- Hotspots -->
+<div class="absolute top-[30%] left-[50%] group">
+<div class="w-8 h-8 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center cursor-pointer border border-white group-hover:scale-125 transition-transform">
+<div class="w-2 h-2 rounded-full bg-white"></div>
+</div>
+<div class="absolute top-10 left-0 bg-white p-4 shadow-xl w-48 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto">
+<p class="font-label-sm text-[10px] text-secondary uppercase">The Base</p>
+<h4 class="font-body-md text-sm text-primary">Indigo Crop Kurta</h4>
+<p class="font-label-sm text-sm mt-1">₹1,250</p>
+<button class="w-full mt-2 bg-primary text-on-primary py-2 text-[10px] uppercase">Add to Cart</button>
+</div>
+</div>
+<div class="absolute bottom-[20%] right-[30%] group">
+<div class="w-8 h-8 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center cursor-pointer border border-white group-hover:scale-125 transition-transform">
+<div class="w-2 h-2 rounded-full bg-white"></div>
+</div>
+<div class="absolute bottom-10 right-0 bg-white p-4 shadow-xl w-48 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto">
+<p class="font-label-sm text-[10px] text-secondary uppercase">The Layer</p>
+<h4 class="font-body-md text-sm text-primary">Dabu Printed Stole</h4>
+<p class="font-label-sm text-sm mt-1">₹650</p>
+<button class="w-full mt-2 bg-primary text-on-primary py-2 text-[10px] uppercase">Add to Cart</button>
+</div>
+</div>
+</div>
+<div class="md:col-span-5 md:pl-16 reveal-on-scroll active">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary block mb-4">Curated Style</span>
+<h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary mb-8 leading-tight">Effortless coordination for the modern woman.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10">We believe in outfits that breathe and stories that move. Each piece is designed to be mixed, matched, and layered, creating a canvas for your personal expression.</p>
+<button class="border-b border-primary text-primary pb-1 font-label-sm text-label-sm uppercase tracking-widest hover:opacity-70 transition-opacity">Explore The Lookbook</button>
+</div>
+</div>
+</section>
+<!-- 11. Craft Story -->
+<section class="py-24 bg-surface-container-high">
+<div class="px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+<div class="reveal-on-scroll active">
+<img class="w-full aspect-[4/5] object-cover" data-alt="A close-up high-fashion photograph of wooden blocks used for printing, resting on a table covered in indigo-stained fabric. The blocks are intricately carved with traditional floral motifs. The lighting is moody and focused, with high contrast highlighting the wood grain and the history embedded in the tools. The palette is dominated by dark wood and indigo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBLDNjy8LWewoQBz99c8t1glybdImOmehgelYD3tfWvI8J6EIAiLCqoF1X5BBDolRHk-RGMAbUevspLHROWup1VY94vQxsZ5nI227Z_N4qKyqSsegfSPeF7USldaeujoWiEg0BrUT1Hh2GmIG0fPhfmyb-clwBsUtc0DrCxiDxh6JWlCyrklAV3-YFvJR6hvZykFgZDl6vn-m-fVEYn2u64Wpzep92PBneVkT3ifAnPO2kOk8kaQJ19Ckd5dYmVeDelxGQIiwX6DNv">
+</div>
+<div class="reveal-on-scroll active">
+<h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary mb-8">The Rhythm of the Block</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-6 italic">"A single yard of fabric represents thousands of rhythmic stamps, hours of precision, and a lineage of knowledge passed down through generations."</p>
+<p class="font-body-md text-body-md text-on-surface-variant mb-10">Parchhai celebrates the human touch in an automated world. Every slight variation in print is not a flaw, but a signature of the artisan. Our fabrics are dyed using natural minerals and vegetable extracts, ensuring they are as kind to the earth as they are to your skin.</p>
+<a class="inline-block bg-primary text-on-primary px-10 py-4 font-label-sm text-label-sm uppercase tracking-widest" href="#">Our Artisan Community</a>
+</div>
+</div>
+</section>
+<!-- 12. Community / Instagram Grid -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop">
+<div class="text-center mb-16 reveal-on-scroll active">
+<h2 class="font-headline-md text-headline-md text-primary mb-2">#ParchhaiCircle</h2>
+<p class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Share your style journey with us</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="aspect-square bg-surface-container overflow-hidden reveal-on-scroll active">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-alt="A candid lifestyle shot of a woman laughing while wearing a Parchhai printed shirt, standing in a lush urban garden. The lighting is bright and cheerful." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA41odvAmqiSVICGLGqvtf8wOXPKWue0RpRojMIRWCeVeowwJlZsvunCjG0owQ_JHQdXnxF0ik0sOIr4uQVmSpN0-1V_5poGLfXce4MipmumcYVw0Lgb_YtpTy7AvaQDEBggRnKdrIAD1FNd4TSl8E9JBcW7zmp45zANB1LX4rfEGVAWMVgtWsYrQRcA_4C1UDAfnEJMTcVE0fZ-zBrEoriPdBX3GBx7ZMmUg22EGUOtWPfzxdocM6JOjrdsHgdQn4gZ7mL-kt_jh0x">
+</div>
+<div class="aspect-square bg-surface-container overflow-hidden reveal-on-scroll active" style="transition-delay: 100ms;">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-alt="A flatlay style image showing a Parchhai dress neatly folded next to a cup of tea and a book. The mood is cozy and artisanal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH7sYGcSFWeviWdY_64gjSh9oY0zlSWSugm4EzVdr2UTAPDxMPv0pFKCpSv8voTtF2LvzfjPZkTcuexD8CqI6jU6dmyFA5w-5FtyVCCeVZM5wRStd1-sy9AjXq-cRgPOuxhUhyHSttkJ66vber7q5ys_4JkdJGPBhmvCn0NVwR1fNMYM6Rx8Qt4kgdy6vIRKiZTI0-U0n2gTTBFAsgs86pGCkoRR_ZxhiAeNqHGr5h_ZkIoW4kOgseEjrrMpALiety9glZneiVZnjZ">
+</div>
+<div class="aspect-square bg-surface-container overflow-hidden reveal-on-scroll active" style="transition-delay: 200ms;">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-alt="A portrait of a man in a modern block-printed shirt, walking through a contemporary art gallery. High-fashion urban vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUG81KcfR-5n0RzoSKkesfQGJ5erbLz2VKD_PmtaXeLeLnG8218fQQcMe9c1YR8pGdPuriFePZ3e8XNGC0SOb2PWA97Eqeoj0OR4LqEF2UaIFNu5S8qLH7z5xGdtY7vMwF8Y-J22yRsmKyqbLx41HjrRaGq_Zm8s3GvQrbuzN8UdRj2S8Q0w60MfrRlGoz5rj3WfGKsFM7AOoE7NNgloMZimZdvNTfPmokQb9b429OhAUKFlFVb9rRBFWlVBALndVtWmJ-cAwviQ5L">
+</div>
+<div class="aspect-square bg-surface-container overflow-hidden reveal-on-scroll active" style="transition-delay: 300ms;">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-alt="A creative close-up of the fabric texture and block print of a Parchhai garment in bright daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBL9VT_PSgiGzYGSAAi-lYT0DCzUbqN5faqqH5nF1Dt46n8KUenbsnXZgWFoNts9UpGEJu286fR2fN0DtNuPM2h153xlon2uqQer7elXImevZlxt2rWtk5iZzjOv4dw1CxFqdd6YHFfXC6OJ7UVnl8DuRR5rqj7Gre18uKqYF5IMi74WJcxidTPcviPykDKHKBKMMqzIv0vMLP6lBYMjaUfuFEnLBNCqKl4koWZCyB6v0FMJWm4dp9m8DCzg1mFHSEYwdp8K017FOEq">
+</div>
+</div>
+</section>
+<!-- 13. Newsletter -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop bg-surface-container-low border-t border-outline-variant/30">
+<div class="max-w-2xl mx-auto text-center reveal-on-scroll active">
+<h2 class="font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary mb-6">Join the Parchhai Circle</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-10">Be the first to explore new collections, artisan stories, and exclusive previews.</p>
+<form class="flex flex-col md:flex-row gap-4">
+<input class="flex-1 bg-transparent border-b border-primary py-4 px-0 focus:ring-0 focus:border-primary font-body-md" placeholder="Your Email Address" type="email">
+<button class="bg-primary text-on-primary px-12 py-4 font-label-sm text-label-sm uppercase tracking-widest hover:opacity-90 transition-opacity whitespace-nowrap" type="submit">Subscribe</button>
+</form>
+</div>
+</section>
+<!-- 14. Footer -->
+<footer class="w-full px-margin-mobile md:px-margin-desktop py-20 grid grid-cols-1 md:grid-cols-4 gap-gutter bg-surface-container-lowest border-t border-outline-variant">
+<div class="md:col-span-1">
+<div class="font-display-lg text-display-lg-mobile text-primary mb-6">PARCHHAI</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mb-8">© 2024 PARCHHAI. <br>WEAVING TRADITION INTO MODERNITY.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">public</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">share</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">alternate_email</span>
+</div>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm uppercase tracking-widest text-primary mb-6">The Brand</h4>
+<ul class="space-y-3">
+<li class=""><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Our Story</a></li>
+<li class=""><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Artisans</a></li>
+<li class=""><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Sustainability</a></li>
+<li class=""><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Us</a></li>
 </ul>
 </div>
-<div class="flex flex-col gap-4">
-<span class="font-label-caps text-label-caps text-primary">Our Story</span>
-<ul class="flex flex-col gap-2">
-<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">The Artisans</a></li>
-<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Provenance</a></li>
-<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Journal</a></li>
-<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Sustainability</a></li>
+<div>
+<h4 class="font-label-sm text-label-sm uppercase tracking-widest text-primary mb-6">Support</h4>
+<ul class="space-y-3">
+<li class=""><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Shipping &amp; Returns</a></li>
+<li class=""><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li class=""><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+<li class=""><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">FAQ</a></li>
 </ul>
 </div>
-<div class="flex flex-col gap-6">
-<span class="font-label-caps text-label-caps text-primary">Newsletter</span>
-<div class="flex border-b border-primary/20 pb-2">
-<input class="bg-transparent border-none outline-none w-full text-body-md focus:ring-0 placeholder:text-on-surface-variant/50" placeholder="Email Address" type="email"/>
-<button class="material-symbols-outlined text-primary">arrow_forward</button>
-</div>
-<p class="text-[10px] text-on-surface-variant font-label-caps tracking-wider uppercase">Join the craft movement</p>
-</div>
-</div>
-<div class="max-w-7xl mx-auto px-margin-desktop mt-20 pt-12 border-t border-outline/10 flex flex-col md:flex-row justify-between items-center gap-6">
-<span class="font-label-caps text-[10px] text-on-surface-variant/60 uppercase">© 2024 Parchhai. Crafted in India.</span>
-<div class="flex gap-8">
-<a class="font-label-caps text-[10px] text-on-surface-variant/60 hover:text-primary transition-colors uppercase" href="#">Instagram</a>
-<a class="font-label-caps text-[10px] text-on-surface-variant/60 hover:text-primary transition-colors uppercase" href="#">Pinterest</a>
-<a class="font-label-caps text-[10px] text-on-surface-variant/60 hover:text-primary transition-colors uppercase" href="#">Twitter</a>
-</div>
+<div>
+<h4 class="font-label-sm text-label-sm uppercase tracking-widest text-primary mb-6">Contact</h4>
+<p class="font-body-md text-on-surface-variant mb-2">care@parchhai.com</p>
+<p class="font-body-md text-on-surface-variant mb-6">+91 98765 43210</p>
+<p class="font-body-md text-on-surface-variant">Studio Parchhai,<br>Jaipur, Rajasthan, India</p>
 </div>
 </footer>
 <script>
-        // Transparent Nav Logic
-        const nav = document.getElementById('top-nav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                nav.classList.add('nav-scrolled');
-            } else {
-                nav.classList.remove('nav-scrolled');
-            }
-        });
-
-        // Simple Intersection Observer for scroll animations
+        // Intersection Observer for scroll animations
         const observerOptions = {
-            threshold: 0.1
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('opacity-100', 'translate-y-0');
-                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    entry.target.classList.add('active');
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.stagger-grid-item').forEach(item => {
-            item.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
-            observer.observe(item);
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // Smooth Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('top-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2', 'bg-surface/95', 'shadow-sm');
+                nav.classList.remove('py-4', 'bg-surface/80');
+            } else {
+                nav.classList.add('py-4', 'bg-surface/80');
+                nav.classList.remove('py-2', 'bg-surface/95', 'shadow-sm');
+            }
+        });
+
+        // Simple parallax for hero image
+        window.addEventListener('scroll', () => {
+            const heroImg = document.getElementById('hero-img');
+            const scroll = window.pageYOffset;
+            heroImg.style.transform = `scale(1.05) translateY(${scroll * 0.1}px)`;
         });
     </script>
+
+
 </body></html>

@@ -73,11 +73,11 @@ async function main() {
           "Dabu is the art of mud-resist printing: a paste of clay, lime, gum and wheat chaff is hand-pressed through blocks onto cloth, then dusted with sawdust and left to dry before dyeing. Wherever the mud sits, the dye cannot reach, leaving luminous negative-space patterns. It is slow, weather-dependent and gloriously imperfect — every hairline crack in the resist becomes part of the design.",
       },
       {
-        name: "Bagh",
-        region: "Bagh, Madhya Pradesh",
-        dyes: ["Alizarin (red)", "Iron (black)", "Harda"],
+        name: "Dabu-Bagru",
+        region: "Rajasthan",
+        dyes: ["Indigo", "Harda", "Alizarin", "Fermented iron"],
         story:
-          "Named after the Bagh river whose mineral-rich waters fix its colours, Bagh print is recognised by its striking red-and-black geometry on a natural ground. The Khatri artisans of Bagh village carve intricate blocks — some over 300 years old — and wash the cloth in the flowing river to achieve its signature clarity. A UNESCO-recognised craft, Bagh balances bold scale with fine detail.",
+          "Dabu-Bagru pairs two Rajasthani traditions on a single cloth — the mud-resist of Dabu layered with the carved-block buti of Bagru — for a richly mixed print. Resist paste shields parts of the weave while earthy Bagru blocks build pattern over it; the cloth is then sun-dried and dyed. The result is a textile with depth: luminous negative-space motifs set against fine repeating florals.",
       },
     ].map((c, i) =>
       prisma.craft.create({
@@ -120,13 +120,13 @@ async function main() {
     { name: "Ajrakh Indigo Kurti", category: "Kurtis", craft: "Ajrakh", fabric: "Mul cotton", price: 2890, colors: ["Indigo", "Madder"], desc: "A relaxed straight kurti in hand-blocked Ajrakh, dyed in deep natural indigo." },
     { name: "Bagru Buti Angrakha Kurti", category: "Kurtis", craft: "Bagru", fabric: "Cotton voile", price: 2490, colors: ["Rust", "Cream"], desc: "An angrakha-style kurti scattered with tiny Bagru buti florals." },
     { name: "Dabu Eclipse Kurti", category: "Kurtis", craft: "Dabu", fabric: "Handloom cotton", price: 3190, colors: ["Indigo"], desc: "Mud-resist Dabu in a luminous moon-and-vine repeat." },
-    { name: "Bagh Geometry Kurti", category: "Kurtis", craft: "Bagh", fabric: "Cotton", price: 2790, colors: ["Red", "Black"], desc: "Bold Bagh geometry in signature red-and-black on a natural ground." },
+    { name: "Dabu-Bagru Mix Kurti", category: "Kurtis", craft: "Dabu-Bagru", fabric: "Cotton", price: 2790, colors: ["Indigo", "Rust"], desc: "Mud-resist Dabu layered with Bagru buti blocks for a richly mixed print." },
     { name: "Ajrakh Corset Top", category: "Corsets", craft: "Ajrakh", fabric: "Cotton canvas", price: 3490, colors: ["Indigo"], desc: "A structured corset cut from hand-printed Ajrakh — heritage meets sharp tailoring." },
     { name: "Dabu Lace-up Corset", category: "Corsets", craft: "Dabu", fabric: "Cotton twill", price: 3690, colors: ["Indigo", "Black"], desc: "Lace-up back corset in mud-resist Dabu with boned structure." },
     { name: "Bagru Bustier", category: "Corsets", craft: "Bagru", fabric: "Cotton", price: 3290, colors: ["Rust"], desc: "A sweetheart bustier in earthy Bagru block-print." },
     { name: "Ajrakh Oversized Shirt", category: "Shirts", craft: "Ajrakh", fabric: "Mul cotton", price: 2990, colors: ["Indigo"], desc: "An easy oversized shirt in flowing Ajrakh — unisex fit." },
     { name: "Bagru Camp Shirt", category: "Shirts", craft: "Bagru", fabric: "Cotton voile", price: 2590, colors: ["Cream", "Rust"], desc: "Camp-collar short-sleeve shirt in soft Bagru print." },
-    { name: "Bagh Resort Shirt", category: "Shirts", craft: "Bagh", fabric: "Cotton", price: 2890, colors: ["Red"], desc: "Resort-ready shirt in graphic Bagh blocks." },
+    { name: "Dabu-Bagru Resort Shirt", category: "Shirts", craft: "Dabu-Bagru", fabric: "Cotton", price: 2890, colors: ["Indigo"], desc: "Resort-ready shirt in mixed Dabu-Bagru block-print." },
     { name: "Dabu Office Shirt", category: "Shirts", craft: "Dabu", fabric: "Handloom cotton", price: 2790, colors: ["Indigo"], desc: "A crisp button-down with a subtle all-over Dabu motif." },
     { name: "Ajrakh Co-ord Set", category: "Co-ords", craft: "Ajrakh", fabric: "Mul cotton", price: 4890, colors: ["Indigo", "Madder"], desc: "Matching shirt-and-trouser co-ord in coordinated Ajrakh blocks." },
     { name: "Bagru Lounge Co-ord", category: "Co-ords", craft: "Bagru", fabric: "Cotton voile", price: 4290, colors: ["Cream"], desc: "Relaxed top-and-pant set for slow mornings." },
@@ -149,7 +149,7 @@ async function main() {
         description: `${def.desc} Hand-blocked by ${def.craft} artisans on ${def.fabric}. Each piece is unique; slight irregularities in print are the signature of true block-printing.`,
         craftId: craftBy[def.craft]!.id,
         categoryId: catBy[def.category]!.id,
-        fabric: def.fabric,
+        fabric: "100% Cotton",
         careInstructions: "Hand-wash separately in cold water with mild detergent. Dry in shade. Natural dyes may bleed slightly on first wash.",
         artisanCluster: craftBy[def.craft]!.region,
         basePrice: inr(def.price),
@@ -275,7 +275,8 @@ async function main() {
   // ── Coupons ─────────────────────────────────────────────
   await prisma.coupon.createMany({
     data: [
-      { code: "WELCOME10", type: "PERCENT", value: 10, minOrder: inr(1999), perUserLimit: 1, active: true },
+      { code: "WELCOME10", type: "PERCENT", value: 10, minOrder: inr(999), perUserLimit: 1, active: true },
+      { code: "WELCOME5", type: "PERCENT", value: 5, minOrder: inr(599), perUserLimit: 1, active: true },
       { code: "FLAT500", type: "FLAT", value: inr(500), minOrder: inr(2999), perUserLimit: 2, active: true },
       { code: "FREESHIP", type: "FREESHIP", value: 0, minOrder: inr(1499), perUserLimit: 5, active: true },
     ],

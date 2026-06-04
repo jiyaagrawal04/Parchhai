@@ -15,6 +15,7 @@ import Lookbook from "@/pages/Lookbook";
 import Story from "@/pages/Story";
 import Journal from "@/pages/Journal";
 import JournalPost from "@/pages/JournalPost";
+import Contact from "@/pages/Contact";
 import Search from "@/pages/Search";
 import Cart from "@/pages/Cart";
 import Checkout from "@/pages/Checkout";
@@ -71,6 +72,7 @@ export default function App() {
         <Route path="/story" element={<Story />} />
         <Route path="/journal" element={<Journal />} />
         <Route path="/journal/:slug" element={<JournalPost />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/search" element={<Search />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<RequireAuth><Checkout /></RequireAuth>} />

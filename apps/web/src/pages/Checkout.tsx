@@ -33,7 +33,7 @@ export default function Checkout() {
   const defaultAddr = addresses?.find((a) => a.isDefault) ?? addresses?.[0];
   const selectedId = addressId || defaultAddr?.id || "";
   const discount = couponPreview?.valid ? couponPreview.discount : 0;
-  const freeShip = couponPreview?.freeShipping || cart.subtotal - discount >= 149900;
+  const freeShip = couponPreview?.freeShipping || cart.subtotal - discount >= 99900;
   const shipping = freeShip ? 0 : 7900;
   const total = cart.subtotal - discount + shipping;
 
