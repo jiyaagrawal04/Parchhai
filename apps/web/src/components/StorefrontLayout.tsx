@@ -35,8 +35,9 @@ export const StorefrontLayout = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Transparent over the home hero; solid deep-brown everywhere else or once scrolled.
+  // Transparent over the home hero; solid off-white everywhere else or once scrolled.
   const solid = !isHome || scrolled;
+  const textOnDark = isHome && !scrolled;
 
   return (
     <div className="flex min-h-screen flex-col paper-grain">
@@ -45,12 +46,12 @@ export const StorefrontLayout = () => {
       <nav
         className={cx(
           "fixed top-0 z-50 flex h-20 w-full items-center justify-between px-5 transition-all duration-500 md:px-margin-desktop",
-          solid ? "bg-[#3D1A06]/95 backdrop-blur-xl border-b border-white/10 shadow-md" : "bg-transparent",
+          solid ? "bg-surface-bright/95 backdrop-blur-xl border-b border-outline-variant/50 shadow-sm" : "bg-transparent",
         )}
       >
         <div className="flex items-center gap-12">
           <Link to="/" className="flex items-center" aria-label="Parchhai — home">
-            <Wordmark light className="text-2xl md:text-3xl" />
+            <Wordmark light={textOnDark} className="text-2xl md:text-3xl" />
           </Link>
           <div className="hidden gap-8 md:flex">
             {nav.map((n) => (
@@ -59,8 +60,9 @@ export const StorefrontLayout = () => {
                 to={n.to}
                 className={({ isActive }) =>
                   cx(
-                    "label-caps pb-1 text-surface/70 transition-colors duration-300 hover:text-secondary",
-                    isActive && "border-b border-secondary !text-surface",
+                    "label-caps pb-1 transition-colors duration-300 hover:text-secondary",
+                    isActive && "border-b border-secondary",
+                    textOnDark ? (isActive ? "text-surface" : "text-surface/70") : isActive ? "text-primary" : "text-on-surface-variant",
                   )
                 }
               >
@@ -69,7 +71,7 @@ export const StorefrontLayout = () => {
             ))}
           </div>
         </div>
-        <div className="flex items-center gap-6 text-surface">
+        <div className={cx("flex items-center gap-6", textOnDark ? "text-surface" : "text-primary")}>
           <button onClick={openSearch} aria-label="Search"><MIcon name="search" className="text-2xl hover:opacity-70" /></button>
           {user ? (
             <Link to="/account/orders" aria-label="Account"><MIcon name="person" className="text-2xl hover:opacity-70" /></Link>

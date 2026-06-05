@@ -5,8 +5,8 @@ export default {
     extend: {
       colors: {
         // ── Warm "Light Heritage" palette (espresso brown on soft beige) ──
-        primary: "#3d2b1e",
-        "primary-container": "#2f2218",
+        primary: "#1a1a1a",
+        "primary-container": "#1a1a1a",
         "on-primary": "#fbf6ec",
         "on-primary-container": "#cbb9a3",
         secondary: "#B85A1B",
@@ -24,12 +24,12 @@ export default {
         "surface-container-high": "#e6dcc8",
         "surface-container-highest": "#ded2bd",
         "surface-variant": "#e6dcc8",
-        "on-surface": "#2f2218",
-        "on-surface-variant": "#6b5d4a",
-        "inverse-surface": "#3d2b1e",
+        "on-surface": "#1a1a1a",
+        "on-surface-variant": "#57534e",
+        "inverse-surface": "#1a1a1a",
         "inverse-on-surface": "#faf5ec",
         background: "#faf5ec",
-        "on-background": "#2f2218",
+        "on-background": "#1a1a1a",
         outline: "#b0a089",
         "outline-variant": "#e0d6c4",
         error: "#ba1a1a",
@@ -40,8 +40,8 @@ export default {
         indigo: { DEFAULT: "#1B2A4A", deep: "#041534", soft: "#384668" },
         rust: { DEFAULT: "#B85A1B", light: "#cf7333" },
         gold: { DEFAULT: "#B8893B", light: "#D6B36A" },
-        ink: "#2f2218",
-        muted: "#6b5d4a",
+        ink: "#1a1a1a",
+        muted: "#57534e",
         line: "#ddd1bd",
       },
       fontFamily: {

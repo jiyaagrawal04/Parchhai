@@ -7,7 +7,7 @@ const BROWN = "#3D1A06";
 
 export function Wordmark({ light = false, className }: { light?: boolean; className?: string }) {
   return (
-    <span className={cx("font-serif font-bold lowercase leading-none tracking-tight", className)} style={{ color: ORANGE }}>
+    <span className={cx("font-serif font-black lowercase leading-none tracking-tight", className)} style={{ color: ORANGE }}>
       parc<span style={{ color: light ? "#faf5ec" : BROWN }}>hh</span>ai
     </span>
   );
