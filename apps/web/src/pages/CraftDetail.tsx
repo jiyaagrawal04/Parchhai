@@ -12,7 +12,7 @@ export default function CraftDetail() {
 
   return (
     <div>
-      <section className="relative h-[60vh] bg-indigo-deep">
+      <section className="slow-zoom relative h-[60vh] bg-indigo-deep">
         <img src={craft.heroImage ?? ""} alt={craft.name} className="h-full w-full object-cover opacity-80" />
         <div className="absolute inset-0 flex items-end">
           <div className="container-px pb-12 text-ivory">

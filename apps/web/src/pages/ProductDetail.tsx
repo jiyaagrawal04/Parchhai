@@ -137,7 +137,7 @@ export default function ProductDetail() {
                     className={cx("relative h-24 w-20 shrink-0 overflow-hidden border-2 transition-opacity", i === activeImg ? "border-primary opacity-100" : "border-transparent opacity-60")}
                   >
                     {m.type === "image" ? (
-                      <img src={m.url} alt="" className="h-full w-full object-cover" />
+                      <img src={m.url} alt="" className="h-full w-full object-cover transition-transform duration-500 hover:scale-110" />
                     ) : (
                       <div className="flex h-full w-full items-center justify-center bg-primary">
                         <MIcon name="play_circle" className="text-2xl text-white" />

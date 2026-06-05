@@ -51,9 +51,9 @@ export function SearchModal() {
           <p className="px-5 py-8 text-center text-sm text-on-surface-variant">No matches for “{debounced}”.</p>
         )}
         {results.map((p) => (
-          <button key={p.id} onClick={() => go(`/product/${p.slug}`)} className="flex w-full items-center gap-4 px-5 py-3 text-left transition-colors hover:bg-surface-container">
-            <div className="h-16 w-14 shrink-0 bg-surface-container">
-              {p.image && <img src={p.image} alt="" className="h-full w-full object-cover" />}
+          <button key={p.id} onClick={() => go(`/product/${p.slug}`)} className="group flex w-full items-center gap-4 px-5 py-3 text-left transition-colors hover:bg-surface-container">
+            <div className="h-16 w-14 shrink-0 overflow-hidden bg-surface-container">
+              {p.image && <img src={p.image} alt="" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />}
             </div>
             <div className="flex-1">
               {p.craft && <p className="label-caps text-[10px] text-secondary">{p.craft.name}</p>}
