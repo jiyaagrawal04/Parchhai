@@ -190,7 +190,7 @@ export default function Checkout() {
               <input value={coupon} onChange={(e) => setCoupon(e.target.value.toUpperCase())} placeholder="Coupon code" className="input" />
               <button onClick={applyCoupon} className="btn-ghost border border-line shrink-0">Apply</button>
             </div>
-            {couponPreview && <p className={cx("mt-2 text-xs", couponPreview.valid ? "text-green-700" : "text-rust")}>{couponPreview.valid ? `Applied — you save ${formatINR(couponPreview.discount)}` : couponPreview.message}</p>}
+            {couponPreview && <p className={cx("mt-2 text-xs", couponPreview.valid ? "text-green-700" : "text-red-600")}>{couponPreview.valid ? `Applied — you save ${formatINR(couponPreview.discount)}` : couponPreview.message}</p>}
           </div>
           <div className="mt-4 space-y-2 border-t border-line pt-4 text-sm">
             <div className="flex justify-between"><span className="text-muted">Subtotal</span><span>{formatINR(cart.subtotal)}</span></div>
@@ -198,7 +198,7 @@ export default function Checkout() {
             <div className="flex justify-between"><span className="text-muted">Shipping</span><span>{shipping === 0 ? "Free" : formatINR(shipping)}</span></div>
           </div>
           <div className="mt-4 flex justify-between border-t border-line pt-4 text-lg font-semibold"><span>Total</span><span>{formatINR(total)}</span></div>
-          <button onClick={placeOrder} disabled={busy} className="btn-rust mt-6 w-full">{busy ? "Placing order…" : `Place order · ${formatINR(total)}`}</button>
+          <button onClick={placeOrder} disabled={busy} className="btn-primary mt-6 w-full">{busy ? "Placing order…" : `Place order · ${formatINR(total)}`}</button>
         </aside>
       </div>
     </div>

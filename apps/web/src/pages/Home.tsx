@@ -149,7 +149,6 @@ export default function Home() {
       {/* 4. New arrivals — staggered product grid */}
       <section className="bg-surface-container-low px-5 py-24 md:px-margin-desktop">
         <div className="mb-16 text-center">
-          <span className="label-caps mb-4 block text-on-surface-variant">Just Arrived</span>
           <h2 className="font-display-lg text-4xl text-primary md:text-display-lg">New Arrivals</h2>
         </div>
         <div className="grid grid-cols-2 gap-gutter md:grid-cols-4">
@@ -158,7 +157,6 @@ export default function Home() {
               <Link to={`/product/${p.slug}`} className="group block">
                 <div className="slow-zoom relative mb-6 aspect-[4/5] bg-surface-variant">
                   {p.image && <img src={p.image} alt={p.name} className="h-full w-full object-cover" loading="lazy" />}
-                  {i === 0 && <span className="absolute left-4 top-4 bg-primary px-3 py-1 text-[10px] uppercase tracking-tight text-on-primary">New In</span>}
                   <QuickViewBtn slug={p.slug} onOpen={openQuickView} />
                 </div>
                 <div className="text-center">

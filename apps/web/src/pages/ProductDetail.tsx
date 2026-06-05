@@ -242,7 +242,7 @@ export default function ProductDetail() {
             </div>
           </div>
           <div className="mt-6 flex gap-3">
-            <button onClick={add} disabled={addToCart.isPending} className="flex-1 bg-secondary py-4 label-caps text-white transition-opacity hover:opacity-90 disabled:opacity-50">Add to Bag</button>
+            <button onClick={add} disabled={addToCart.isPending} className="flex-1 bg-primary py-4 label-caps text-white transition-opacity hover:opacity-90 disabled:opacity-50">Add to Bag</button>
             <button onClick={toggleWish} aria-label="Wishlist" className={cx("flex w-14 items-center justify-center border border-outline transition-colors hover:border-secondary hover:text-secondary", wished && "border-secondary text-secondary")}>
               <MIcon name="favorite" fill={wished} />
             </button>
@@ -353,7 +353,7 @@ export default function ProductDetail() {
           <p className="font-headline-md text-lg text-primary">{formatINR(price)}</p>
           <p className="label-caps text-[10px] text-on-surface-variant">Size: {size || "—"}</p>
         </div>
-        <button onClick={add} disabled={addToCart.isPending} className="flex-1 bg-secondary py-3.5 label-caps text-white disabled:opacity-50">Add to Bag</button>
+        <button onClick={add} disabled={addToCart.isPending} className="flex-1 bg-primary py-3.5 label-caps text-white disabled:opacity-50">Add to Bag</button>
       </div>
 
       {/* Size guide modal */}

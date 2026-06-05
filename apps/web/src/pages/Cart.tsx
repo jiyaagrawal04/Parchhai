@@ -38,16 +38,16 @@ export default function Cart() {
               <div className="flex flex-1 flex-col">
                 <div className="flex justify-between">
                   <div>
-                    <Link to={`/product/${it.slug}`} className="font-serif text-lg text-indigo hover:text-rust">{it.productName}</Link>
+                    <Link to={`/product/${it.slug}`} className="font-serif text-lg text-indigo hover:text-primary">{it.productName}</Link>
                     <p className="text-sm text-muted">{it.color} · {it.size}</p>
                   </div>
-                  <button onClick={() => remove.mutate(it.id)} className="text-muted hover:text-rust"><X size={18} /></button>
+                  <button onClick={() => remove.mutate(it.id)} className="text-muted hover:text-primary"><X size={18} /></button>
                 </div>
                 <div className="mt-auto flex items-center justify-between">
                   <div className="flex items-center border border-line">
-                    <button onClick={() => update.mutate({ id: it.id, qty: it.qty - 1 })} className="px-3 py-1.5 hover:text-rust"><Minus size={14} /></button>
+                    <button onClick={() => update.mutate({ id: it.id, qty: it.qty - 1 })} className="px-3 py-1.5 hover:text-primary"><Minus size={14} /></button>
                     <span className="w-8 text-center text-sm">{it.qty}</span>
-                    <button onClick={() => update.mutate({ id: it.id, qty: it.qty + 1 })} className="px-3 py-1.5 hover:text-rust"><Plus size={14} /></button>
+                    <button onClick={() => update.mutate({ id: it.id, qty: it.qty + 1 })} className="px-3 py-1.5 hover:text-primary"><Plus size={14} /></button>
                   </div>
                   <p className="font-semibold">{formatINR(it.lineTotal)}</p>
                 </div>
@@ -66,7 +66,7 @@ export default function Cart() {
           <button onClick={() => (user ? navigate("/checkout") : openLogin("/checkout"))} className="btn-primary mt-6 w-full">
             {user ? "Checkout" : "Sign in to checkout"}
           </button>
-          <Link to="/shop" className="mt-3 block text-center text-sm text-muted hover:text-rust">Continue shopping</Link>
+          <Link to="/shop" className="mt-3 block text-center text-sm text-muted hover:text-primary">Continue shopping</Link>
           <CouponList className="mt-6 border-t border-line pt-6" />
         </aside>
       </div>

@@ -80,7 +80,7 @@ export function QuickViewModal({ slug }: { slug: string }) {
               </div>
             </div>
 
-            <button onClick={add} disabled={busy || !variant} className="mt-6 w-full bg-secondary py-3.5 label-caps text-white transition-opacity hover:opacity-90 disabled:opacity-50">
+            <button onClick={add} disabled={busy || !variant} className="mt-6 w-full bg-primary py-3.5 label-caps text-white transition-opacity hover:opacity-90 disabled:opacity-50">
               {variant ? "Add to Bag" : "Select a size"}
             </button>
             <Link to={`/product/${p.slug}`} onClick={closeQuickView} className="mt-3 block text-center label-caps text-[11px] text-on-surface-variant hover:text-secondary">View full details</Link>
