@@ -420,9 +420,9 @@ function ProductRail({ title, items }: { title: string; items: { id: string; slu
   return (
     <section className="overflow-hidden py-12">
       <h2 className="container-px mb-10 font-headline-lg text-3xl text-primary md:text-headline-lg">{title}</h2>
-      <div className="no-scrollbar container-px flex gap-gutter overflow-x-auto pb-4">
+      <div className="no-scrollbar container-px flex snap-x snap-mandatory scroll-pl-5 gap-gutter overflow-x-auto scroll-smooth pb-4 md:scroll-pl-16">
         {items.map((p) => (
-          <Link key={p.id} to={`/product/${p.slug}`} className="group w-[240px] shrink-0 md:w-[280px]">
+          <Link key={p.id} to={`/product/${p.slug}`} className="group w-[240px] shrink-0 snap-start md:w-[280px]">
             <div className="slow-zoom mb-4 aspect-[3/4] bg-surface-container">
               {p.image && <img src={p.image} alt={p.name} className="h-full w-full object-cover" loading="lazy" />}
             </div>

@@ -6,6 +6,14 @@ import { formatINR } from "@/lib/format";
 import { Modal } from "@/components/Overlay";
 import { MIcon } from "@/components/Reveal";
 
+const QUICK = [
+  { label: "Ajrakh", href: "/shop?craft=ajrakh" },
+  { label: "Bagru", href: "/shop?craft=bagru" },
+  { label: "Dabu", href: "/shop?craft=dabu" },
+  { label: "Dabu-Bagru", href: "/shop?craft=dabu-bagru" },
+  { label: "Shop all", href: "/shop" },
+];
+
 export function SearchModal() {
   const { closeSearch } = useUI();
   const navigate = useNavigate();
@@ -45,8 +53,19 @@ export function SearchModal() {
         {isFetching && active && <MIcon name="progress_activity" className="animate-spin text-on-surface-variant" />}
       </form>
 
-      <div className="max-h-[50vh] overflow-y-auto">
-        {!active && <p className="px-5 py-8 text-center text-sm text-on-surface-variant">Type at least 2 letters to search.</p>}
+      <div className="max-h-[55vh] overflow-y-auto scroll-smooth">
+        {!active && (
+          <div className="px-5 py-6">
+            <p className="label-caps mb-3 text-[10px] text-on-surface-variant">Explore</p>
+            <div className="flex flex-wrap gap-2">
+              {QUICK.map((c) => (
+                <button key={c.label} onClick={() => go(c.href)} className="border border-outline-variant px-4 py-2 label-caps text-[11px] text-primary transition-colors hover:border-primary hover:bg-surface-container">
+                  {c.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
         {active && results.length === 0 && !isFetching && (
           <p className="px-5 py-8 text-center text-sm text-on-surface-variant">No matches for “{debounced}”.</p>
         )}
