@@ -46,7 +46,7 @@ export const StorefrontLayout = () => {
       <nav
         className={cx(
           "fixed top-0 z-50 flex h-20 w-full items-center justify-between px-5 transition-all duration-500 md:px-margin-desktop",
-          solid ? "bg-surface-bright/95 backdrop-blur-xl border-b border-outline-variant/50 shadow-sm" : "bg-transparent",
+          solid ? "bg-[#fffdf8]/95 backdrop-blur-xl border-b border-outline-variant/50 shadow-sm" : "bg-transparent",
         )}
       >
         <div className="flex items-center gap-12">
