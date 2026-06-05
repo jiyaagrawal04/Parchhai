@@ -70,7 +70,7 @@
 
 /* Paper-grain background + fixed grain overlay (editorial texture) */
 .paper-grain {
-  background-color: #fdf8f7;
+  background-color: #f5eee2;
   background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
 }
 .grain-overlay {
