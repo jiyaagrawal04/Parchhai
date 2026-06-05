@@ -45,7 +45,7 @@ export const StorefrontLayout = () => {
       <nav
         className={cx(
           "fixed top-0 z-50 flex h-20 w-full items-center justify-between px-5 transition-all duration-500 md:px-margin-desktop",
-          solid ? "bg-surface/90 backdrop-blur-xl border-b border-outline/10" : "bg-transparent",
+          solid ? "bg-surface-container-lowest/95 backdrop-blur-xl border-b border-outline-variant/40 shadow-sm" : "bg-transparent",
         )}
       >
         <div className="flex items-center gap-12">
@@ -97,7 +97,7 @@ export const StorefrontLayout = () => {
       </main>
 
       {/* Footer (matches Stitch) */}
-      <footer className="border-t border-outline-variant bg-surface-container">
+      <footer className="border-t border-outline-variant bg-surface-container-lowest">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-gutter px-5 py-24 md:grid-cols-4 md:px-margin-desktop">
           <div className="flex flex-col gap-6">
             <img src="/logo.png" alt="Parchhai" className="h-12 w-auto self-start" />
