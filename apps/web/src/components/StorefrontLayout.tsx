@@ -49,8 +49,8 @@ export const StorefrontLayout = () => {
         )}
       >
         <div className="flex items-center gap-12">
-          <Link to="/" className={cx("font-display-lg text-headline-md tracking-tighter transition-colors", textOnDark ? "text-surface" : "text-primary")}>
-            Parchhai
+          <Link to="/" className="flex items-center" aria-label="Parchhai — home">
+            <img src="/logo.png" alt="Parchhai" className={cx("h-10 w-auto transition-all", textOnDark && "brightness-0 invert")} />
           </Link>
           <div className="hidden gap-8 md:flex">
             {nav.map((n) => (
@@ -100,7 +100,7 @@ export const StorefrontLayout = () => {
       <footer className="border-t border-outline-variant bg-surface-container">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-gutter px-5 py-24 md:grid-cols-4 md:px-margin-desktop">
           <div className="flex flex-col gap-6">
-            <span className="font-display-lg text-headline-md text-primary">Parchhai</span>
+            <img src="/logo.png" alt="Parchhai" className="h-12 w-auto self-start" />
             <p className="text-body-md text-on-surface-variant max-w-[220px]">
               Preserving the soul of Indian textiles through editorial silhouettes and unhurried design.
             </p>

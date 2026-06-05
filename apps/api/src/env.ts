@@ -24,6 +24,11 @@ const schema = z.object({
   R2_BUCKET: z.string().optional().default("parchhai-media"),
   R2_PUBLIC_URL: z.string().optional().default(""),
 
+  // Supabase Storage (media uploads)
+  SUPABASE_URL: z.string().optional().default(""),
+  SUPABASE_SERVICE_ROLE_KEY: z.string().optional().default(""),
+  SUPABASE_BUCKET: z.string().optional().default("media"),
+
   RESEND_API_KEY: z.string().optional().default(""),
   MSG91_API_KEY: z.string().optional().default(""),
   NOTIFY_FROM_EMAIL: z.string().optional().default("hello@parchhai.example"),
@@ -33,3 +38,4 @@ export const env = schema.parse(process.env);
 
 export const usingRazorpay = Boolean(env.RAZORPAY_KEY_ID && env.RAZORPAY_KEY_SECRET);
 export const usingR2 = Boolean(env.R2_ACCOUNT_ID && env.R2_ACCESS_KEY_ID && env.R2_SECRET_ACCESS_KEY);
+export const usingSupabaseStorage = Boolean(env.SUPABASE_URL && env.SUPABASE_SERVICE_ROLE_KEY);

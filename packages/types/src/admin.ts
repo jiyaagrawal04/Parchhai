@@ -35,6 +35,7 @@ export const adminProductInput = z.object({
   fabric: z.string().optional(),
   careInstructions: z.string().optional(),
   artisanCluster: z.string().optional(),
+  videoUrl: z.string().optional(),
   basePrice: z.number().int().nonnegative(),
   status: ProductStatus.default("DRAFT"),
   seoTitle: z.string().optional(),
@@ -104,7 +105,7 @@ export const bannerInput = z.object({
   image: z.string().url(),
   ctaLabel: z.string().optional(),
   ctaHref: z.string().optional(),
-  placement: z.enum(["home_hero", "strip", "category"]).default("home_hero"),
+  placement: z.enum(["home_hero", "strip", "category", "home_film"]).default("home_hero"),
   position: z.number().int().default(0),
   active: z.boolean().default(true),
 });
@@ -135,7 +136,8 @@ export const craftInput = z.object({
   region: z.string().min(1),
   story: z.string().min(1),
   dyes: z.array(z.string()).default([]),
-  heroImage: z.string().url().optional(),
+  heroImage: z.string().optional(),
+  videoUrl: z.string().optional(),
 });
 
 // ── Reviews moderation ──────────────────────────────────

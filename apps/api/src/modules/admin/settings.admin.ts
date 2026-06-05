@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
+import multer from "multer";
 import { idParam, staffInput, STAFF_ROLES, Role } from "@parchhai/types";
 import { prisma } from "../../lib/prisma.js";
 import { ApiError, asyncHandler } from "../../lib/errors.js";
@@ -9,7 +10,17 @@ import { validate } from "../../middleware/validate.js";
 import { requireRole } from "../../middleware/auth.js";
 import { recordAudit } from "../../services/audit.js";
 import { uploader } from "../../services/upload.js";
+import { uploadMedia } from "../../services/storage.js";
 import { notify } from "../../services/notify.js";
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 50 * 1024 * 1024 }, // 50 MB
+  fileFilter: (_req, file, cb) => {
+    if (/^(image|video)\//.test(file.mimetype)) cb(null, true);
+    else cb(new Error("Only image or video files are allowed"));
+  },
+});
 
 const router = Router();
 const ownerOnly = requireRole("OWNER", "ADMIN");
@@ -97,5 +108,17 @@ router.post(
 
 // Stub PUT target so the stub uploader's signed URL resolves locally (no-op store).
 router.put("/uploads/stub-put/:key", (_req, res) => res.status(200).json({ data: { stored: true } }));
+
+// ── Direct media upload (image/video) → Supabase Storage ────
+router.post(
+  "/uploads",
+  upload.single("file"),
+  asyncHandler(async (req, res) => {
+    const file = (req as unknown as { file?: { buffer: Buffer; originalname: string; mimetype: string } }).file;
+    if (!file) throw ApiError.badRequest("No file provided");
+    const result = await uploadMedia(file.buffer, file.originalname, file.mimetype);
+    ok(res, result);
+  }),
+);
 
 export default router;

@@ -199,6 +199,7 @@ model Craft {
   story     String // long-form narrative
   dyes      String[] // natural dyes used
   heroImage String?
+  videoUrl  String? // optional craft video (≤50MB)
   position  Int       @default(0)
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -235,6 +236,7 @@ model Product {
   fabric          String?
   careInstructions String?
   artisanCluster  String?
+  videoUrl        String? // optional product video (≤50MB)
   basePrice       Int // stored in paise (₹ * 100)
   status          ProductStatus @default(DRAFT)
   seoTitle        String?

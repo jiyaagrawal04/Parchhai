@@ -4,8 +4,10 @@ import { api, apiError } from "@/lib/api";
 import { formatINR } from "@/lib/format";
 import { AdminHeader, Table, Td } from "@/components/admin";
 import { Badge, PageLoader } from "@/components/ui";
+import { MediaUpload } from "@/components/admin/MediaUpload";
 
 interface Coupon { code: string; type: string; value: number; minOrder: number; perUserLimit: number; usedCount: number; active: boolean; }
+interface Banner { id: string; title: string; image: string; placement: string; }
 
 export default function Marketing() {
   const qc = useQueryClient();
@@ -25,10 +27,30 @@ export default function Marketing() {
   };
   const toggle = async (code: string) => { await api.delete(`/admin/marketing/coupons/${code}`); await qc.invalidateQueries({ queryKey: ["admin", "coupons"] }); };
 
+  const { data: banners } = useQuery({
+    queryKey: ["admin", "banners"],
+    queryFn: async () => (await api.get("/admin/marketing/banners")).data.data as Banner[],
+  });
+  const film = banners?.find((b) => b.placement === "home_film");
+  const saveFilm = async (url: string) => {
+    try {
+      if (film) await api.put(`/admin/marketing/banners/${film.id}`, { image: url });
+      else await api.post("/admin/marketing/banners", { title: "Parchhai Film", image: url, placement: "home_film", active: true });
+      await qc.invalidateQueries({ queryKey: ["admin", "banners"] });
+      setMsg("Homepage film saved ✓");
+    } catch (e) { setMsg(apiError(e)); }
+  };
+
   return (
     <div>
-      <AdminHeader title="Marketing" subtitle="Coupons and promotions" />
+      <AdminHeader title="Marketing" subtitle="Coupons, promotions, and homepage film" />
       {msg && <p className="mb-4 text-sm text-rust">{msg}</p>}
+
+      <div className="mb-8 card p-5">
+        <p className="label-caps mb-3 text-gold">Homepage brand film (optional · ≤50MB)</p>
+        <div className="max-w-xs"><MediaUpload value={film?.image ?? ""} accept="video/*" onChange={saveFilm} /></div>
+        <p className="mt-2 text-xs text-muted">Upload a video to show a "brand film" section on the homepage. Leave empty to hide it.</p>
+      </div>
 
       <div className="mb-8 card p-5">
         <p className="label-caps mb-3 text-gold">New coupon</p>
@@ -37,11 +59,11 @@ export default function Marketing() {
           <select className="input" value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })}>
             {["PERCENT", "FLAT", "FREESHIP", "BOGO"].map((t) => <option key={t}>{t}</option>)}
           </select>
-          <input className="input" type="number" placeholder="Value" value={form.value} onChange={(e) => setForm({ ...form, value: Number(e.target.value) })} />
-          <input className="input" type="number" placeholder="Min order (paise)" value={form.minOrder} onChange={(e) => setForm({ ...form, minOrder: Number(e.target.value) })} />
+          <input className="input" type="number" placeholder={form.type === "FLAT" ? "Value (₹)" : "Value"} value={form.type === "FLAT" ? form.value / 100 : form.value} onChange={(e) => { const n = Number(e.target.value); setForm({ ...form, value: form.type === "FLAT" ? Math.round(n * 100) : n }); }} />
+          <input className="input" type="number" placeholder="Min order (₹)" value={form.minOrder / 100} onChange={(e) => setForm({ ...form, minOrder: Math.round(Number(e.target.value) * 100) })} />
           <button onClick={create} className="btn-primary">Create</button>
         </div>
-        <p className="mt-2 text-xs text-muted">PERCENT value = % (0–100). FLAT value = paise. Min order in paise (₹1 = 100).</p>
+        <p className="mt-2 text-xs text-muted">PERCENT value = % (0–100). FLAT value &amp; Min order are in ₹ (rupees).</p>
       </div>
 
       {isLoading ? <PageLoader /> : (

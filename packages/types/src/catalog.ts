@@ -11,6 +11,7 @@ export interface CraftDTO {
   story: string;
   dyes: string[];
   heroImage: string | null;
+  videoUrl: string | null;
 }
 
 export interface CategoryDTO {
@@ -55,6 +56,7 @@ export interface ProductDetailDTO extends Omit<ProductListItemDTO, "image"> {
   fabric: string | null;
   careInstructions: string | null;
   artisanCluster: string | null;
+  videoUrl: string | null;
   status: ProductStatus;
   images: ProductImageDTO[];
   variants: ProductVariantDTO[];

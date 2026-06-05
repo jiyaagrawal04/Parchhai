@@ -36,7 +36,7 @@ export function LoginModal() {
 
   return (
     <Modal onClose={closeLogin} className="w-full max-w-md p-8 md:p-10">
-      <span className="font-display-lg text-2xl tracking-tighter text-primary">Parchhai</span>
+      <img src="/logo.png" alt="Parchhai" className="h-11 w-auto" />
       <h1 className="mt-6 font-headline-md text-2xl text-primary">{mode === "signup" ? "Create account" : "Welcome back"}</h1>
       <p className="mt-1 text-sm text-on-surface-variant">{mode === "signup" ? "Join us in keeping block-print crafts alive." : "Sign in to continue."}</p>
 

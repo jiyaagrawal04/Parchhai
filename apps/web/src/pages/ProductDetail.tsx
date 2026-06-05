@@ -113,6 +113,12 @@ export default function ProductDetail() {
   const related = (relatedData?.items ?? []).filter((x) => x.slug !== p.slug).slice(0, 4);
   const recent = (recentData?.items ?? []).filter((x) => x.slug !== p.slug).slice(0, 4);
 
+  const media = [
+    ...p.images.map((im) => ({ type: "image" as const, url: im.url, id: im.id })),
+    ...(p.videoUrl ? [{ type: "video" as const, url: p.videoUrl, id: "video" }] : []),
+  ];
+  const activeMedia = media[activeImg] ?? media[0];
+
   return (
     <div className="pb-24 md:pb-0">
       {/* Breadcrumb */}
@@ -129,22 +135,32 @@ export default function ProductDetail() {
         {/* Gallery */}
         <div className="md:col-span-7">
           <div className="flex flex-col-reverse gap-4 md:flex-row">
-            {p.images.length > 1 && (
+            {media.length > 1 && (
               <div className="flex gap-3 overflow-x-auto md:w-20 md:flex-col">
-                {p.images.map((im, i) => (
+                {media.map((m, i) => (
                   <button
-                    key={im.id}
+                    key={m.id}
                     onClick={() => setActiveImg(i)}
-                    className={cx("h-24 w-20 shrink-0 overflow-hidden border-2 transition-opacity", i === activeImg ? "border-primary opacity-100" : "border-transparent opacity-60")}
+                    className={cx("relative h-24 w-20 shrink-0 overflow-hidden border-2 transition-opacity", i === activeImg ? "border-primary opacity-100" : "border-transparent opacity-60")}
                   >
-                    <img src={im.url} alt="" className="h-full w-full object-cover" />
+                    {m.type === "image" ? (
+                      <img src={m.url} alt="" className="h-full w-full object-cover" />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-primary">
+                        <MIcon name="play_circle" className="text-2xl text-white" />
+                      </div>
+                    )}
                   </button>
                 ))}
               </div>
             )}
-            <div className="slow-zoom flex-1 cursor-zoom-in bg-surface-container-high" onClick={() => p.images[activeImg] && setLightbox(p.images[activeImg].url)}>
-              {p.images[activeImg] ? (
-                <img src={p.images[activeImg].url} alt={p.name} className="aspect-[3/4] h-auto w-full object-cover" />
+            <div className="flex-1 bg-surface-container-high">
+              {activeMedia?.type === "video" ? (
+                <video src={activeMedia.url} controls playsInline className="aspect-[3/4] h-auto w-full bg-black object-contain" />
+              ) : activeMedia ? (
+                <div className="slow-zoom cursor-zoom-in" onClick={() => setLightbox(activeMedia.url)}>
+                  <img src={activeMedia.url} alt={p.name} className="aspect-[3/4] h-auto w-full object-cover" />
+                </div>
               ) : (
                 <div className="flex aspect-[3/4] items-center justify-center text-on-surface-variant">No image</div>
               )}

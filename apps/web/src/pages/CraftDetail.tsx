@@ -30,6 +30,12 @@ export default function CraftDetail() {
         </div>
       </section>
 
+      {craft.videoUrl && (
+        <section className="container-px pb-16">
+          <video src={craft.videoUrl} controls playsInline className="aspect-video w-full bg-black object-contain" />
+        </section>
+      )}
+
       {products && products.items.length > 0 && (
         <section className="container-px pb-20">
           <div className="mb-8 flex items-end justify-between">

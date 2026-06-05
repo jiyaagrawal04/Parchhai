@@ -81,6 +81,7 @@ const buildProductData = (input: AdminProductInput) => ({
   fabric: input.fabric,
   careInstructions: input.careInstructions,
   artisanCluster: input.artisanCluster,
+  videoUrl: input.videoUrl ?? null,
   basePrice: input.basePrice,
   status: input.status,
   seoTitle: input.seoTitle,
@@ -200,7 +201,7 @@ router.post(
   validate(craftInput),
   asyncHandler(async (req, res) => {
     const input = req.body as z.infer<typeof craftInput>;
-    const craft = await prisma.craft.create({ data: { name: input.name, slug: input.slug ?? slugify(input.name), region: input.region, story: input.story, dyes: input.dyes, heroImage: input.heroImage } });
+    const craft = await prisma.craft.create({ data: { name: input.name, slug: input.slug ?? slugify(input.name), region: input.region, story: input.story, dyes: input.dyes, heroImage: input.heroImage, videoUrl: input.videoUrl } });
     ok(res, craft, 201);
   }),
 );
@@ -212,7 +213,7 @@ router.put(
   validate(craftInput),
   asyncHandler(async (req, res) => {
     const input = req.body as z.infer<typeof craftInput>;
-    const craft = await prisma.craft.update({ where: { id: req.params.id }, data: { name: input.name, region: input.region, story: input.story, dyes: input.dyes, heroImage: input.heroImage } });
+    const craft = await prisma.craft.update({ where: { id: req.params.id }, data: { name: input.name, region: input.region, story: input.story, dyes: input.dyes, heroImage: input.heroImage, videoUrl: input.videoUrl } });
     ok(res, craft);
   }),
 );

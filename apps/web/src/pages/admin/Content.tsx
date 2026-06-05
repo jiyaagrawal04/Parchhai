@@ -3,6 +3,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { api, apiError } from "@/lib/api";
 import { AdminHeader, Table, Td } from "@/components/admin";
 import { Badge, PageLoader } from "@/components/ui";
+import { MediaUpload } from "@/components/admin/MediaUpload";
 
 interface Post { id: string; title: string; slug: string; status: string; author: string | null; }
 
@@ -33,7 +34,10 @@ export default function Content() {
         <p className="label-caps mb-3 text-gold">New journal post</p>
         <div className="grid gap-3">
           <input className="input" placeholder="Title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
-          <input className="input" placeholder="Cover image URL" value={form.coverImage} onChange={(e) => setForm({ ...form, coverImage: e.target.value })} />
+          <div>
+            <p className="label-caps mb-1 text-muted">Cover image</p>
+            <div className="max-w-xs"><MediaUpload value={form.coverImage} onChange={(url) => setForm({ ...form, coverImage: url })} /></div>
+          </div>
           <input className="input" placeholder="Excerpt" value={form.excerpt} onChange={(e) => setForm({ ...form, excerpt: e.target.value })} />
           <textarea className="input" rows={4} placeholder="Body" value={form.body} onChange={(e) => setForm({ ...form, body: e.target.value })} />
           <div className="flex gap-3">

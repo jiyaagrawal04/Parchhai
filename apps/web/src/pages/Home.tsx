@@ -60,6 +60,7 @@ export default function Home() {
   const { openQuickView } = useUI();
 
   const hero = banners?.find((b) => b.placement === "home_hero");
+  const film = banners?.find((b) => b.placement === "home_film");
   const arrivals = (newest?.items ?? []).slice(0, 4);
   const bestSellers = (popular?.items ?? []).slice(0, 8);
   const heritageCrafts = crafts ?? [];
@@ -193,6 +194,17 @@ export default function Home() {
                 <p className="label-caps text-on-surface-variant">{formatINR(p.basePrice)}</p>
               </Link>
             ))}
+          </Reveal>
+        </section>
+      )}
+
+      {/* 5b. Brand film (shown only if a home_film banner is set in admin) */}
+      {film?.image && (
+        <section className="bg-surface-container-low px-5 py-24 md:px-margin-desktop md:py-section-gap">
+          <Reveal className="mx-auto max-w-5xl text-center">
+            <span className="label-caps mb-3 block text-secondary">{film.subtitle || "Parchhai Film"}</span>
+            <h2 className="mb-8 font-display-lg text-3xl text-primary md:text-headline-lg">{film.title || "Parchhai, in motion"}</h2>
+            <video src={film.image} controls playsInline className="aspect-video w-full bg-black object-contain shadow-xl" />
           </Reveal>
         </section>
       )}

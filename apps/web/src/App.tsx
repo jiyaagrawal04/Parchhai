@@ -31,6 +31,7 @@ import AccountWishlist from "@/pages/account/Wishlist";
 import Dashboard from "@/pages/admin/Dashboard";
 import AdminProducts from "@/pages/admin/Products";
 import AdminProductEdit from "@/pages/admin/ProductEdit";
+import AdminCrafts from "@/pages/admin/Crafts";
 import AdminInventory from "@/pages/admin/Inventory";
 import AdminOrders from "@/pages/admin/Orders";
 import AdminOrderDetail from "@/pages/admin/OrderDetail";
@@ -92,6 +93,7 @@ export default function App() {
         <Route index element={<Dashboard />} />
         <Route path="products" element={<AdminProducts />} />
         <Route path="products/:id" element={<AdminProductEdit />} />
+        <Route path="crafts" element={<AdminCrafts />} />
         <Route path="inventory" element={<AdminInventory />} />
         <Route path="orders" element={<AdminOrders />} />
         <Route path="orders/:id" element={<AdminOrderDetail />} />

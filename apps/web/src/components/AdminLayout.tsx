@@ -1,7 +1,7 @@
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard, Package, Boxes, ShoppingCart, Users, RotateCcw,
-  Megaphone, FileText, Star, BarChart3, Settings as SettingsIcon, LogOut,
+  Megaphone, FileText, Star, BarChart3, Settings as SettingsIcon, LogOut, Palette,
 } from "lucide-react";
 import { useAuth } from "@/store/auth";
 import { cx } from "@/lib/format";
@@ -9,6 +9,7 @@ import { cx } from "@/lib/format";
 const nav = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, end: true },
   { to: "/admin/products", label: "Catalog", icon: Package },
+  { to: "/admin/crafts", label: "Crafts", icon: Palette },
   { to: "/admin/inventory", label: "Inventory", icon: Boxes },
   { to: "/admin/orders", label: "Orders", icon: ShoppingCart },
   { to: "/admin/customers", label: "Customers", icon: Users },
@@ -26,8 +27,8 @@ export const AdminLayout = () => {
   return (
     <div className="flex min-h-screen bg-ivory">
       <aside className="sticky top-0 flex h-screen w-60 shrink-0 flex-col bg-indigo-deep text-ivory">
-        <Link to="/admin" className="border-b border-white/10 px-6 py-5 font-serif text-2xl font-bold">
-          Parchhai<span className="text-gold">.</span>
+        <Link to="/admin" className="flex items-center border-b border-white/10 px-6 py-5">
+          <img src="/logo.png" alt="Parchhai" className="h-9 w-auto brightness-0 invert" />
         </Link>
         <nav className="flex-1 overflow-y-auto py-4">
           {nav.map((n) => (

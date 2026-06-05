@@ -6,14 +6,15 @@ import { api, apiError, unwrap } from "@/lib/api";
 import { useCrafts, useCategories } from "@/lib/hooks";
 import { AdminHeader } from "@/components/admin";
 import { ErrorNote, PageLoader } from "@/components/ui";
+import { MediaUpload } from "@/components/admin/MediaUpload";
 
 interface VariantForm { id?: string; sku: string; size: string; color: string; price: number; stock: number; lowStockThreshold: number; }
 interface Form {
   name: string; description: string; basePrice: number; craftId: string; categoryId: string;
-  fabric: string; careInstructions: string; artisanCluster: string; status: string;
+  fabric: string; careInstructions: string; artisanCluster: string; videoUrl: string; status: string;
   images: { url: string; alt: string }[]; variants: VariantForm[];
 }
-const empty: Form = { name: "", description: "", basePrice: 0, craftId: "", categoryId: "", fabric: "", careInstructions: "", artisanCluster: "", status: "DRAFT", images: [], variants: [] };
+const empty: Form = { name: "", description: "", basePrice: 0, craftId: "", categoryId: "", fabric: "", careInstructions: "", artisanCluster: "", videoUrl: "", status: "DRAFT", images: [], variants: [] };
 
 export default function ProductEdit() {
   const { id = "" } = useParams();
@@ -36,7 +37,7 @@ export default function ProductEdit() {
       setForm({
         name: existing.name, description: existing.description, basePrice: existing.basePrice,
         craftId: "", categoryId: "", fabric: existing.fabric ?? "", careInstructions: existing.careInstructions ?? "",
-        artisanCluster: existing.artisanCluster ?? "", status: existing.status,
+        artisanCluster: existing.artisanCluster ?? "", videoUrl: existing.videoUrl ?? "", status: existing.status,
         images: existing.images.map((i) => ({ url: i.url, alt: i.alt ?? "" })),
         variants: existing.variants.map((v) => ({ id: v.id, sku: v.sku, size: v.size, color: v.color, price: v.price, stock: v.stock, lowStockThreshold: 5 })),
       });
@@ -72,7 +73,7 @@ export default function ProductEdit() {
 
       <div className="grid gap-6 md:grid-cols-2">
         <label className="block"><span className="label-caps text-muted">Name</span><input className="input mt-1" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></label>
-        <label className="block"><span className="label-caps text-muted">Base price (paise)</span><input type="number" className="input mt-1" value={form.basePrice} onChange={(e) => setForm({ ...form, basePrice: Number(e.target.value) })} /></label>
+        <label className="block"><span className="label-caps text-muted">Base price (₹)</span><input type="number" className="input mt-1" value={form.basePrice / 100} onChange={(e) => setForm({ ...form, basePrice: Math.round(Number(e.target.value) * 100) })} /></label>
         <label className="block"><span className="label-caps text-muted">Craft</span>
           <select className="input mt-1" value={form.craftId} onChange={(e) => setForm({ ...form, craftId: e.target.value })}>
             <option value="">—</option>{crafts?.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
@@ -95,10 +96,23 @@ export default function ProductEdit() {
 
       {/* Images */}
       <div className="mt-8">
-        <div className="mb-2 flex items-center justify-between"><p className="label-caps text-gold">Images</p><button onClick={() => setForm({ ...form, images: [...form.images, { url: "", alt: "" }] })} className="text-xs text-rust">+ Add image URL</button></div>
-        {form.images.map((im, i) => (
-          <input key={i} className="input mb-2" placeholder="https://…" value={im.url} onChange={(e) => setForm({ ...form, images: form.images.map((x, idx) => idx === i ? { ...x, url: e.target.value } : x) })} />
-        ))}
+        <div className="mb-3 flex items-center justify-between"><p className="label-caps text-gold">Images</p><button onClick={() => setForm({ ...form, images: [...form.images, { url: "", alt: "" }] })} className="text-xs text-rust">+ Add image</button></div>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+          {form.images.map((im, i) => (
+            <div key={i}>
+              <MediaUpload value={im.url} onChange={(url) => setForm({ ...form, images: form.images.map((x, idx) => (idx === i ? { ...x, url } : x)) })} />
+              <button onClick={() => setForm({ ...form, images: form.images.filter((_, idx) => idx !== i) })} className="mt-1 text-xs text-muted hover:text-rust">Remove</button>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Product video */}
+      <div className="mt-8">
+        <p className="label-caps mb-3 text-gold">Product video (optional · ≤50MB)</p>
+        <div className="max-w-xs">
+          <MediaUpload value={form.videoUrl} accept="video/*" onChange={(url) => setForm({ ...form, videoUrl: url })} />
+        </div>
       </div>
 
       {/* Variants */}
@@ -110,7 +124,7 @@ export default function ProductEdit() {
               <input className="input" placeholder="SKU" value={v.sku} onChange={(e) => setVariant(i, { sku: e.target.value })} />
               <input className="input" placeholder="Size" value={v.size} onChange={(e) => setVariant(i, { size: e.target.value })} />
               <input className="input" placeholder="Color" value={v.color} onChange={(e) => setVariant(i, { color: e.target.value })} />
-              <input className="input" type="number" placeholder="Price" value={v.price} onChange={(e) => setVariant(i, { price: Number(e.target.value) })} />
+              <input className="input" type="number" placeholder="Price (₹)" value={v.price / 100} onChange={(e) => setVariant(i, { price: Math.round(Number(e.target.value) * 100) })} />
               <input className="input" type="number" placeholder="Stock" value={v.stock} disabled={!isNew && !!v.id} title={!isNew && v.id ? "Adjust stock from Inventory" : ""} onChange={(e) => setVariant(i, { stock: Number(e.target.value) })} />
             </div>
           ))}

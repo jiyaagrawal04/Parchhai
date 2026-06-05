@@ -50,6 +50,7 @@ export const toProductDetail = (p: ProductDetailRow): ProductDetailDTO => ({
   fabric: p.fabric,
   careInstructions: p.careInstructions,
   artisanCluster: p.artisanCluster,
+  videoUrl: p.videoUrl,
   status: p.status,
   craft: p.craft,
   category: p.category,
@@ -78,6 +79,7 @@ export const toCraftDTO = (c: {
   story: string;
   dyes: string[];
   heroImage: string | null;
+  videoUrl: string | null;
 }): CraftDTO => ({ ...c });
 
 // ── Cart ──
