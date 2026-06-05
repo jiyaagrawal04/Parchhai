@@ -26,13 +26,6 @@ const WASH_CARE = [
   { icon: "block", label: "Do not bleach" },
 ];
 
-const COMMUNITY_IMG = [
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuA41odvAmqiSVICGLGqvtf8wOXPKWue0RpRojMIRWCeVeowwJlZsvunCjG0owQ_JHQdXnxF0ik0sOIr4uQVmSpN0-1V_5poGLfXce4MipmumcYVw0Lgb_YtpTy7AvaQDEBggRnKdrIAD1FNd4TSl8E9JBcW7zmp45zANB1LX4rfEGVAWMVgtWsYrQRcA_4C1UDAfnEJMTcVE0fZ-zBrEoriPdBX3GBx7ZMmUg22EGUOtWPfzxdocM6JOjrdsHgdQn4gZ7mL-kt_jh0x",
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuCmXOi4-GIGJFX1Bg3DRIkjX-RpAkZi14rMtNjvdBp_42pZUcig_M1-o7Ry5JKWWb_uD34qg4D03NxpdDJAZocW7habQpIFddGGaKooqoC2wkiLfDhSRERhNyB7RVwAatJg6QCnIly9cDRPnY6yMIikbEaPssw76X98EozH0XJvTG6AQO42T5Z0PRzAcX2dFTV0U6K3CD4TFMAs1jxBrXoZJDmqeT6peTlOaB8Ca3bl7JsHf7vTKzppnGAkyk8jpkW7_G0j5mNTBmW5",
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuBUG81KcfR-5n0RzoSKkesfQGJ5erbLz2VKD_PmtaXeLeLnG8218fQQcMe9c1YR8pGdPuriFePZ3e8XNGC0SOb2PWA97Eqeoj0OR4LqEF2UaIFNu5S8qLH7z5xGdtY7vMwF8Y-J22yRsmKyqbLx41HjrRaGq_Zm8s3GvQrbuzN8UdRj2S8Q0w60MfrRlGoz5rj3WfGKsFM7AOoE7NNgloMZimZdvNTfPmokQb9b429OhAUKFlFVb9rRBFWlVBALndVtWmJ-cAwviQ5L",
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuBL9VT_PSgiGzYGSAAi-lYT0DCzUbqN5faqqH5nF1Dt46n8KUenbsnXZgWFoNts9UpGEJu286fR2fN0DtNuPM2h153xlon2uqQer7elXImevZlxt2rWtk5iZzjOv4dw1CxFqdd6YHFfXC6OJ7UVnl8DuRR5rqj7Gre18uKqYF5IMi74WJcxidTPcviPykDKHKBKMMqzIv0vMLP6lBYMjaUfuFEnLBNCqKl4koWZCyB6v0FMJWm4dp9m8DCzg1mFHSEYwdp8K017FOEq",
-];
-
 export default function ProductDetail() {
   const { slug = "" } = useParams();
   const { data: p, isLoading } = useProduct(slug);
@@ -173,12 +166,8 @@ export default function ProductDetail() {
           {p.craft && <p className="label-caps text-secondary">{p.craft.name} · Hand-Blocked</p>}
           <h1 className="mt-3 font-headline-lg text-3xl text-primary md:text-4xl">{p.name}</h1>
 
-          {p.ratingCount > 0 ? (
+          {p.ratingCount > 0 && (
             <p className="mt-3 text-sm text-on-surface-variant"><span className="text-secondary">★</span> {p.ratingAvg.toFixed(1)} ({p.ratingCount} reviews)</p>
-          ) : (
-            <a href="#reviews" className="mt-3 inline-flex items-center gap-2 label-caps text-[11px] text-on-surface-variant hover:text-secondary">
-              <MIcon name="auto_awesome" className="text-[16px] text-secondary" /> New arrival · As worn by the community
-            </a>
           )}
 
           <p className="mt-4 font-headline-md text-2xl text-primary">{formatINR(price)}</p>
@@ -335,10 +324,7 @@ export default function ProductDetail() {
           <div className="bg-surface-container-low p-8 text-center md:p-12">
             <MIcon name="reviews" className="mb-3 text-4xl text-secondary" />
             <h3 className="font-headline-md text-xl text-primary">Be the first to review this piece</h3>
-            <p className="mx-auto mt-2 max-w-md text-sm text-on-surface-variant">No reviews yet — here's how the community is styling hand-block crafts.</p>
-            <div className="mx-auto mt-8 grid max-w-4xl grid-cols-2 gap-4 md:grid-cols-4">
-              {COMMUNITY_IMG.map((src, i) => <img key={i} src={src} alt="" className="aspect-[3/4] w-full object-cover" loading="lazy" />)}
-            </div>
+            <p className="mx-auto mt-2 max-w-md text-sm text-on-surface-variant">No reviews yet. Bought this? Share your thoughts from your orders.</p>
           </div>
         )}
       </section>

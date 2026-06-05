@@ -10,7 +10,8 @@ import { validate } from "../../middleware/validate.js";
 import { requireRole } from "../../middleware/auth.js";
 import { recordAudit } from "../../services/audit.js";
 import { uploader } from "../../services/upload.js";
-import { uploadMedia } from "../../services/storage.js";
+import { uploadMedia, storageMode } from "../../services/storage.js";
+import { env } from "../../env.js";
 import { notify } from "../../services/notify.js";
 
 const upload = multer({
@@ -108,6 +109,26 @@ router.post(
 
 // Stub PUT target so the stub uploader's signed URL resolves locally (no-op store).
 router.put("/uploads/stub-put/:key", (_req, res) => res.status(200).json({ data: { stored: true } }));
+
+// Diagnostic: sanitized media-storage config (no secret values, only flags/lengths).
+router.get(
+  "/uploads/status",
+  asyncHandler(async (_req, res) => {
+    const url = env.SUPABASE_URL.trim();
+    const key = env.SUPABASE_SERVICE_ROLE_KEY.trim();
+    ok(res, {
+      mode: storageMode,
+      urlSet: Boolean(env.SUPABASE_URL),
+      urlLen: url.length,
+      urlStartsHttps: url.startsWith("https://"),
+      urlHasQuote: env.SUPABASE_URL.includes('"'),
+      keySet: Boolean(env.SUPABASE_SERVICE_ROLE_KEY),
+      keyLen: key.length,
+      keyStartsEyJ: key.startsWith("eyJ"),
+      bucket: env.SUPABASE_BUCKET.trim(),
+    });
+  }),
+);
 
 // ── Direct media upload (image/video) → Supabase Storage ────
 router.post(

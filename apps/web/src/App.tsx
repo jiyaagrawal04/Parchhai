@@ -52,6 +52,14 @@ const RequireAuth = ({ children, staff }: { children: JSX.Element; staff?: boole
   return children;
 };
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
 export default function App() {
   const hydrate = useAuth((s) => s.hydrate);
   useEffect(() => {
@@ -59,7 +67,9 @@ export default function App() {
   }, [hydrate]);
 
   return (
-    <Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Login signup />} />
 
@@ -107,6 +117,7 @@ export default function App() {
       </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+      </Routes>
+    </>
   );
 }
