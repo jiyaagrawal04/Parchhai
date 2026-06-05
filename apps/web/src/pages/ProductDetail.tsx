@@ -6,7 +6,7 @@ import { useUI } from "@/store/ui";
 import { api, apiError } from "@/lib/api";
 import { formatINR, cx } from "@/lib/format";
 import { PageLoader } from "@/components/ui";
-import { MIcon } from "@/components/Reveal";
+import { MIcon, Reveal } from "@/components/Reveal";
 
 const SIZE_ORDER = ["XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 const sortSizes = (sizes: string[]) =>
@@ -418,7 +418,7 @@ function Lightbox({ src, onClose }: { src: string; onClose: () => void }) {
 
 function ProductRail({ title, items }: { title: string; items: { id: string; slug: string; name: string; image: string | null; basePrice: number }[] }) {
   return (
-    <section className="overflow-hidden py-12">
+    <Reveal className="overflow-hidden py-12">
       <h2 className="container-px mb-10 font-headline-lg text-3xl text-primary md:text-headline-lg">{title}</h2>
       <div className="no-scrollbar container-px flex snap-x snap-mandatory scroll-pl-5 gap-gutter overflow-x-auto scroll-smooth pb-4 md:scroll-pl-16">
         {items.map((p) => (
@@ -431,6 +431,6 @@ function ProductRail({ title, items }: { title: string; items: { id: string; slu
           </Link>
         ))}
       </div>
-    </section>
+    </Reveal>
   );
 }

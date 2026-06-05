@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import type { ProductListItemDTO } from "@parchhai/types";
 import { formatINR } from "@/lib/format";
+import { Reveal } from "@/components/Reveal";
 
 export const ProductCard = ({ p }: { p: ProductListItemDTO }) => (
+  <Reveal>
   <Link to={`/product/${p.slug}`} className="group block">
     <div className="slow-zoom aspect-[3/4] bg-line/40">
       {p.image ? (
@@ -20,4 +22,5 @@ export const ProductCard = ({ p }: { p: ProductListItemDTO }) => (
     </div>
     {!p.inStock && <p className="mt-1 text-xs text-rust">Sold out</p>}
   </Link>
+  </Reveal>
 );
