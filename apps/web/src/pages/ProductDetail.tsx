@@ -126,7 +126,7 @@ export default function ProductDetail() {
       {/* MAIN */}
       <div className="container-px grid grid-cols-1 gap-8 pb-16 md:grid-cols-12 md:gap-16">
         {/* Gallery */}
-        <div className="md:col-span-7">
+        <Reveal className="md:col-span-7">
           <div className="flex flex-col-reverse gap-4 md:flex-row">
             {media.length > 1 && (
               <div className="flex gap-3 overflow-x-auto md:w-20 md:flex-col">
@@ -159,7 +159,7 @@ export default function ProductDetail() {
               )}
             </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* Buy box */}
         <div className="md:col-span-5">

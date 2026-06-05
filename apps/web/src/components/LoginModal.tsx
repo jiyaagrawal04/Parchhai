@@ -4,6 +4,7 @@ import { useAuth } from "@/store/auth";
 import { useUI } from "@/store/ui";
 import { apiError } from "@/lib/api";
 import { Modal } from "@/components/Overlay";
+import { Wordmark } from "@/components/Wordmark";
 
 export function LoginModal() {
   const { loginOpen, loginRedirect, closeLogin, showToast } = useUI();
@@ -36,7 +37,7 @@ export function LoginModal() {
 
   return (
     <Modal onClose={closeLogin} className="w-full max-w-md p-8 md:p-10">
-      <img src="/logo.png" alt="Parchhai" className="h-11 w-auto" />
+      <Wordmark className="text-3xl" />
       <h1 className="mt-6 font-headline-md text-2xl text-primary">{mode === "signup" ? "Create account" : "Welcome back"}</h1>
       <p className="mt-1 text-sm text-on-surface-variant">{mode === "signup" ? "Join us in keeping block-print crafts alive." : "Sign in to continue."}</p>
 

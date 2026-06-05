@@ -5,6 +5,7 @@ import { useAuth } from "@/store/auth";
 import { useUI } from "@/store/ui";
 import { cx } from "@/lib/format";
 import { MIcon } from "@/components/Reveal";
+import { Wordmark } from "@/components/Wordmark";
 import { LoginModal } from "@/components/LoginModal";
 import { CartDrawer } from "@/components/CartDrawer";
 import { SearchModal } from "@/components/SearchModal";
@@ -34,9 +35,8 @@ export const StorefrontLayout = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Transparent over the home hero; solid (paper + blur) everywhere else or once scrolled.
+  // Transparent over the home hero; solid deep-brown everywhere else or once scrolled.
   const solid = !isHome || scrolled;
-  const textOnDark = isHome && !scrolled;
 
   return (
     <div className="flex min-h-screen flex-col paper-grain">
@@ -45,12 +45,12 @@ export const StorefrontLayout = () => {
       <nav
         className={cx(
           "fixed top-0 z-50 flex h-20 w-full items-center justify-between px-5 transition-all duration-500 md:px-margin-desktop",
-          solid ? "bg-surface-container-lowest/95 backdrop-blur-xl border-b border-outline-variant/40 shadow-sm" : "bg-transparent",
+          solid ? "bg-[#3D1A06]/95 backdrop-blur-xl border-b border-white/10 shadow-md" : "bg-transparent",
         )}
       >
         <div className="flex items-center gap-12">
           <Link to="/" className="flex items-center" aria-label="Parchhai — home">
-            <img src="/logo.png" alt="Parchhai" className={cx("h-10 w-auto transition-all", textOnDark && "brightness-0 invert")} />
+            <Wordmark light className="text-2xl md:text-3xl" />
           </Link>
           <div className="hidden gap-8 md:flex">
             {nav.map((n) => (
@@ -59,9 +59,8 @@ export const StorefrontLayout = () => {
                 to={n.to}
                 className={({ isActive }) =>
                   cx(
-                    "label-caps pb-1 transition-colors duration-300 hover:text-secondary",
-                    isActive && "border-b border-secondary",
-                    textOnDark ? "text-surface-variant" : isActive ? "text-primary" : "text-on-surface-variant",
+                    "label-caps pb-1 text-surface/70 transition-colors duration-300 hover:text-secondary",
+                    isActive && "border-b border-secondary !text-surface",
                   )
                 }
               >
@@ -70,7 +69,7 @@ export const StorefrontLayout = () => {
             ))}
           </div>
         </div>
-        <div className={cx("flex items-center gap-6 transition-colors", textOnDark ? "text-surface" : "text-primary")}>
+        <div className="flex items-center gap-6 text-surface">
           <button onClick={openSearch} aria-label="Search"><MIcon name="search" className="text-2xl hover:opacity-70" /></button>
           {user ? (
             <Link to="/account/orders" aria-label="Account"><MIcon name="person" className="text-2xl hover:opacity-70" /></Link>
@@ -100,7 +99,7 @@ export const StorefrontLayout = () => {
       <footer className="border-t border-outline-variant bg-surface-container-lowest">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-gutter px-5 py-24 md:grid-cols-4 md:px-margin-desktop">
           <div className="flex flex-col gap-6">
-            <img src="/logo.png" alt="Parchhai" className="h-12 w-auto self-start" />
+            <Wordmark className="self-start text-4xl" />
             <p className="text-body-md text-on-surface-variant max-w-[220px]">
               Preserving the soul of Indian textiles through editorial silhouettes and unhurried design.
             </p>

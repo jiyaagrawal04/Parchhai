@@ -5,6 +5,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "@/store/auth";
 import { cx } from "@/lib/format";
+import { Wordmark } from "@/components/Wordmark";
 
 const nav = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, end: true },
@@ -28,7 +29,7 @@ export const AdminLayout = () => {
     <div className="flex min-h-screen bg-ivory">
       <aside className="sticky top-0 flex h-screen w-60 shrink-0 flex-col bg-indigo-deep text-ivory">
         <Link to="/admin" className="flex items-center border-b border-white/10 px-6 py-5">
-          <img src="/logo.png" alt="Parchhai" className="h-9 w-auto brightness-0 invert" />
+          <Wordmark light className="text-2xl" />
         </Link>
         <nav className="flex-1 overflow-y-auto py-4">
           {nav.map((n) => (
