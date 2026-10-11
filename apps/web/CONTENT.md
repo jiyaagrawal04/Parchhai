@@ -15,30 +15,34 @@ Render) rebuilds the site in about a minute.
 
 ## Add a product
 
-1. Put the photos in `apps/web/public/products/`, e.g.
-   `public/products/ajrakh-indigo-kurti-1.jpg`, `-2.jpg`, `-3.jpg`.
-   Portrait photos (3:4) look best. Keep each under ~500 KB.
+Prices on the current five products are placeholders (`TBD_PRICE` in catalog.ts). Set each real price there.
+
+1. Put the photos in `apps/web/public/products/` named `<name>-1.jpg`, `<name>-2.jpg`...
+   The first photo is the cover. Portrait photos (3:4) look best; resize to about
+   1200 px wide so each stays under ~500 KB.
 2. Open `src/data/catalog.ts`, copy any entry in `PRODUCTS` and edit it:
 
 ```ts
 {
-  slug: "ajrakh-indigo-kurti",          // unique, lowercase, used in the URL
-  name: "Ajrakh Indigo Kurti",
-  price: 2890,                           // rupees
+  slug: "gulnaar-wrap-top",              // unique, lowercase, used in the URL
+  name: "Gulnaar",
+  tagline: "Ajrakh Printed Wrap Top.",   // optional line under the name
+  price: 1999,                           // rupees
   craft: "ajrakh",                       // one of the CRAFTS slugs
-  category: "kurtis",                    // one of the CATEGORIES slugs
-  colors: ["Indigo", "Madder"],
-  sizes: ["XS", "S", "M", "L", "XL"],
-  soldOutSizes: ["XL"],                  // optional
-  images: [
-    "/products/ajrakh-indigo-kurti-1.jpg",
-    "/products/ajrakh-indigo-kurti-2.jpg",
-  ],
-  description: "A relaxed straight kurti in hand-blocked Ajrakh.",
-  fabric: "100% Cotton",
-  care: CARE,
+  category: "tops",                      // one of the CATEGORIES slugs
+  colors: ["Red"],
+  sizes: SIZES,                          // XS, S, M, L
+  soldOutSizes: ["L"],                   // optional
+  images: photos("gulnaar", 5),          // public/products/gulnaar-1.jpg ... -5.jpg
+  description: "First paragraph.
+
+Second paragraph.",
+  details: [["Neckline", "V-neck"], ["Sleeves", "Full-length"]],
+  styling: "How to style it.",
+  craftNote: { title: "A Note on the Craft", body: "..." },
+  care: ["Hand wash separately in cold water.", "Dry in the shade."],
   tags: ["new", "navratri"],             // see below
-  addedOn: "2026-10-11",                 // today's date; newest shows first
+  addedOn: "2026-10-11",                 // newest shows first
 },
 ```
 

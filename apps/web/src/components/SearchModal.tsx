@@ -6,7 +6,7 @@ import { formatINR } from "@/lib/format";
 import { Modal } from "@/components/Overlay";
 import { MIcon } from "@/components/Reveal";
 
-const QUICK = ["Kurtis", "Ajrakh", "Corsets", "Dresses", "Indigo"];
+const QUICK = ["Tops", "Kurtas", "Ajrakh", "Bagru", "Dabu"];
 
 export function SearchModal() {
   const { closeSearch } = useUI();
@@ -35,7 +35,7 @@ export function SearchModal() {
           autoFocus
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="Search for kurtis, crafts, colours"
+          placeholder="Search for tops, kurtas, crafts"
           className="flex-1 bg-transparent text-body-lg outline-none placeholder:text-on-surface-variant/50"
         />
       </form>

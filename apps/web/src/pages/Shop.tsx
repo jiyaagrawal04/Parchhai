@@ -4,7 +4,7 @@ import { CATEGORIES, COLLECTIONS, CRAFTS, getCategory, getCraft, listProducts, t
 import { ProductCard } from "@/components/ProductCard";
 import { Empty, SectionTitle } from "@/components/ui";
 
-const SIZES = ["XS", "S", "M", "L", "XL"];
+const SIZES = ["XS", "S", "M", "L"];
 const SORTS: [SortKey, string][] = [
   ["newest", "Newest"],
   ["bestsellers", "Best sellers first"],

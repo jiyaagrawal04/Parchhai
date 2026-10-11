@@ -1,25 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { craftOf, getProduct, isInStock, relatedTo, sizeAvailable, type Product } from "@/data/catalog";
+import { SIZE_GUIDE, craftOf, getProduct, isInStock, relatedTo, sizeAvailable, type Product } from "@/data/catalog";
 import { FREE_SHIPPING_OVER } from "@/data/site";
 import { useCart } from "@/store/cart";
 import { useUI } from "@/store/ui";
 import { formatINR, cx } from "@/lib/format";
 import { MIcon } from "@/components/Reveal";
 
+const PARA_BREAK = /\n\n/;
+
 const WASH_CARE = [
   { icon: "wash", label: "Gentle hand wash" },
   { icon: "wb_cloudy", label: "Dry in shade" },
   { icon: "iron", label: "Iron on low" },
   { icon: "block", label: "Do not bleach" },
-];
-
-const SIZE_GUIDE: [string, number, number, number][] = [
-  ["XS", 30, 24, 37],
-  ["S", 32, 26, 37.5],
-  ["M", 34, 28, 38],
-  ["L", 36, 30, 38.5],
-  ["XL", 38, 32, 39],
 ];
 
 export default function ProductDetail() {
@@ -116,7 +110,7 @@ export default function ProductDetail() {
           <h1 className="mt-3 font-headline-lg text-3xl text-primary md:text-4xl">{p.name}</h1>
           <p className="mt-4 font-headline-md text-2xl text-primary">{formatINR(p.price)}</p>
           <p className="mt-1 label-caps text-[11px] text-on-surface-variant">MRP incl. of all taxes</p>
-          <p className="mt-6 leading-relaxed text-on-surface-variant">{p.description}</p>
+          {p.tagline && <p className="mt-3 text-body-md italic text-on-surface-variant">{p.tagline}</p>}
 
           {/* Colours */}
           {p.colors.length > 1 && (
@@ -182,19 +176,38 @@ export default function ProductDetail() {
             </ul>
           </div>
 
-          {/* Fabric & details */}
-          <div className="mt-8">
-            <p className="label-caps mb-4">Fabric &amp; Details</p>
-            <div className="grid grid-cols-2 gap-x-6 gap-y-4">
-              {p.fabric && <div><p className="label-caps text-[10px] text-on-surface-variant">Fabric</p><p className="text-sm">{p.fabric}</p></div>}
-              {craft && <div><p className="label-caps text-[10px] text-on-surface-variant">Artisan cluster</p><p className="text-sm">{craft.region}</p></div>}
-            </div>
+          {/* Description */}
+          <div className="mt-8 space-y-4 leading-relaxed text-on-surface-variant">
+            {p.description.split(PARA_BREAK).map((para, i) => <p key={i}>{para}</p>)}
           </div>
 
-          {/* Wash care */}
+          {/* Product details */}
+          {p.details && (
+            <div className="mt-8 border-t border-outline-variant/40 pt-8">
+              <p className="label-caps mb-4">Product Details</p>
+              <dl className="grid grid-cols-[110px_1fr] gap-x-4 gap-y-3 text-sm">
+                {p.details.map(([k, v]) => (
+                  <div key={k} className="contents">
+                    <dt className="label-caps text-[10px] text-on-surface-variant">{k}</dt>
+                    <dd>{v}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          )}
+
+          {/* How to style */}
+          {p.styling && (
+            <div className="mt-8 border-t border-outline-variant/40 pt-8">
+              <p className="label-caps mb-3">How to Style</p>
+              <p className="text-sm leading-relaxed text-on-surface-variant">{p.styling}</p>
+            </div>
+          )}
+
+          {/* Care */}
           <div className="mt-8 border-t border-outline-variant/40 pt-8">
-            <p className="label-caps mb-4">Wash Care</p>
-            <div className="grid grid-cols-4 gap-2 text-center">
+            <p className="label-caps mb-4">Care Instructions</p>
+            <div className="mb-4 grid grid-cols-4 gap-2 text-center">
               {WASH_CARE.map((w) => (
                 <div key={w.label} className="flex flex-col items-center gap-2">
                   <MIcon name={w.icon} className="text-primary" />
@@ -202,8 +215,20 @@ export default function ProductDetail() {
                 </div>
               ))}
             </div>
-            {p.care && <p className="mt-4 text-sm text-on-surface-variant">{p.care}</p>}
+            {p.care && (
+              <ul className="list-disc space-y-1 pl-5 text-sm text-on-surface-variant">
+                {p.care.map((c) => <li key={c}>{c}</li>)}
+              </ul>
+            )}
           </div>
+
+          {/* Craft note */}
+          {p.craftNote && (
+            <div className="mt-8 border-t border-outline-variant/40 pt-8">
+              <p className="label-caps mb-3">{p.craftNote.title}</p>
+              <p className="text-sm leading-relaxed text-on-surface-variant">{p.craftNote.body}</p>
+            </div>
+          )}
         </div>
       </div>
 
@@ -243,16 +268,16 @@ export default function ProductDetail() {
       {sizeGuide && (
         <Modal onClose={() => setSizeGuide(false)}>
           <h3 className="font-headline-md text-2xl text-primary">Size Guide</h3>
-          <p className="label-caps mt-1 text-[11px] text-on-surface-variant">All measurements in inches</p>
+          <p className="label-caps mt-1 text-[11px] text-on-surface-variant">Bust, in inches</p>
           <table className="mt-6 w-full border-collapse text-sm">
-            <thead><tr className="border-b border-outline">{["Size", "Bust", "Waist", "Length"].map((h) => <th key={h} className="py-2 text-left label-caps text-[11px]">{h}</th>)}</tr></thead>
+            <thead><tr className="border-b border-outline">{["Size", "Bust"].map((h) => <th key={h} className="py-2 text-left label-caps text-[11px]">{h}</th>)}</tr></thead>
             <tbody>
-              {SIZE_GUIDE.map((row) => (
-                <tr key={row[0]} className="border-b border-outline-variant/40">{row.map((c, i) => <td key={i} className="py-2">{c}</td>)}</tr>
+              {SIZE_GUIDE.map(([size, bust]) => (
+                <tr key={size} className="border-b border-outline-variant/40"><td className="py-2">{size}</td><td className="py-2">{bust} in</td></tr>
               ))}
             </tbody>
           </table>
-          <p className="mt-6 text-sm text-on-surface-variant">Bust: around the fullest part. Waist: narrowest part. When between sizes, size down for a closer fit. Unsure? Ask us in the Instagram DM when you order.</p>
+          <p className="mt-6 text-sm text-on-surface-variant">Compare the bust measurement with your own. Unsure which size to pick? Ask us in the Instagram DM when you order.</p>
         </Modal>
       )}
 
