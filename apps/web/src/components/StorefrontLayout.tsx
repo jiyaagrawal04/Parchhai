@@ -35,7 +35,9 @@ export const StorefrontLayout = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => setMenuOpen(false), [location.pathname, location.search]);
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname, location.search]);
 
   // Transparent over the home hero; solid (paper + blur) everywhere else or once scrolled.
   const solid = !isHome || scrolled || menuOpen;

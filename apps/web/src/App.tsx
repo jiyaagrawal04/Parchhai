@@ -15,7 +15,9 @@ import Checkout from "@/pages/Checkout";
 /** Scroll to top on every route change (static SPA). */
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-  useEffect(() => window.scrollTo({ top: 0 }), [pathname]);
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [pathname]);
   return null;
 };
 
