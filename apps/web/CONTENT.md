@@ -34,9 +34,7 @@ Prices on the current five products are placeholders (`TBD_PRICE` in catalog.ts)
   sizes: SIZES,                          // XS, S, M, L
   soldOutSizes: ["L"],                   // optional
   images: photos("gulnaar", 5),          // public/products/gulnaar-1.jpg ... -5.jpg
-  description: "First paragraph.
-
-Second paragraph.",
+  description: "First paragraph. (Use two backslash-n characters in a row to start a new paragraph.)",
   details: [["Neckline", "V-neck"], ["Sleeves", "Full-length"]],
   styling: "How to style it.",
   craftNote: { title: "A Note on the Craft", body: "..." },
