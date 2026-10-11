@@ -66,9 +66,9 @@ export interface Product {
 // ── Featured collection (second block on the home page) ──────────────────────
 export const FEATURED_COLLECTION = {
   tag: "navratri" as Tag,
-  eyebrow: "Festive Edit",
+  eyebrow: "Launching today",
   name: "Navratri Collection",
-  blurb: "Nine nights, nine shades of celebration — hand-blocked pieces made to twirl in.",
+  blurb: "The Navratri festive season launch is live today. A rare collection of hand-block printed pieces, made for the nine nights.",
   image: HOME_IMG.featuredCollection,
 };
 
@@ -127,10 +127,6 @@ export const SIZE_GUIDE: [string, number][] = [
   ["L", 36],
 ];
 
-/**
- * TODO: PRICES ARE PLACEHOLDERS. Set the real price on each product below.
- */
-const TBD_PRICE = 1999;
 
 const careSteps = (shade: string) => [
   "Hand wash separately in cold water.",
@@ -149,7 +145,7 @@ export const PRODUCTS: Product[] = [
     slug: "gulnaar-wrap-top",
     name: "Gulnaar",
     tagline: "Ajrakh Printed Wrap Top. Where the colours of tradition meet the art of everyday dressing.",
-    price: TBD_PRICE,
+    price: 1199,
     craft: "ajrakh",
     category: "tops",
     colors: ["Red"],
@@ -184,7 +180,7 @@ export const PRODUCTS: Product[] = [
     slug: "peeli-mitti-kurta",
     name: "Peeli Mitti",
     tagline: "Bagru Printed Cotton Kurta. Earthy hues. Timeless prints. A touch of Rajasthan.",
-    price: TBD_PRICE,
+    price: 799,
     craft: "bagru",
     category: "kurtas",
     colors: ["Mustard yellow"],
@@ -218,7 +214,7 @@ export const PRODUCTS: Product[] = [
     slug: "rust-bloom-blouse",
     name: "Rust Bloom",
     tagline: "Bagru Printed Cotton Blouse. Timeless Rajasthani craftsmanship, made to be cherished.",
-    price: TBD_PRICE,
+    price: 799,
     craft: "bagru",
     category: "tops",
     colors: ["Rust red"],
@@ -258,7 +254,7 @@ export const PRODUCTS: Product[] = [
     slug: "neel-dabu-top",
     name: "Neel Dabu",
     tagline: "Indigo Printed Cotton Top. The art of tradition, in shades of indigo.",
-    price: TBD_PRICE,
+    price: 799,
     craft: "dabu",
     category: "tops",
     colors: ["Indigo blue"],
@@ -292,7 +288,7 @@ export const PRODUCTS: Product[] = [
     slug: "vanika-top",
     name: "The Vanika Top",
     tagline: "Bagru Printed Cotton Tunic. Tradition in every print. Elegance in every detail.",
-    price: TBD_PRICE,
+    price: 899,
     craft: "bagru",
     category: "tops",
     colors: ["Beige"],

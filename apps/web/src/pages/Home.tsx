@@ -48,12 +48,15 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
         </div>
         <Reveal className="relative z-10 max-w-3xl">
+          <span className="mb-6 inline-block border border-white/60 bg-black/30 px-4 py-2 label-caps text-[11px] text-white backdrop-blur-sm">
+            Navratri festive season launch · Live today
+          </span>
           <h1 className="mb-6 font-display-lg text-5xl leading-[1.05] text-white md:text-display-lg">
             Style Your <br />
             <span className="font-normal italic">Shadow</span>
           </h1>
           <p className="mb-10 max-w-lg text-body-lg text-white/85">
-            Parchhai means reflection. The living crafts of Indian hand-block printing, reimagined in contemporary silhouettes. Naturally dyed, printed by hand, made to be lived in.
+            Parchhai means reflection. The living crafts of Indian hand-block printing, reimagined in contemporary silhouettes. Naturally dyed, printed by hand, made to be lived in. The rare collection is here.
           </p>
           <div className="flex flex-col gap-4 sm:flex-row">
             <Link to="/shop" className="bg-white px-10 py-4 text-center label-caps text-primary transition-all duration-300 hover:bg-secondary hover:text-white">

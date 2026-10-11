@@ -29,6 +29,8 @@ export const OFFERS = [
 
 /** Lines in the scrolling announcement bar on the home page. */
 export const ANNOUNCEMENTS = [
+  "Navratri festive season launch, live today",
+  "The rare collection is here",
   `Free delivery over ₹${FREE_SHIPPING_OVER}`,
   "Welcome offer · WELCOME10 — 10% off your first order",
   "Hand-block printed in India",
