@@ -6,6 +6,7 @@ import { CATEGORIES, COLLECTIONS } from "@/data/catalog";
 import { INSTAGRAM_URL, SITE } from "@/data/site";
 import { cx } from "@/lib/format";
 import { MIcon } from "@/components/Reveal";
+import { Wordmark } from "@/components/Wordmark";
 import { CartDrawer } from "@/components/CartDrawer";
 import { SearchModal } from "@/components/SearchModal";
 import { QuickViewModal } from "@/components/QuickViewModal";
@@ -47,12 +48,12 @@ export const StorefrontLayout = () => {
       <nav
         className={cx(
           "fixed top-0 z-50 flex h-20 w-full items-center justify-between px-5 transition-all duration-500 md:px-margin-desktop",
-          solid ? "bg-surface/90 backdrop-blur-xl border-b border-outline/10" : "bg-transparent",
+          solid ? "bg-[#fffdf8]/95 backdrop-blur-xl border-b border-outline-variant/50 shadow-sm" : "bg-transparent",
         )}
       >
         <div className="flex items-center gap-12">
           <Link to="/" className="flex items-center" aria-label="Parchhai home">
-            <img src="/logo.png" alt="Parchhai" className={cx("h-10 w-auto transition-all", textOnDark && "brightness-0 invert")} />
+            <Wordmark light={textOnDark} className="text-2xl md:text-3xl" />
           </Link>
           <div className="hidden gap-8 md:flex">
             {nav.map((n) => (
@@ -63,7 +64,7 @@ export const StorefrontLayout = () => {
                   cx(
                     "label-caps pb-1 transition-colors duration-300 hover:text-secondary",
                     isActive && "border-b border-secondary",
-                    textOnDark ? "text-surface-variant" : isActive ? "text-primary" : "text-on-surface-variant",
+                    textOnDark ? (isActive ? "text-surface" : "text-surface/70") : isActive ? "text-primary" : "text-on-surface-variant",
                   )
                 }
               >
@@ -101,10 +102,10 @@ export const StorefrontLayout = () => {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-outline-variant bg-surface-container">
+      <footer className="border-t border-outline-variant bg-surface-container-lowest">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-gutter px-5 py-24 md:grid-cols-4 md:px-margin-desktop">
           <div className="flex flex-col gap-6">
-            <img src="/logo.png" alt="Parchhai" className="h-12 w-auto self-start" />
+            <Wordmark className="self-start text-4xl" />
             <p className="text-body-md text-on-surface-variant max-w-[220px]">
               Preserving the soul of Indian textiles through editorial silhouettes and unhurried design.
             </p>

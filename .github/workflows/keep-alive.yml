@@ -1,0 +1,15 @@
+name: Keep API awake
+
+# Pings the Render API every ~10 minutes so the free-tier server never spins
+# down — preventing the 30–60s cold-start that makes the site look "not working".
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping API health
+        run: curl -fsS --max-time 60 https://parchhai-1.onrender.com/api/v1/health || true
