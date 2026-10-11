@@ -1,18 +1,7 @@
 import { Link } from "react-router-dom";
 import { Reveal, MIcon } from "@/components/Reveal";
+import { STORY_IMG as IMG } from "@/data/images";
 
-const IMG = {
-  meaning:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuCBLDNjy8LWewoQBz99c8t1glybdImOmehgelYD3tfWvI8J6EIAiLCqoF1X5BBDolRHk-RGMAbUevspLHROWup1VY94vQxsZ5nI227Z_N4qKyqSsegfSPeF7USldaeujoWiEg0BrUT1Hh2GmIG0fPhfmyb-clwBsUtc0DrCxiDxh6JWlCyrklAV3-YFvJR6hvZykFgZDl6vn-m-fVEYn2u64Wpzep92PBneVkT3ifAnPO2kOk8kaQJ19Ckd5dYmVeDelxGQIiwX6DNv",
-  hero:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuA11L-4F8sDBxje2nMy6fAqDXbx8AiFT4UfRHogbhxLoUY7AoXD5OqvoKPpOvw1XRTtVj_1HrZwqM4oRj-GFzFHmGVDGgVP1wrbg_fbfbcjh_0wwSjel7ZHLpQOZyJC6_F57VQ71veZLF3gOVWNhpPzLjoLTtIpRxjXyYbqJa5XlGOH6v_GhOAwAzoEIYB4WO-rkkQ2yAD4uovdZ6S69JvdrOxjku0O4zW0STnsm-yyEURva8YbKbR7lCUC4PPji38lbUNTs2Bmosf7",
-  ourStory:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuBCBExL9QHwYnljfYpnpbx3svxDAYlwJ6Xqb5reaHZcaASKcB37b7BioKtmsBWmWh4zgzA6ZlaX4Te2wW4MtaeN1QqnMfj8kKTAtT-OUb-HbmhhRx6U1-lnGR5neLrvY9IGnZiRqngjg6nQAO1Vm1tn30XGCk610J_YNajSir0Hl2pkwOyzQdITv6rsHfGHsu85V0p3qwK0aeWIhsbBk8lT-usQNRkuYJ5Ds_byxQTOtemNJIoX2s2JaVNo9fLMt6msmJj6NugxjX7Z",
-  craft:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuAptDlNCZb40MUszL_n7VP2RT1YyN_RbYRS3yZjZq0gAZbzt-8gC_MaWSeylG2xaX1OEDlQhdp5gWJSsB_t6DmFCpa4Sst-sp3kD8bXm0sPfcoijDhEN_Ax1szRnttFHHxbbq5wIIK5irnpWcAHTxOb949mNQyvDH8VsiTIVfzX9wxXsrOKXLSOotXcpJv-5rG8yyy3qVm2ZPuNkBFQxxSxCs_l91zLyzJw2vz86gAbC1R__cYI1IP3by1I_S26WR1ImhFy8Y0pdvGJ",
-  sustain:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuCzIl-73DtJqZdu5Hq6CY7AW8UNEr6S5IZfZNKSxJ3OFtLY01eebLuKiTh1MpXIwbHlv4TAuWVElwWqjj1NKyQA7dYGy2a5tBmkvvktEBGKpL7a6fRe5yIgouxebotSdA39MmikPo18wittmX1oVZNa9L5GXPpgVSL0tD-hAQek-mcyiSBNB7q8pdg97nJGWLrL3RV3CFxorAmU5w7GcDzPQOA0yrDZ9jKaUU7MsFDyj_xqD7YzCiXi7bjaAIju5U83hFhtPPOBVVfa",
-};
 
 const VALUES: { title: string; body: string }[] = [
   { title: "Craft Matters", body: "Behind every print is a pair of hands, a carved block, and a memory passed down through generations. We treat that craft as the hero — never the afterthought." },
@@ -61,7 +50,7 @@ export default function Story() {
           </Reveal>
           <Reveal delay={200} className="md:col-span-6">
             <div className="slow-zoom aspect-[4/5] w-full overflow-hidden bg-surface-container">
-              <img src={IMG.meaning} alt="Hand-carved printing blocks resting on indigo-dyed cloth" className="h-full w-full object-cover" />
+              <img src={IMG.meaning} alt="Parchhai hand-block printed indigo top" className="h-full w-full object-cover" />
             </div>
           </Reveal>
         </div>
@@ -86,7 +75,7 @@ export default function Story() {
         <div className="grid grid-cols-1 items-center gap-16 md:grid-cols-2">
           <Reveal>
             <div className="slow-zoom aspect-[4/5] w-full overflow-hidden bg-surface-container">
-              <img src={IMG.ourStory} alt="Hand-block printed garments in a sunlit atelier" className="h-full w-full object-cover" />
+              <img src={IMG.ourStory} alt="Parchhai hand-block printed top in natural light" className="h-full w-full object-cover" />
             </div>
           </Reveal>
           <Reveal delay={200}>
@@ -124,7 +113,7 @@ export default function Story() {
         <div className="grid grid-cols-1 items-center gap-16 md:grid-cols-2">
           <Reveal delay={150} className="md:order-2">
             <div className="slow-zoom aspect-[4/5] w-full overflow-hidden bg-surface-container">
-              <img src={IMG.craft} alt="An artisan pressing a wooden block onto cotton" className="h-full w-full object-cover" />
+              <img src={IMG.craft} alt="Close-up of a hand-block printed indigo Dabu pattern" className="h-full w-full object-cover" />
             </div>
           </Reveal>
           <Reveal className="md:order-1">

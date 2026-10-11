@@ -69,7 +69,7 @@ export const FEATURED_COLLECTION = {
   eyebrow: "Festive Edit",
   name: "Navratri Collection",
   blurb: "Nine nights, nine shades of celebration — hand-blocked pieces made to twirl in.",
-  image: HOME_IMG.editorialBanner,
+  image: HOME_IMG.featuredCollection,
 };
 
 /** Collections selectable on the Shop page (`/shop?collection=<slug>`). */
@@ -107,15 +107,6 @@ export const CRAFTS: Craft[] = [
     image: CRAFT_IMG["dabu"],
     story:
       "Dabu is the art of mud-resist printing: a paste of clay, lime, gum and wheat chaff is hand-pressed through blocks onto cloth, then dusted with sawdust and left to dry before dyeing. Wherever the mud sits, the dye cannot reach, leaving luminous negative-space patterns. It is slow, weather-dependent and gloriously imperfect — every hairline crack in the resist becomes part of the design.",
-  },
-  {
-    slug: "dabu-bagru",
-    name: "Dabu-Bagru",
-    region: "Rajasthan",
-    dyes: ["Indigo", "Harda", "Alizarin", "Fermented iron"],
-    image: CRAFT_IMG["dabu-bagru"],
-    story:
-      "Dabu-Bagru pairs two Rajasthani traditions on a single cloth — the mud-resist of Dabu layered with the carved-block buti of Bagru — for a richly mixed print. Resist paste shields parts of the weave while earthy Bagru blocks build pattern over it; the cloth is then sun-dried and dyed. The result is a textile with depth: luminous negative-space motifs set against fine repeating florals.",
   },
 ];
 

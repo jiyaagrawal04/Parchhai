@@ -14,7 +14,7 @@ export const SITE = {
 };
 
 /** Instagram's official deep link that opens a DM thread with the account. */
-export const INSTAGRAM_URL = `https://instagram.com/${SITE.instagramHandle}`;
+export const INSTAGRAM_URL = "https://www.instagram.com/parchhai.co/?hl=en";
 export const INSTAGRAM_DM_URL = `https://ig.me/m/${SITE.instagramHandle}`;
 
 /** Shipping (₹). Orders at or above FREE_SHIPPING_OVER ship free. */

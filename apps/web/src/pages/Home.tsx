@@ -44,7 +44,7 @@ export default function Home() {
       {/* 1. Hero */}
       <section className="relative flex h-screen w-full items-center overflow-hidden px-5 md:px-margin-desktop">
         <div className="absolute inset-0 z-0">
-          <img src={HOME_IMG.hero} alt="" className="h-full w-full object-cover object-center brightness-[0.7]" />
+          <img src={HOME_IMG.hero} alt="" className="h-full w-full object-cover object-[50%_30%] brightness-[0.7]" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
         </div>
         <Reveal className="relative z-10 max-w-3xl">
@@ -126,7 +126,7 @@ export default function Home() {
             Tracing the rhythmic stamping of wooden blocks across the heartlands of India.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-4 md:gap-gutter lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:gap-gutter">
           {CRAFTS.map((c, i) => (
             <Reveal key={c.slug} delay={(i % 4) * 100}>
               <Link to={`/crafts/${c.slug}`} className="group relative block overflow-hidden">
@@ -216,7 +216,7 @@ export default function Home() {
         <div className="grid grid-cols-1 items-center gap-16 px-5 md:grid-cols-2 md:px-margin-desktop">
           <Reveal>
             <div className="slow-zoom aspect-[4/5] overflow-hidden">
-              <img src={HOME_IMG.craftStory} alt="Hand-carved printing blocks" className="h-full w-full object-cover" />
+              <img src={HOME_IMG.craftStory} alt="Parchhai hand-block printed top" className="h-full w-full object-cover" />
             </div>
           </Reveal>
           <Reveal delay={150}>

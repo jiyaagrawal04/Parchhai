@@ -1,25 +1,26 @@
 /**
- * Editorial imagery for the home page and craft heroes.
- * Replace any URL with a file in public/ (e.g. "/images/hero.jpg").
+ * Site imagery. Every image is one of Parchhai's own product photos in
+ * public/products/. To change one, point it at another file in public/.
  */
 
 export const HOME_IMG = {
-  hero:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuA11L-4F8sDBxje2nMy6fAqDXbx8AiFT4UfRHogbhxLoUY7AoXD5OqvoKPpOvw1XRTtVj_1HrZwqM4oRj-GFzFHmGVDGgVP1wrbg_fbfbcjh_0wwSjel7ZHLpQOZyJC6_F57VQ71veZLF3gOVWNhpPzLjoLTtIpRxjXyYbqJa5XlGOH6v_GhOAwAzoEIYB4WO-rkkQ2yAD4uovdZ6S69JvdrOxjku0O4zW0STnsm-yyEURva8YbKbR7lCUC4PPji38lbUNTs2Bmosf7",
-  craftStory:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuCBLDNjy8LWewoQBz99c8t1glybdImOmehgelYD3tfWvI8J6EIAiLCqoF1X5BBDolRHk-RGMAbUevspLHROWup1VY94vQxsZ5nI227Z_N4qKyqSsegfSPeF7USldaeujoWiEg0BrUT1Hh2GmIG0fPhfmyb-clwBsUtc0DrCxiDxh6JWlCyrklAV3-YFvJR6hvZykFgZDl6vn-m-fVEYn2u64Wpzep92PBneVkT3ifAnPO2kOk8kaQJ19Ckd5dYmVeDelxGQIiwX6DNv",
-  editorialBanner:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuADfgrExiFO5HcXnR6IzkdMLWCfBr03sy2pjJxfhvq0RaEI4cTLLhTgvwSLSeLbP-qn-ZQs27BxjUKZH0vnULQ76eu08oqPGB52SL1mBRJNJGYaVOvXseHPBBZsQENGIVpkPBcwu6XhJuWFlOlUNEPSn9tzHmrCuR2DIBkw8WA1r_M__9s0xm7bia55p_KLlNoA3yqqMreYPwHN4-Iw5LVZLXhyoXBBDGEo3OnNe0-V9q7_SpwlLp1oFvE-kx7wJznMNdmapwyu99SH",
+  hero: "/products/rust-bloom-2.jpg",
+  editorialBanner: "/products/peeli-mitti-3.jpg",
+  craftStory: "/products/vanika-3.jpg",
+  featuredCollection: "/products/peeli-mitti-1.jpg",
 };
 
 /** Hero image per craft slug. */
 export const CRAFT_IMG: Record<string, string> = {
-  "ajrakh":
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuCzIl-73DtJqZdu5Hq6CY7AW8UNEr6S5IZfZNKSxJ3OFtLY01eebLuKiTh1MpXIwbHlv4TAuWVElwWqjj1NKyQA7dYGy2a5tBmkvvktEBGKpL7a6fRe5yIgouxebotSdA39MmikPo18wittmX1oVZNa9L5GXPpgVSL0tD-hAQek-mcyiSBNB7q8pdg97nJGWLrL3RV3CFxorAmU5w7GcDzPQOA0yrDZ9jKaUU7MsFDyj_xqD7YzCiXi7bjaAIju5U83hFhtPPOBVVfa",
-  "bagru":
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuACbZ8ZgkqZUtQHCEdTNyy1hmCllmXR8A6ZqvIOubQBoaUCE5YIPk9nS1xpTRnxnvwynXmv-p9250hbZX-uCKD4ta0EVf3YczO7sqzEz8_gnGWPcfAH3bbcVFRs_r9DuvdDqhAROKlvSrp8OzS9cka9ZY_t979gGML5-rZQcHyD4stSU8hNybkHy9MPGLiPljQx77hGQDpiuN3G9I-7B4TYPCdRqXMilQElJ-9QHk8ZXUVG_uLHgyGRUjCbZLfxu_agchUBChQQ-FMW",
-  "dabu":
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuAptDlNCZb40MUszL_n7VP2RT1YyN_RbYRS3yZjZq0gAZbzt-8gC_MaWSeylG2xaX1OEDlQhdp5gWJSsB_t6DmFCpa4Sst-sp3kD8bXm0sPfcoijDhEN_Ax1szRnttFHHxbbq5wIIK5irnpWcAHTxOb949mNQyvDH8VsiTIVfzX9wxXsrOKXLSOotXcpJv-5rG8yyy3qVm2ZPuNkBFQxxSxCs_l91zLyzJw2vz86gAbC1R__cYI1IP3by1I_S26WR1ImhFy8Y0pdvGJ",
-  "dabu-bagru":
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuBCBExL9QHwYnljfYpnpbx3svxDAYlwJ6Xqb5reaHZcaASKcB37b7BioKtmsBWmWh4zgzA6ZlaX4Te2wW4MtaeN1QqnMfj8kKTAtT-OUb-HbmhhRx6U1-lnGR5neLrvY9IGnZiRqngjg6nQAO1Vm1tn30XGCk610J_YNajSir0Hl2pkwOyzQdITv6rsHfGHsu85V0p3qwK0aeWIhsbBk8lT-usQNRkuYJ5Ds_byxQTOtemNJIoX2s2JaVNo9fLMt6msmJj6NugxjX7Z",
+  ajrakh: "/products/gulnaar-4.jpg",
+  bagru: "/products/rust-bloom-1.jpg",
+  dabu: "/products/neel-dabu-5.jpg",
+};
+
+/** Our Story page. */
+export const STORY_IMG = {
+  meaning: "/products/neel-dabu-1.jpg",
+  hero: "/products/rust-bloom-5.jpg",
+  ourStory: "/products/vanika-1.jpg",
+  craft: "/products/neel-dabu-5.jpg",
 };

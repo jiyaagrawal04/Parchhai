@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useUI } from "@/store/ui";
+import { INSTAGRAM_URL, SITE } from "@/data/site";
 import { Reveal, MIcon } from "@/components/Reveal";
 
 const DETAILS = [
@@ -16,8 +17,11 @@ export default function Contact() {
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
+    const body = "Name: " + form.name + "%0D%0AEmail: " + form.email + "%0D%0A%0D%0A" + encodeURIComponent(form.message);
+    const subject = encodeURIComponent(form.subject || "Message from the Parchhai website");
+    window.location.href = "mailto:" + SITE.email + "?subject=" + subject + "&body=" + body;
     setSent(true);
-    showToast("Message sent ✓ We'll be in touch soon.");
+    showToast("Opening your email app");
   };
 
   return (
@@ -41,7 +45,7 @@ export default function Contact() {
             <div className="mt-8 border border-outline-variant bg-surface-container-low p-8 text-center">
               <MIcon name="mark_email_read" className="text-4xl text-secondary" />
               <h3 className="mt-3 font-headline-md text-xl text-primary">Thank you, {form.name || "friend"}.</h3>
-              <p className="mt-2 text-sm text-on-surface-variant">Your message is on its way. We typically reply within one business day.</p>
+              <p className="mt-2 text-sm text-on-surface-variant">If your email app did not open, write to {SITE.email} or message us on Instagram. We typically reply within one business day.</p>
               <button onClick={() => { setSent(false); setForm({ name: "", email: "", subject: "", message: "" }); }} className="mt-6 label-caps text-secondary underline underline-offset-4">Send another</button>
             </div>
           ) : (
@@ -91,7 +95,7 @@ export default function Contact() {
           <div className="mt-10 border-t border-outline-variant pt-8">
             <p className="label-caps text-[11px] text-on-surface-variant">Follow</p>
             <div className="mt-3 flex gap-6">
-              <a href="https://instagram.com/parchhai.co" target="_blank" rel="noreferrer" className="label-caps text-[11px] text-primary hover:text-secondary">Instagram · @parchhai.co</a>
+              <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="label-caps text-[11px] text-primary hover:text-secondary">Instagram · @parchhai.co</a>
             </div>
           </div>
         </Reveal>
