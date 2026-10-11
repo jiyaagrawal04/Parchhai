@@ -1,6 +1,6 @@
 {
   "name": "@parchhai/web",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,19 +11,14 @@
     "lint": "echo 'lint: skipped'"
   },
   "dependencies": {
-    "@parchhai/types": "workspace:*",
-    "@tanstack/react-query": "^5.62.7",
-    "axios": "^1.7.9",
     "clsx": "^2.1.1",
     "lucide-react": "^0.469.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.1",
-    "recharts": "^2.15.0",
     "zustand": "^5.0.2"
   },
   "devDependencies": {
-    "@parchhai/config": "workspace:*",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",

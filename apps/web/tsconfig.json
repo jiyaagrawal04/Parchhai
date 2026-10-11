@@ -1,7 +1,20 @@
 {
-  "extends": "@parchhai/config/tsconfig.react.json",
   "compilerOptions": {
-    "noUncheckedIndexedAccess": false,
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "types": ["vite/client"],
+    "noEmit": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     "baseUrl": ".",
     "paths": { "@/*": ["src/*"] }
   },

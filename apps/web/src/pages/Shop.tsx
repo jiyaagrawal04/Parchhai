@@ -1,44 +1,47 @@
+import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useCategories, useCrafts, useProducts } from "@/lib/hooks";
+import { CATEGORIES, COLLECTIONS, CRAFTS, getCategory, getCraft, listProducts, type SortKey } from "@/data/catalog";
 import { ProductCard } from "@/components/ProductCard";
-import { Empty, PageLoader, SectionTitle } from "@/components/ui";
-import { cx } from "@/lib/format";
+import { Empty, SectionTitle } from "@/components/ui";
 
 const SIZES = ["XS", "S", "M", "L", "XL"];
-const SORTS: [string, string][] = [
+const SORTS: [SortKey, string][] = [
   ["newest", "Newest"],
+  ["bestsellers", "Best sellers first"],
   ["price_asc", "Price: Low to High"],
   ["price_desc", "Price: High to Low"],
-  ["rating", "Top rated"],
 ];
 
 export default function Shop() {
   const [params, setParams] = useSearchParams();
-  const { data: crafts } = useCrafts();
-  const { data: categories } = useCategories();
 
-  const query = {
+  const filter = {
     craft: params.get("craft") ?? undefined,
     category: params.get("category") ?? undefined,
     size: params.get("size") ?? undefined,
-    sort: params.get("sort") ?? "newest",
-    inStock: params.get("inStock") ?? undefined,
-    page: Number(params.get("page") ?? 1),
-    pageSize: 12,
+    collection: params.get("collection") ?? undefined,
+    q: params.get("q") ?? undefined,
+    inStock: params.get("inStock") === "true",
+    sort: (params.get("sort") as SortKey) || "newest",
   };
-  const { data, isLoading } = useProducts(query);
+  const items = useMemo(() => listProducts(filter), [params]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const setParam = (key: string, value?: string) => {
     const next = new URLSearchParams(params);
     if (value) next.set(key, value);
     else next.delete(key);
-    if (key !== "page") next.delete("page");
     setParams(next);
   };
 
-  const hasFilters = Boolean(query.craft || query.category || query.size || query.inStock);
+  const hasFilters = Boolean(filter.craft || filter.category || filter.size || filter.collection || filter.q || filter.inStock);
 
-  // Compact dropdown — label sits above, "All …" is the clear option.
+  const title = filter.q
+    ? `Results for "${filter.q}"`
+    : COLLECTIONS.find((c) => c.slug === filter.collection)?.name ??
+      getCategory(filter.category ?? "")?.name ??
+      (getCraft(filter.craft ?? "") ? `${getCraft(filter.craft ?? "")!.name} pieces` : "Shop all");
+
+  // Compact dropdown. Label sits above, "All" is the clear option.
   const Dropdown = ({ label, paramKey, options }: { label: string; paramKey: string; options: [string, string][] }) => (
     <label className="flex flex-col gap-1">
       <span className="label-caps text-[10px] text-gold">{label}</span>
@@ -55,18 +58,15 @@ export default function Shop() {
 
   return (
     <div className="container-px py-12">
-      <SectionTitle eyebrow="The collection" title="Shop all" />
+      <SectionTitle eyebrow="The collection" title={title} />
 
       {/* Filter + sort bar */}
       <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4 border-y border-line py-4">
         <div className="flex flex-wrap items-end gap-x-6 gap-y-4">
-          <Dropdown label="Craft" paramKey="craft" options={(crafts ?? []).map((c) => [c.slug, c.name])} />
-          <Dropdown label="Category" paramKey="category" options={(categories ?? []).map((c) => [c.slug, c.name])} />
+          <Dropdown label="Collection" paramKey="collection" options={COLLECTIONS.map((c) => [c.slug, c.name])} />
+          <Dropdown label="Category" paramKey="category" options={CATEGORIES.map((c) => [c.slug, c.name])} />
+          <Dropdown label="Craft" paramKey="craft" options={CRAFTS.map((c) => [c.slug, c.name])} />
           <Dropdown label="Size" paramKey="size" options={SIZES.map((s) => [s, s])} />
-          <label className="flex items-center gap-2 pb-1.5 text-sm">
-            <input type="checkbox" checked={params.get("inStock") === "true"} onChange={(e) => setParam("inStock", e.target.checked ? "true" : undefined)} />
-            In stock
-          </label>
           {hasFilters && (
             <button onClick={() => setParams(new URLSearchParams())} className="pb-1.5 text-sm text-rust hover:underline">
               Clear all
@@ -77,7 +77,7 @@ export default function Shop() {
         <label className="flex flex-col gap-1">
           <span className="label-caps text-[10px] text-gold">Sort by</span>
           <select
-            value={query.sort}
+            value={filter.sort}
             onChange={(e) => setParam("sort", e.target.value)}
             className="min-w-[170px] border-b border-line bg-transparent py-1.5 text-sm outline-none focus:border-gold"
           >
@@ -86,27 +86,13 @@ export default function Shop() {
         </label>
       </div>
 
-      <p className="mt-4 text-sm text-muted">{data?.meta?.total ?? 0} pieces</p>
+      <p className="mt-4 text-sm text-muted">{items.length} {items.length === 1 ? "piece" : "pieces"}</p>
 
-      {/* Products (full width) */}
       <div className="mt-6">
-        {isLoading ? (
-          <PageLoader />
-        ) : data && data.items.length > 0 ? (
-          <>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 lg:grid-cols-4">
-              {data.items.map((p) => <ProductCard key={p.id} p={p} />)}
-            </div>
-            {data.meta && data.meta.totalPages > 1 && (
-              <div className="mt-12 flex justify-center gap-2">
-                {Array.from({ length: data.meta.totalPages }, (_, i) => i + 1).map((n) => (
-                  <button key={n} onClick={() => setParam("page", String(n))} className={cx("h-9 w-9 text-sm", n === query.page ? "bg-indigo text-ivory" : "border border-line hover:border-indigo")}>
-                    {n}
-                  </button>
-                ))}
-              </div>
-            )}
-          </>
+        {items.length > 0 ? (
+          <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 lg:grid-cols-4">
+            {items.map((p) => <ProductCard key={p.slug} p={p} />)}
+          </div>
         ) : (
           <Empty title="No pieces found" hint="Try clearing some filters." />
         )}

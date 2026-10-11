@@ -1,204 +1,181 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import type { AddressInput, CouponPreview, PaymentInitDTO, OrderDTO } from "@parchhai/types";
-import { useAddresses, useCart } from "@/lib/hooks";
-import { api, apiError, unwrap } from "@/lib/api";
-import { formatINR, cx } from "@/lib/format";
-import { ErrorNote, PageLoader } from "@/components/ui";
-import { useQueryClient } from "@tanstack/react-query";
+import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { cartShipping, cartSubtotal, useCart } from "@/store/cart";
+import { FREE_SHIPPING_OVER, INSTAGRAM_DM_URL, OFFERS, SITE } from "@/data/site";
+import { useUI } from "@/store/ui";
+import { formatINR } from "@/lib/format";
+import { MIcon } from "@/components/Reveal";
 
-const emptyAddress: AddressInput = { name: "", phone: "", line1: "", line2: "", city: "", state: "", pincode: "", type: "HOME", isDefault: false };
+/** Short reference so Parchhai can match the DM to the order: PRC-YYMMDD-XXXX */
+const makeRef = () => {
+  const d = new Date();
+  const ymd = `${String(d.getFullYear()).slice(2)}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`;
+  const rand = Math.random().toString(36).slice(2, 6).toUpperCase();
+  return `PRC-${ymd}-${rand}`;
+};
+
+const copyText = async (text: string) => {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      return ok;
+    } catch {
+      return false;
+    }
+  }
+};
 
 export default function Checkout() {
-  const { data: cart, isLoading } = useCart();
-  const { data: addresses } = useAddresses();
-  const qc = useQueryClient();
-  const navigate = useNavigate();
+  const { items, coupon, setCoupon, clear } = useCart();
+  const { showToast } = useUI();
+  const [form, setForm] = useState({ name: "", phone: "", address: "", pincode: "", note: "" });
+  const [ref] = useState(makeRef);
+  const [sent, setSent] = useState(false);
 
-  const [addressId, setAddressId] = useState<string>("");
-  const [newAddr, setNewAddr] = useState<AddressInput>(emptyAddress);
-  const [useNew, setUseNew] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState<"RAZORPAY" | "COD">("RAZORPAY");
-  const [coupon, setCoupon] = useState("");
-  const [couponPreview, setCouponPreview] = useState<CouponPreview | null>(null);
-  const [error, setError] = useState("");
-  const [busy, setBusy] = useState(false);
+  const subtotal = cartSubtotal(items);
+  const shipping = cartShipping(subtotal);
+  const total = subtotal + shipping;
+  const knownCoupon = OFFERS.find((o) => o.code === coupon);
 
-  if (isLoading) return <PageLoader />;
-  if (!cart || cart.items.length === 0) {
-    navigate("/cart");
-    return null;
-  }
-
-  const defaultAddr = addresses?.find((a) => a.isDefault) ?? addresses?.[0];
-  const selectedId = addressId || defaultAddr?.id || "";
-  const discount = couponPreview?.valid ? couponPreview.discount : 0;
-  const freeShip = couponPreview?.freeShipping || cart.subtotal - discount >= 99900;
-  const shipping = freeShip ? 0 : 7900;
-  const total = cart.subtotal - discount + shipping;
-
-  const applyCoupon = async () => {
-    if (!coupon) return;
-    try {
-      const preview = unwrap<CouponPreview>(await api.post("/orders/coupon/preview", { code: coupon }));
-      setCouponPreview(preview);
-    } catch (e) {
-      setError(apiError(e));
-    }
-  };
+  const message = useMemo(() => {
+    const lines = [
+      `Hi ${SITE.name}! I'd like to place an order.`,
+      "",
+      `Order ref: ${ref}`,
+      ...items.map((it, i) => `${i + 1}. ${it.name} (${it.color} / ${it.size}) x ${it.qty} = ${formatINR(it.price * it.qty)}`),
+      "",
+      `Subtotal: ${formatINR(subtotal)}`,
+      `Shipping: ${shipping === 0 ? `Free (over ${formatINR(FREE_SHIPPING_OVER)})` : formatINR(shipping)}`,
+      ...(coupon ? [`Coupon: ${coupon}`] : []),
+      `Total: ${formatINR(total)}${coupon ? " (before coupon)" : ""}`,
+      "",
+      `Name: ${form.name || "-"}`,
+      `Phone: ${form.phone || "-"}`,
+      `Address: ${form.address || "-"}`,
+      `Pincode: ${form.pincode || "-"}`,
+      ...(form.note ? [`Note: ${form.note}`] : []),
+    ];
+    return lines.join("\n");
+  }, [items, subtotal, shipping, total, coupon, form, ref]);
 
   const placeOrder = async () => {
-    setError("");
-    if (!useNew && !selectedId) return setError("Select or add a shipping address.");
-    setBusy(true);
-    try {
-      const payload: Record<string, unknown> = { paymentMethod, couponCode: couponPreview?.valid ? coupon : undefined };
-      if (useNew) payload.address = newAddr;
-      else payload.addressId = selectedId;
-
-      const res = await api.post("/orders", payload);
-      const { order, payment } = res.data.data as { order: OrderDTO; payment: PaymentInitDTO | null };
-
-      if (paymentMethod === "COD" || !payment) {
-        await finish(order.id);
-        return;
-      }
-      // Stub provider auto-confirms; Razorpay would open the widget here.
-      if (payment.provider === "stub") {
-        await api.post("/orders/payment/verify", {
-          orderId: order.id,
-          razorpayOrderId: payment.razorpayOrderId,
-          razorpayPaymentId: `pay_stub_${order.id}`,
-          razorpaySignature: "stub-signature",
-        });
-        await finish(order.id);
-      } else {
-        await openRazorpay(payment, order.id);
-      }
-    } catch (e) {
-      setError(apiError(e));
-      setBusy(false);
-    }
+    // Open the DM first (must happen synchronously inside the click to avoid popup blockers).
+    const win = window.open(INSTAGRAM_DM_URL, "_blank", "noopener");
+    const ok = await copyText(message);
+    setSent(true);
+    showToast(ok ? "Order copied. Paste it in the Instagram chat." : "Opened Instagram. Copy the order below and paste it in the chat.");
+    if (!win) window.location.href = INSTAGRAM_DM_URL;
   };
 
-  const finish = async (orderId: string) => {
-    await qc.invalidateQueries({ queryKey: ["cart"] });
-    await qc.invalidateQueries({ queryKey: ["orders"] });
-    navigate(`/account/orders/${orderId}`);
-  };
-
-  const openRazorpay = (payment: PaymentInitDTO, orderId: string) =>
-    new Promise<void>((resolve) => {
-      const RZ = (window as unknown as { Razorpay?: new (o: object) => { open: () => void } }).Razorpay;
-      if (!RZ) {
-        setError("Razorpay SDK not loaded.");
-        setBusy(false);
-        return resolve();
-      }
-      const rz = new RZ({
-        key: payment.razorpayKeyId,
-        amount: payment.amount,
-        currency: payment.currency,
-        order_id: payment.razorpayOrderId,
-        name: "Parchhai",
-        handler: async (r: { razorpay_payment_id: string; razorpay_order_id: string; razorpay_signature: string }) => {
-          await api.post("/orders/payment/verify", {
-            orderId,
-            razorpayOrderId: r.razorpay_order_id,
-            razorpayPaymentId: r.razorpay_payment_id,
-            razorpaySignature: r.razorpay_signature,
-          });
-          await finish(orderId);
-          resolve();
-        },
-      });
-      rz.open();
-    });
-
-  const field = (key: keyof AddressInput, label: string, required = true) => (
-    <div>
-      <label className="label-caps text-muted">{label}</label>
-      <input className="input mt-1" value={String(newAddr[key] ?? "")} onChange={(e) => setNewAddr({ ...newAddr, [key]: e.target.value })} required={required} />
-    </div>
-  );
+  if (items.length === 0 && !sent)
+    return (
+      <div className="container-px py-20 text-center">
+        <h1 className="font-headline-md text-2xl text-primary">Your bag is empty</h1>
+        <Link to="/shop" className="btn-primary mt-6">Shop now</Link>
+      </div>
+    );
 
   return (
     <div className="container-px py-12">
-      <h1 className="text-4xl text-indigo">Checkout</h1>
-      {error && <div className="mt-4"><ErrorNote message={error} /></div>}
-      <div className="mt-10 grid gap-12 md:grid-cols-[1fr_360px]">
-        <div className="space-y-10">
-          {/* Address */}
-          <section>
-            <h2 className="font-serif text-2xl text-indigo">Shipping address</h2>
-            <div className="mt-4 space-y-3">
-              {addresses?.map((a) => (
-                <label key={a.id} className={cx("flex cursor-pointer gap-3 border p-4", !useNew && selectedId === a.id ? "border-indigo" : "border-line")}>
-                  <input type="radio" checked={!useNew && selectedId === a.id} onChange={() => { setUseNew(false); setAddressId(a.id); }} />
-                  <div className="text-sm">
-                    <p className="font-semibold">{a.name} · {a.phone}</p>
-                    <p className="text-muted">{a.line1}{a.line2 ? `, ${a.line2}` : ""}, {a.city}, {a.state} {a.pincode}</p>
-                  </div>
-                </label>
-              ))}
-              <label className={cx("flex cursor-pointer gap-3 border p-4", useNew ? "border-indigo" : "border-line")}>
-                <input type="radio" checked={useNew} onChange={() => setUseNew(true)} />
-                <span className="text-sm font-semibold">Use a new address</span>
-              </label>
-            </div>
+      <p className="label-caps text-secondary">Checkout</p>
+      <h1 className="mt-2 text-4xl text-indigo">Place your order on Instagram</h1>
+      <p className="mt-3 max-w-2xl text-on-surface-variant">
+        We take orders in a DM, so a real person confirms your size, payment and delivery. Fill in your details, press the button, and paste the order summary into the chat that opens.
+      </p>
 
-            {useNew && (
-              <div className="mt-4 grid gap-4 md:grid-cols-2">
-                {field("name", "Full name")}
-                {field("phone", "Phone")}
-                <div className="md:col-span-2">{field("line1", "Address line 1")}</div>
-                <div className="md:col-span-2">{field("line2", "Address line 2", false)}</div>
-                {field("city", "City")}
-                {field("state", "State")}
-                {field("pincode", "Pincode")}
-              </div>
-            )}
-          </section>
-
-          {/* Payment */}
-          <section>
-            <h2 className="font-serif text-2xl text-indigo">Payment</h2>
-            <div className="mt-4 space-y-3">
-              {([["RAZORPAY", "Pay online (UPI / Card / Netbanking)"], ["COD", "Cash on delivery"]] as const).map(([val, label]) => (
-                <label key={val} className={cx("flex cursor-pointer gap-3 border p-4", paymentMethod === val ? "border-indigo" : "border-line")}>
-                  <input type="radio" checked={paymentMethod === val} onChange={() => setPaymentMethod(val)} />
-                  <span className="text-sm">{label}</span>
-                </label>
-              ))}
+      <div className="mt-10 grid gap-12 md:grid-cols-[1fr_400px]">
+        {/* Details */}
+        <div>
+          <h2 className="font-serif text-xl text-indigo">Your details <span className="text-sm font-sans text-muted">(optional, saves a few messages)</span></h2>
+          <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <div>
+              <label className="label-caps text-on-surface-variant">Name</label>
+              <input className="input mt-1" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} autoComplete="name" />
             </div>
-          </section>
+            <div>
+              <label className="label-caps text-on-surface-variant">Phone</label>
+              <input className="input mt-1" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} inputMode="tel" autoComplete="tel" />
+            </div>
+            <div className="sm:col-span-2">
+              <label className="label-caps text-on-surface-variant">Delivery address</label>
+              <textarea rows={3} className="input mt-1 resize-none" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} autoComplete="street-address" />
+            </div>
+            <div>
+              <label className="label-caps text-on-surface-variant">Pincode</label>
+              <input className="input mt-1" value={form.pincode} onChange={(e) => setForm({ ...form, pincode: e.target.value })} inputMode="numeric" maxLength={6} autoComplete="postal-code" />
+            </div>
+            <div>
+              <label className="label-caps text-on-surface-variant">Coupon code</label>
+              <input className="input mt-1 uppercase" value={coupon} onChange={(e) => setCoupon(e.target.value)} placeholder={OFFERS[0]?.code} />
+              {coupon && (
+                <p className="mt-1 text-[11px] text-on-surface-variant">
+                  {knownCoupon ? `${knownCoupon.desc}. Applied when we confirm your order.` : "We'll check this code when confirming your order."}
+                </p>
+              )}
+            </div>
+            <div className="sm:col-span-2">
+              <label className="label-caps text-on-surface-variant">Note for us</label>
+              <input className="input mt-1" value={form.note} onChange={(e) => setForm({ ...form, note: e.target.value })} placeholder="Size doubts, gift wrap, delivery date" />
+            </div>
+          </div>
+
+          <div className="mt-10">
+            <h2 className="font-serif text-xl text-indigo">Order summary we'll send</h2>
+            <pre className="mt-4 whitespace-pre-wrap border border-line bg-surface-container-low p-5 font-sans text-sm leading-relaxed text-on-surface">{message}</pre>
+            <button onClick={() => copyText(message).then((ok) => showToast(ok ? "Copied" : "Could not copy. Select the text above."))} className="btn-secondary mt-4">
+              <MIcon name="content_copy" className="text-[18px]" /> Copy summary
+            </button>
+          </div>
         </div>
 
-        {/* Summary */}
+        {/* Summary + CTA */}
         <aside className="h-fit card p-6">
-          <h2 className="font-serif text-xl text-indigo">Order summary</h2>
-          <div className="mt-4 max-h-48 space-y-3 overflow-y-auto">
-            {cart.items.map((it) => (
-              <div key={it.id} className="flex justify-between text-sm">
-                <span className="text-muted">{it.productName} ×{it.qty}</span>
-                <span>{formatINR(it.lineTotal)}</span>
-              </div>
+          <h2 className="font-serif text-xl text-indigo">{items.length} {items.length === 1 ? "piece" : "pieces"}</h2>
+          <ul className="mt-4 divide-y divide-line">
+            {items.map((it) => (
+              <li key={it.key} className="flex items-center gap-3 py-3">
+                <div className="h-16 w-14 shrink-0 bg-line/40">{it.image && <img src={it.image} alt="" className="h-full w-full object-cover" />}</div>
+                <div className="flex-1 text-sm">
+                  <p className="text-primary">{it.name}</p>
+                  <p className="text-muted">{it.color} · {it.size} · x{it.qty}</p>
+                </div>
+                <span className="text-sm font-semibold">{formatINR(it.price * it.qty)}</span>
+              </li>
             ))}
-          </div>
-          <div className="mt-4 border-t border-line pt-4">
-            <div className="flex gap-2">
-              <input value={coupon} onChange={(e) => setCoupon(e.target.value.toUpperCase())} placeholder="Coupon code" className="input" />
-              <button onClick={applyCoupon} className="btn-ghost border border-line shrink-0">Apply</button>
-            </div>
-            {couponPreview && <p className={cx("mt-2 text-xs", couponPreview.valid ? "text-green-700" : "text-rust")}>{couponPreview.valid ? `Applied — you save ${formatINR(couponPreview.discount)}` : couponPreview.message}</p>}
-          </div>
-          <div className="mt-4 space-y-2 border-t border-line pt-4 text-sm">
-            <div className="flex justify-between"><span className="text-muted">Subtotal</span><span>{formatINR(cart.subtotal)}</span></div>
-            {discount > 0 && <div className="flex justify-between text-green-700"><span>Discount</span><span>−{formatINR(discount)}</span></div>}
-            <div className="flex justify-between"><span className="text-muted">Shipping</span><span>{shipping === 0 ? "Free" : formatINR(shipping)}</span></div>
-          </div>
+          </ul>
+          <div className="mt-4 flex justify-between text-sm"><span className="text-muted">Subtotal</span><span>{formatINR(subtotal)}</span></div>
+          <div className="mt-2 flex justify-between text-sm"><span className="text-muted">Shipping</span><span>{shipping === 0 ? "Free" : formatINR(shipping)}</span></div>
           <div className="mt-4 flex justify-between border-t border-line pt-4 text-lg font-semibold"><span>Total</span><span>{formatINR(total)}</span></div>
-          <button onClick={placeOrder} disabled={busy} className="btn-rust mt-6 w-full">{busy ? "Placing order…" : `Place order · ${formatINR(total)}`}</button>
+
+          {!sent ? (
+            <>
+              <button onClick={placeOrder} className="btn-primary mt-6 w-full py-4">
+                <MIcon name="send" className="text-[18px]" /> Place order on Instagram
+              </button>
+              <p className="mt-3 text-center text-[12px] text-muted">Opens a DM with @{SITE.instagramHandle} and copies your order summary.</p>
+            </>
+          ) : (
+            <div className="mt-6 border border-secondary/30 bg-secondary/5 p-4 text-sm">
+              <p className="font-semibold text-primary">Almost done</p>
+              <p className="mt-1 text-on-surface-variant">Paste the summary in the Instagram chat and we'll reply with payment details. Your reference is <span className="font-semibold text-primary">{ref}</span>.</p>
+              <div className="mt-4 flex flex-col gap-2">
+                <a href={INSTAGRAM_DM_URL} target="_blank" rel="noreferrer" className="btn-primary w-full">Open Instagram DM again</a>
+                <button onClick={() => copyText(message).then((ok) => showToast(ok ? "Copied" : "Could not copy"))} className="btn-secondary w-full">Copy summary again</button>
+                <button onClick={() => { clear(); showToast("Bag cleared"); }} className="btn-ghost w-full text-sm">Order sent, clear my bag</button>
+              </div>
+            </div>
+          )}
+          <Link to="/cart" className="mt-4 block text-center text-sm text-muted hover:text-rust">Edit bag</Link>
         </aside>
       </div>
     </div>

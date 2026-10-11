@@ -1,69 +1,12 @@
-# Render Blueprint — deploys BOTH the Parchhai API (Node server) and the web (static site).
-# Create from: Render Dashboard → New → Blueprint → pick this repo.
-# After first deploy, set the two cross-URLs (see DEPLOY.md):
-#   - API service:  WEB_ORIGIN   = the web site's URL
-#   - web service:  VITE_API_URL = the API's URL + /api/v1
+# Render Blueprint — Parchhai is a fully static site (no API, no database).
+# Create from: Render Dashboard → New → Blueprint → pick this repo → Apply.
 services:
-  # ─────────────────────────── API ───────────────────────────
-  - type: web
-    name: parchhai-api
-    runtime: node
-    plan: free
-    region: oregon
-    # Build from the monorepo ROOT so pnpm resolves the @parchhai/* workspace packages.
-    rootDir: .
-    # Install pnpm via npm (avoids the corepack signature-verification bug in bundled Node).
-    buildCommand: npm i -g pnpm@10.28.2 && pnpm install --no-frozen-lockfile && pnpm --filter @parchhai/db generate
-    # Runs `tsx src/index.ts` so the @parchhai/* workspace TypeScript packages resolve at runtime.
-    startCommand: pnpm --filter @parchhai/api start
-    healthCheckPath: /api/v1/health
-    autoDeploy: true
-    envVars:
-      - key: NODE_VERSION
-        value: "20.18.0"
-      - key: NODE_ENV
-        value: production
-      # --- Secrets: set these in the Render dashboard (sync:false = not in blueprint) ---
-      - key: DATABASE_URL
-        sync: false # Neon pooled URL
-      - key: DIRECT_URL
-        sync: false # Neon direct (non-pooler) URL
-      - key: WEB_ORIGIN
-        sync: false # e.g. https://parchhai-web.vercel.app  (comma-separate for multiple)
-      # --- Auto-generated strong secrets ---
-      - key: JWT_ACCESS_SECRET
-        generateValue: true
-      - key: JWT_REFRESH_SECRET
-        generateValue: true
-      # --- Optional integrations (leave blank to use stub providers) ---
-      - key: RAZORPAY_KEY_ID
-        sync: false
-      - key: RAZORPAY_KEY_SECRET
-        sync: false
-      - key: RAZORPAY_WEBHOOK_SECRET
-        sync: false
-      - key: R2_ACCOUNT_ID
-        sync: false
-      - key: R2_ACCESS_KEY_ID
-        sync: false
-      - key: R2_SECRET_ACCESS_KEY
-        sync: false
-      - key: R2_BUCKET
-        sync: false
-      - key: R2_PUBLIC_URL
-        sync: false
-
-  # ───────────────────── Web (static site) ─────────────────────
   - type: web
     name: parchhai-web
     runtime: static
-    # Build with vite only (no tsc gate); publish the Vite output.
     buildCommand: npm i -g pnpm@10.28.2 && pnpm install --no-frozen-lockfile && pnpm --filter @parchhai/web exec vite build
     staticPublishPath: apps/web/dist
     pullRequestPreviewsEnabled: false
-    envVars:
-      - key: VITE_API_URL
-        sync: false # set to the API service URL + /api/v1, e.g. https://parchhai-api.onrender.com/api/v1
     # SPA fallback: serve index.html for client-side routes.
     routes:
       - type: rewrite

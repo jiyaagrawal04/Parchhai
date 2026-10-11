@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
-import { useCart } from "@/lib/hooks";
-import { useAuth } from "@/store/auth";
+import { cartCount, useCart } from "@/store/cart";
 import { useUI } from "@/store/ui";
+import { CATEGORIES, COLLECTIONS } from "@/data/catalog";
+import { INSTAGRAM_URL, SITE } from "@/data/site";
 import { cx } from "@/lib/format";
 import { MIcon } from "@/components/Reveal";
-import { LoginModal } from "@/components/LoginModal";
 import { CartDrawer } from "@/components/CartDrawer";
 import { SearchModal } from "@/components/SearchModal";
 import { QuickViewModal } from "@/components/QuickViewModal";
@@ -19,13 +19,13 @@ const nav = [
 ];
 
 export const StorefrontLayout = () => {
-  const { data: cart } = useCart();
-  const { user, isStaff } = useAuth();
-  const { openLogin, openCart, openSearch, searchOpen, quickViewSlug } = useUI();
+  const items = useCart((s) => s.items);
+  const { openCart, openSearch, searchOpen, quickViewSlug } = useUI();
   const location = useLocation();
-  const count = cart?.itemCount ?? 0;
+  const count = cartCount(items);
   const isHome = location.pathname === "/";
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -34,9 +34,11 @@ export const StorefrontLayout = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => setMenuOpen(false), [location.pathname, location.search]);
+
   // Transparent over the home hero; solid (paper + blur) everywhere else or once scrolled.
-  const solid = !isHome || scrolled;
-  const textOnDark = isHome && !scrolled;
+  const solid = !isHome || scrolled || menuOpen;
+  const textOnDark = isHome && !scrolled && !menuOpen;
 
   return (
     <div className="flex min-h-screen flex-col paper-grain">
@@ -49,7 +51,7 @@ export const StorefrontLayout = () => {
         )}
       >
         <div className="flex items-center gap-12">
-          <Link to="/" className="flex items-center" aria-label="Parchhai — home">
+          <Link to="/" className="flex items-center" aria-label="Parchhai home">
             <img src="/logo.png" alt="Parchhai" className={cx("h-10 w-auto transition-all", textOnDark && "brightness-0 invert")} />
           </Link>
           <div className="hidden gap-8 md:flex">
@@ -70,25 +72,27 @@ export const StorefrontLayout = () => {
             ))}
           </div>
         </div>
-        <div className={cx("flex items-center gap-6 transition-colors", textOnDark ? "text-surface" : "text-primary")}>
+        <div className={cx("flex items-center gap-5 transition-colors md:gap-6", textOnDark ? "text-surface" : "text-primary")}>
           <button onClick={openSearch} aria-label="Search"><MIcon name="search" className="text-2xl hover:opacity-70" /></button>
-          {user ? (
-            <Link to="/account/orders" aria-label="Account"><MIcon name="person" className="text-2xl hover:opacity-70" /></Link>
-          ) : (
-            <button onClick={() => openLogin()} aria-label="Account"><MIcon name="person" className="text-2xl hover:opacity-70" /></button>
-          )}
           <button onClick={openCart} className="relative" aria-label="Cart">
             <MIcon name="shopping_bag" className="text-2xl hover:opacity-70" />
             {count > 0 && (
               <span className="absolute -right-2 -top-1 flex h-4 min-w-4 items-center justify-center bg-secondary px-1 text-[10px] font-bold text-surface">{count}</span>
             )}
           </button>
+          <button onClick={() => setMenuOpen((o) => !o)} aria-label="Menu" className="md:hidden"><MIcon name={menuOpen ? "close" : "menu"} className="text-2xl" /></button>
         </div>
       </nav>
 
-      {isStaff && (
-        <div className="fixed top-20 z-40 w-full bg-primary py-1.5 text-center text-xs text-surface">
-          Signed in as staff — <Link to="/admin" className="underline">open the admin dashboard</Link>
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div className="fixed inset-x-0 top-20 z-40 border-b border-outline/10 bg-surface/95 px-5 py-6 backdrop-blur-xl md:hidden">
+          <div className="flex flex-col gap-5">
+            {nav.map((n) => (
+              <NavLink key={n.to} to={n.to} className={({ isActive }) => cx("label-caps text-base", isActive ? "text-secondary" : "text-primary")}>{n.label}</NavLink>
+            ))}
+            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="label-caps text-base text-primary">Instagram · @{SITE.instagramHandle}</a>
+          </div>
         </div>
       )}
 
@@ -96,7 +100,7 @@ export const StorefrontLayout = () => {
         <Outlet />
       </main>
 
-      {/* Footer (matches Stitch) */}
+      {/* Footer */}
       <footer className="border-t border-outline-variant bg-surface-container">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-gutter px-5 py-24 md:grid-cols-4 md:px-margin-desktop">
           <div className="flex flex-col gap-6">
@@ -105,32 +109,41 @@ export const StorefrontLayout = () => {
               Preserving the soul of Indian textiles through editorial silhouettes and unhurried design.
             </p>
             <div className="space-y-2 text-sm text-on-surface-variant">
-              <p><span className="text-primary">Email:</span> <a href="mailto:admin@myparchhai.com" className="hover:text-primary">admin@myparchhai.com</a></p>
-              <p><span className="text-primary">Contact:</span> <a href="tel:+916201302013" className="hover:text-primary">+91 62013 02013</a>, <a href="tel:+919818097573" className="hover:text-primary">+91 98180 97573</a></p>
-              <p><span className="text-primary">Studio:</span> Mathikere, Bengaluru – 560054</p>
+              <p><span className="text-primary">Email:</span> <a href={`mailto:${SITE.email}`} className="hover:text-primary">{SITE.email}</a></p>
+              <p>
+                <span className="text-primary">Contact:</span>{" "}
+                {SITE.phones.map((ph, i) => (
+                  <span key={ph}>{i > 0 && ", "}<a href={`tel:${ph.replace(/\s/g, "")}`} className="hover:text-primary">{ph}</a></span>
+                ))}
+              </p>
+              <p><span className="text-primary">Studio:</span> {SITE.studio}</p>
             </div>
           </div>
-          <FooterCol title="Shop" links={[["New Arrivals", "/shop"], ["Kurtis", "/shop?category=kurtis"], ["Corsets", "/shop?category=corsets"], ["Dresses", "/shop?category=dresses"]]} />
-          <FooterCol title="Our Story" links={[["The Crafts", "/crafts"], ["Lookbook", "/lookbook"], ["Contact", "/contact"], ["Provenance", "/story"]]} />
+          <FooterCol
+            title="Shop"
+            links={[
+              ...COLLECTIONS.map((c) => [c.name, `/shop?collection=${c.slug}`] as [string, string]),
+              ...CATEGORIES.map((c) => [c.name, `/shop?category=${c.slug}`] as [string, string]),
+            ]}
+          />
+          <FooterCol title="Parchhai" links={[["The Crafts", "/crafts"], ["Our Story", "/story"], ["Contact", "/contact"], ["Your Bag", "/cart"]]} />
           <div className="flex flex-col gap-6">
-            <span className="label-caps text-primary">Newsletter</span>
-            <div className="flex border-b border-primary/20 pb-2">
-              <input className="w-full bg-transparent text-body-md outline-none placeholder:text-on-surface-variant/50" placeholder="Email Address" type="email" />
-              <MIcon name="arrow_forward" className="text-primary" />
-            </div>
-            <p className="label-caps text-[10px] text-on-surface-variant">Join the craft movement</p>
+            <span className="label-caps text-primary">Order on Instagram</span>
+            <p className="text-body-md text-on-surface-variant">
+              Add pieces to your bag and place the order. It opens a DM with us on Instagram, where we confirm sizing, payment and delivery.
+            </p>
+            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="label-caps inline-flex items-center gap-2 self-start border-b border-primary pb-1 text-primary hover:text-secondary">
+              @{SITE.instagramHandle} <MIcon name="arrow_outward" className="text-[16px]" />
+            </a>
           </div>
         </div>
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 border-t border-outline/10 px-5 py-8 md:flex-row md:px-margin-desktop">
           <span className="label-caps text-[10px] text-on-surface-variant/60">© {new Date().getFullYear()} Parchhai. Crafted in India.</span>
-          <div className="flex gap-8">
-            <a href="https://instagram.com/parchhai.co" target="_blank" rel="noreferrer" className="label-caps text-[10px] text-on-surface-variant/60 hover:text-primary">Instagram · @parchhai.co</a>
-          </div>
+          <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="label-caps text-[10px] text-on-surface-variant/60 hover:text-primary">Instagram · @{SITE.instagramHandle}</a>
         </div>
       </footer>
 
-      {/* Floating overlays — available on every storefront page */}
-      <LoginModal />
+      {/* Floating overlays, available on every page */}
       <CartDrawer />
       {searchOpen && <SearchModal />}
       {quickViewSlug && <QuickViewModal slug={quickViewSlug} />}
